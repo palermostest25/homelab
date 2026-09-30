@@ -1,0 +1,50 @@
+# /etc/sudoers.d/paperclip  --  arcane (192.168.1.10), Docker/service host
+# Owner: Warden (Paperclip). Install mode 0440, root:root.
+# Validate before activating:  visudo -c -f /etc/sudoers.d/paperclip
+#
+# See homelab/README.md for the full rationale, including the docker-group
+# caveat below, which is the one genuinely root-equivalent grant here.
+
+# --- Service lifecycle -------------------------------------------------------
+# --no-pager required on read verbs: the default pager (less) has a shell
+# escape, which would upgrade a read grant into a root shell.
+Cmnd_Alias PC_SYSTEMCTL_RW = \
+    /usr/bin/systemctl start *, \
+    /usr/bin/systemctl stop *, \
+    /usr/bin/systemctl restart *, \
+    /usr/bin/systemctl reload *, \
+    /usr/bin/systemctl enable *, \
+    /usr/bin/systemctl disable *, \
+    /usr/bin/systemctl daemon-reload
+
+Cmnd_Alias PC_SYSTEMCTL_RO = \
+    /usr/bin/systemctl --no-pager status *, \
+    /usr/bin/systemctl --no-pager list-units *, \
+    /usr/bin/systemctl is-active *, \
+    /usr/bin/systemctl is-enabled *, \
+    /usr/bin/systemctl is-failed *
+
+Cmnd_Alias PC_JOURNAL = /usr/bin/journalctl --no-pager *
+
+# --- Read-only inspection ----------------------------------------------------
+Cmnd_Alias PC_INSPECT = \
+    /usr/bin/df *, \
+    /usr/bin/free *, \
+    /usr/bin/du *
+
+paperclip ALL=(root) NOPASSWD: PC_SYSTEMCTL_RW, PC_SYSTEMCTL_RO, PC_JOURNAL, PC_INSPECT
+
+# --- Docker ------------------------------------------------------------------
+# Docker access is granted by adding `paperclip` to the `docker` group, NOT by a
+# sudo rule. Both are equivalent in privilege: anyone who can talk to the Docker
+# socket can run `docker run -v /:/host` and become root. There is no meaningful
+# way to narrow this while still allowing compose stacks to be deployed, so it is
+# stated plainly rather than dressed up as constrained.
+#
+# If that is not acceptable, the alternative is rootless Docker or a Podman
+# user service for the paperclip user; that is a larger change and belongs on
+# its own ticket.
+#
+# No sudoers entry for /usr/bin/docker is present on purpose -- granting it here
+# in addition to the group membership would widen nothing and only obscure the
+# actual privilege boundary.

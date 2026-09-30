@@ -1,0 +1,16 @@
+# Never commit real secret material. .env.example (key names only) is committed.
+.env
+*.env
+!.env.example
+*.key
+*.pem
+id_ed25519*
+id_rsa*
+*.p12
+*.pfx
+authorized_keys
+
+# Local scratch
+*.swp
+*~
+.DS_Store
