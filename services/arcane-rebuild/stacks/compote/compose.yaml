@@ -1,0 +1,14 @@
+services:
+  compote:
+    image: ghcr.io/aicrafted/compote:latest
+    volumes:
+    - /opt/docker/appdata/compote/data:/data
+    restart: unless-stopped
+  caddy:
+    image: caddy:latest
+    ports:
+    - 3474:443
+    volumes:
+    - /opt/docker/appdata/compote/Caddyfile:/etc/caddy/Caddyfile
+    - /opt/docker/appdata/compote/caddy:/data
+    restart: unless-stopped

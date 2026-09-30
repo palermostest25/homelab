@@ -1,0 +1,22 @@
+services:
+  wireguard:
+    environment:
+      WG_HOST: ${WIREGUARD_WIREGUARD_WG_HOST:?Set WIREGUARD_WIREGUARD_WG_HOST}
+      WG_DEFAULT_DNS: ${WIREGUARD_WIREGUARD_WG_DEFAULT_DNS:?Set WIREGUARD_WIREGUARD_WG_DEFAULT_DNS}
+      WG_ALLOWED_IPS: ${WIREGUARD_WIREGUARD_WG_ALLOWED_IPS:?Set WIREGUARD_WIREGUARD_WG_ALLOWED_IPS}
+      INSECURE: ${WIREGUARD_WIREGUARD_INSECURE:?Set WIREGUARD_WIREGUARD_INSECURE}
+    image: ghcr.io/wg-easy/wg-easy:latest
+    container_name: wg-easy
+    volumes:
+    - /opt/docker/appdata/wireguard:/etc/wireguard
+    ports:
+    - 51820:51820/udp
+    - 1035:51821
+    restart: always
+    cap_add:
+    - NET_ADMIN
+    - SYS_MODULE
+    sysctls:
+    - net.ipv4.ip_forward=1
+    - net.ipv4.conf.all.src_valid_mark=1
+networks: {}

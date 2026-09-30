@@ -1,0 +1,19 @@
+services:
+  hbbs:
+    container_name: hbbs
+    image: rustdesk/rustdesk-server:latest
+    command: ${RUSTDESK_HBBS_COMMAND:?Set RUSTDESK_HBBS_COMMAND}
+    volumes:
+    - /opt/docker/appdata/rustdesk/data:/root
+    network_mode: host
+    depends_on:
+    - hbbr
+    restart: unless-stopped
+  hbbr:
+    container_name: hbbr
+    image: rustdesk/rustdesk-server:latest
+    command: ${RUSTDESK_HBBR_COMMAND:?Set RUSTDESK_HBBR_COMMAND}
+    volumes:
+    - /opt/docker/appdata/rustdesk/data:/root
+    network_mode: host
+    restart: unless-stopped

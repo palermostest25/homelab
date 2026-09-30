@@ -1,0 +1,7 @@
+services:
+  mailhog:
+    image: mailhog/mailhog
+    restart: always
+    ports:
+    - 2001:8025
+    - 2002:1025

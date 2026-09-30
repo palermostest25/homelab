@@ -1,0 +1,24 @@
+services:
+  shlink:
+    container_name: shlink
+    restart: always
+    ports:
+    - 1040:8080
+    environment:
+      DEFAULT_DOMAIN: ${SHLINK_SHLINK_DEFAULT_DOMAIN:?Set SHLINK_SHLINK_DEFAULT_DOMAIN}
+      IS_HTTPS_ENABLED: ${SHLINK_SHLINK_IS_HTTPS_ENABLED:?Set SHLINK_SHLINK_IS_HTTPS_ENABLED}
+      GEOLITE_LICENSE_KEY: ${SHLINK_SHLINK_GEOLITE_LICENSE_KEY:?Set SHLINK_SHLINK_GEOLITE_LICENSE_KEY}
+    image: shlinkio/shlink:stable
+    volumes:
+    - /opt/docker/appdata/shlink:/etc/shlink/data
+  shlink-web-client:
+    container_name: shlink-web-client
+    ports:
+    - 1041:8080
+    environment:
+      SHLINK_SERVER_URL: ${SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_URL:?Set SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_URL}
+      SHLINK_SERVER_API_KEY: ${SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_API_KEY:?Set
+        SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_API_KEY}
+    image: shlinkio/shlink-web-client
+    restart: always
+networks: {}

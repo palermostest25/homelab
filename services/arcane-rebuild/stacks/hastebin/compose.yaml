@@ -1,0 +1,16 @@
+version: '3'
+services:
+  hastebin:
+    restart: always
+    image: rlister/hastebin
+    environment:
+      STORAGE_TYPE: ${HASTEBIN_HASTEBIN_STORAGE_TYPE:?Set HASTEBIN_HASTEBIN_STORAGE_TYPE}
+      STORAGE_HOST: ${HASTEBIN_HASTEBIN_STORAGE_HOST:?Set HASTEBIN_HASTEBIN_STORAGE_HOST}
+    ports:
+    - 1036:7777
+  hastebinredis:
+    restart: always
+    image: redis
+    volumes:
+    - /opt/docker/appdata/hastebin/redis:/data
+    entrypoint: ${HASTEBIN_HASTEBINREDIS_ENTRYPOINT:?Set HASTEBIN_HASTEBINREDIS_ENTRYPOINT}

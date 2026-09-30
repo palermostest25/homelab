@@ -1,0 +1,15 @@
+version: '3'
+services:
+  wallabag:
+    image: wallabag/wallabag:latest
+    environment:
+      SYMFONY__ENV__DOMAIN_NAME: ${WALLABAG_WALLABAG_SYMFONY__ENV__DOMAIN_NAME:?Set
+        WALLABAG_WALLABAG_SYMFONY__ENV__DOMAIN_NAME}
+      SYMFONY__ENV__DATABASE_DRIVER: ${WALLABAG_WALLABAG_SYMFONY__ENV__DATABASE_DRIVER:?Set
+        WALLABAG_WALLABAG_SYMFONY__ENV__DATABASE_DRIVER}
+    ports:
+    - 1042:80
+    volumes:
+    - /opt/docker/appdata/wallabag/data:/var/www/wallabag/data
+    - /opt/docker/appdata/wallabag/images:/var/www/wallabag/web/assets/images
+    restart: always

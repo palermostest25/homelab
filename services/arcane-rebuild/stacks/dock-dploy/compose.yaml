@@ -1,0 +1,9 @@
+services:
+  dock-dploy:
+    image: hhftechnology/dock-dploy:latest
+    container_name: dock-dploy
+    restart: unless-stopped
+    ports:
+    - 1013:3000
+    environment:
+      NODE_ENV: ${DOCK_DPLOY_DOCK_DPLOY_NODE_ENV:?Set DOCK_DPLOY_DOCK_DPLOY_NODE_ENV}

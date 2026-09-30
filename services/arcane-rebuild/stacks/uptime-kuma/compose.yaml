@@ -1,0 +1,13 @@
+services:
+  uptimekuma:
+    restart: always
+    environment:
+      UPTIME_KUMA_DISABLE_FRAME_DENY: ${UPTIME_KUMA_UPTIMEKUMA_UPTIME_KUMA_DISABLE_FRAME_DENY:?Set
+        UPTIME_KUMA_UPTIMEKUMA_UPTIME_KUMA_DISABLE_FRAME_DENY}
+    ports:
+    - 1003:3001
+    volumes:
+    - /opt/docker/appdata/uptimekuma/data:/app/data
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    image: louislam/uptime-kuma:2.0.2
+networks: {}

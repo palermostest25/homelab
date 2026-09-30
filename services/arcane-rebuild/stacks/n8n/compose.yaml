@@ -1,0 +1,13 @@
+services:
+  n8n:
+    restart: always
+    ports:
+    - 1004:1004
+    volumes:
+    - /opt/docker/appdata/n8n:/home/node/.n8n
+    image: docker.n8n.io/n8nio/n8n:latest
+    environment:
+      N8N_SECURE_COOKIE: ${N8N_N8N_N8N_SECURE_COOKIE:?Set N8N_N8N_N8N_SECURE_COOKIE}
+      N8N_HOST: ${N8N_N8N_N8N_HOST:?Set N8N_N8N_N8N_HOST}
+      N8N_PORT: ${N8N_N8N_N8N_PORT:?Set N8N_N8N_N8N_PORT}
+networks: {}

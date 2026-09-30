@@ -1,0 +1,12 @@
+services:
+  cv4pve-admin:
+    image: corsinvest/cv4pve-admin:1.2.0
+    container_name: cv4pve-admin
+    ports:
+    - 1052:5000
+    environment:
+      TZ: ${CVE4PVE_ADMIN_CV4PVE_ADMIN_TZ:?Set CVE4PVE_ADMIN_CV4PVE_ADMIN_TZ}
+    volumes:
+    - /opt/docker/appdata/cv4pve-admin/data:/app/data
+    - /opt/docker/appdata/cv4pve-admin/appsettings.json:/app/appsettings.json
+    restart: always

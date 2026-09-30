@@ -1,0 +1,7 @@
+services:
+  pve-notebuddy:
+    image: pve-notebuddy:latest
+    container_name: pve-notebuddy
+    ports:
+    - 1034:8000
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+services:
+  maildrop:
+    image: haileyydev/maildrop:latest
+    container_name: maildrop
+    restart: unless-stopped
+    ports:
+    - 1055:5000
+    - '26:25'
+    environment:
+      DOMAIN: ${MAILDROP_MAILDROP_DOMAIN:?Set MAILDROP_MAILDROP_DOMAIN}

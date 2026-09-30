@@ -1,0 +1,6 @@
+services:
+  convert:
+    image: ghcr.io/p2r3/convert:latest
+    ports:
+    - 1032:80
+    restart: unless-stopped

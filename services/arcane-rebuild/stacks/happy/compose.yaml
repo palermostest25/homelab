@@ -1,0 +1,7 @@
+services:
+  happy-webapp:
+    image: happy-webapp:latest
+    container_name: happy-webapp
+    restart: unless-stopped
+    ports:
+    - 3005:80

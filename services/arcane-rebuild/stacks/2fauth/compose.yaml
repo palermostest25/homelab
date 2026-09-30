@@ -1,0 +1,17 @@
+services:
+  2fauth:
+    image: 2fauth/2fauth:${TAG:-latest}
+    container_name: 2fauth
+    restart: always
+    volumes:
+    - 2fauth:/2fauth
+    ports:
+    - 10000:8000/tcp
+    environment:
+      APP_URL: ${STACK_2FAUTH_2FAUTH_APP_URL:?Set STACK_2FAUTH_2FAUTH_APP_URL}
+      APP_KEY: ${STACK_2FAUTH_2FAUTH_APP_KEY:?Set STACK_2FAUTH_2FAUTH_APP_KEY}
+      APP_ENV: ${STACK_2FAUTH_2FAUTH_APP_ENV:?Set STACK_2FAUTH_2FAUTH_APP_ENV}
+      DB_CONNECTION: ${STACK_2FAUTH_2FAUTH_DB_CONNECTION:?Set STACK_2FAUTH_2FAUTH_DB_CONNECTION}
+      DB_DATABASE: ${STACK_2FAUTH_2FAUTH_DB_DATABASE:?Set STACK_2FAUTH_2FAUTH_DB_DATABASE}
+volumes:
+  2fauth: null

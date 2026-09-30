@@ -1,0 +1,12 @@
+services:
+  searxng:
+    container_name: searxng
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    ports:
+    - 1006:8080
+    volumes:
+    - /opt/docker/appdata/searxng/searxng:/etc/searxng
+    - /opt/docker/appdata/searxng/searxng-data:/var/cache/searxng
+    environment:
+      SEARXNG_BASE_URL: ${SEARXNG_SEARXNG_SEARXNG_BASE_URL:?Set SEARXNG_SEARXNG_SEARXNG_BASE_URL}

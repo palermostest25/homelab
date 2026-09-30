@@ -1,0 +1,16 @@
+services:
+  web:
+    image: loredcast/filewizard:latest
+    restart: always
+    environment:
+      LOCAL_ONLY: ${FILEWIZARD_WEB_LOCAL_ONLY:?Set FILEWIZARD_WEB_LOCAL_ONLY}
+      UPLOADS_DIR: ${FILEWIZARD_WEB_UPLOADS_DIR:?Set FILEWIZARD_WEB_UPLOADS_DIR}
+      PROCESSED_DIR: ${FILEWIZARD_WEB_PROCESSED_DIR:?Set FILEWIZARD_WEB_PROCESSED_DIR}
+      OMP_NUM_THREADS: ${FILEWIZARD_WEB_OMP_NUM_THREADS:?Set FILEWIZARD_WEB_OMP_NUM_THREADS}
+    ports:
+    - 1022:8000
+    volumes:
+    - /opt/docker/appdata/filewizard/config:/app/config
+    - /opt/docker/appdata/filewizard/uploads_data:/app/uploads
+    - /opt/docker/appdata/filewizard/processed_data:/app/processed
+networks: {}

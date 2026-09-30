@@ -1,0 +1,16 @@
+services:
+  multicam-studio:
+    image: ghcr.io/palermostest25/multicam-studio:latest
+    container_name: multicam-studio
+    init: true
+    restart: unless-stopped
+    user: 1000:1000
+    ports:
+    - 4067:8765
+    environment:
+      MULTICAM_ALLOWED_HOSTS: ${MUILTICAM_STUDIO_MULTICAM_STUDIO_MULTICAM_ALLOWED_HOSTS:?Set
+        MUILTICAM_STUDIO_MULTICAM_STUDIO_MULTICAM_ALLOWED_HOSTS}
+    volumes:
+    - /opt/Docker/appdata/multicam-studio/recordings:/media/recordings
+    - /opt/Docker/appdata/multicam-studio/exports:/media/exports
+    - /opt/Docker/appdata/multicam-studio/state:/state

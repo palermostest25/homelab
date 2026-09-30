@@ -1,0 +1,20 @@
+services:
+  automatic-ripping-machine:
+    ports:
+    - 1032:8080
+    volumes:
+    - /opt/docker/appdata/arm:/home/arm
+    - /mnt/nas/ARM/Music:/home/arm/Music
+    - /opt/docker/appdata/arm/logs:/home/arm/logs
+    - /mnt/nas/ARM/Media:/home/arm/media
+    - /opt/docker/appdata/arm/config:/etc/arm/config
+    - /run/udev:/run/udev:ro
+    devices:
+    - /dev/sr0:/dev/sr0
+    privileged: true
+    restart: always
+    container_name: arm-rippers
+    image: automaticrippingmachine/automatic-ripping-machine:latest
+    cpus: '1'
+    mem_limit: 2g
+networks: {}

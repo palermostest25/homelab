@@ -1,0 +1,9 @@
+services:
+  netronome:
+    image: ghcr.io/autobrr/netronome:latest
+    restart: unless-stopped
+    ports:
+    - 1058:7575
+    volumes:
+    - /opt/docker/appdata/netronome:/data
+networks: {}

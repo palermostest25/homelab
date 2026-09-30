@@ -1,0 +1,13 @@
+services:
+  backapp:
+    image: ghcr.io/dennis960/backapp:latest
+    container_name: backapp
+    ports:
+    - 1039:8080
+    command:
+    - ${BACKAPP_BACKAPP_COMMAND_0:?Set BACKAPP_BACKAPP_COMMAND_0}
+    restart: unless-stopped
+    volumes:
+    - /opt/docker/appdata/backapp/app-data:/data
+    - /opt/docker/appdata/backapp/backups/app:/var/backups/app
+    - /opt/docker/appdata/backapp/backups/archive:/var/backups/archive

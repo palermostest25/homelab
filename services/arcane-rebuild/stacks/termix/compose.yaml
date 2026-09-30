@@ -1,0 +1,10 @@
+services:
+  termix:
+    image: ghcr.io/lukegus/termix:latest
+    restart: unless-stopped
+    ports:
+    - 1023:8080
+    volumes:
+    - /opt/docker/appdata/termix:/app/data
+    environment:
+      PORT: ${TERMIX_TERMIX_PORT:?Set TERMIX_TERMIX_PORT}

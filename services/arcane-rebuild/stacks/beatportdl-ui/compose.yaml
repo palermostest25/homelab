@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  beatportdl:
+    image: beatportdl-ui:latest
+    container_name: beatportdl
+    restart: unless-stopped
+    ports:
+    - 8989:8989
+    volumes:
+    - beatportdl_config:/config
+    - beatportdl_downloads:/downloads
+    environment:
+      TZ: ${BEATPORTDL_UI_BEATPORTDL_TZ:?Set BEATPORTDL_UI_BEATPORTDL_TZ}
+volumes:
+  beatportdl_config: null
+  beatportdl_downloads: null
+networks: {}

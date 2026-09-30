@@ -367,3 +367,13 @@ TrueNAS noVNC on :8006 collides visually with the Proxmox UI port.
 The full problems-and-risks register (version lag, plaintext credential
 handling, capacity pressure, tunnel-agent posture) lives in the private
 tracker and is intentionally not published here.
+
+### Arcane configuration export (2026-09-30)
+
+A read-only enumeration for the rebuild bundle found 102 Compose definitions
+(including `.yml` files and Arcane itself), 101 Compose projects, 140 containers,
+101 networks and 49 volumes. See `services/arcane-rebuild/manifest.json` and its
+README for source paths, restore prerequisites and limitations. This is an export,
+not a deployment or reboot verification. The stopped ARM definition references
+`/mnt/nas/ARM`; treat that as a restore prerequisite rather than assuming all stack
+data is local. Public publication and fresh-host verification remain pending.

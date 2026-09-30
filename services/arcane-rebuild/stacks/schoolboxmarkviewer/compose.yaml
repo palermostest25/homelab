@@ -1,0 +1,7 @@
+services:
+  schoolboxmarkviewer:
+    image: schoolboxmarkviewer:latest
+    restart: unless-stopped
+    ports:
+    - 1038:8080
+networks: {}

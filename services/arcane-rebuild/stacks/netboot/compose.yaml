@@ -1,0 +1,15 @@
+services:
+  netbootxyz:
+    image: netbootxyz/netbootxyz
+    environment:
+      PUID: ${NETBOOT_NETBOOTXYZ_PUID:?Set NETBOOT_NETBOOTXYZ_PUID}
+      PGID: ${NETBOOT_NETBOOTXYZ_PGID:?Set NETBOOT_NETBOOTXYZ_PGID}
+      TZ: ${NETBOOT_NETBOOTXYZ_TZ:?Set NETBOOT_NETBOOTXYZ_TZ}
+    volumes:
+    - /opt/docker/appdata/netboot/config:/config
+    - /opt/docker/appdata/netboot/assets:/assets
+    ports:
+    - 1000:3000
+    - 69:69/udp
+    - 1001:80
+    restart: unless-stopped

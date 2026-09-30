@@ -1,0 +1,23 @@
+services:
+  litellm:
+    image: docker.litellm.ai/berriai/litellm:main-latest
+    restart: always
+    ports:
+    - 4000:4000
+    environment:
+      DATABASE_URL: ${LITELLM_LITELLM_DATABASE_URL:?Set LITELLM_LITELLM_DATABASE_URL}
+      STORE_MODEL_IN_DB: ${LITELLM_LITELLM_STORE_MODEL_IN_DB:?Set LITELLM_LITELLM_STORE_MODEL_IN_DB}
+      LITELLM_MASTER_KEY: ${LITELLM_LITELLM_LITELLM_MASTER_KEY:?Set LITELLM_LITELLM_LITELLM_MASTER_KEY}
+      LITELLM_SALT_KEY: ${LITELLM_LITELLM_LITELLM_SALT_KEY:?Set LITELLM_LITELLM_LITELLM_SALT_KEY}
+    depends_on:
+    - db
+  db:
+    image: postgres:16
+    restart: always
+    container_name: litellm_db
+    environment:
+      POSTGRES_DB: ${LITELLM_DB_POSTGRES_DB:?Set LITELLM_DB_POSTGRES_DB}
+      POSTGRES_USER: ${LITELLM_DB_POSTGRES_USER:?Set LITELLM_DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${LITELLM_DB_POSTGRES_PASSWORD:?Set LITELLM_DB_POSTGRES_PASSWORD}
+    volumes:
+    - /opt/docker/appdata/litellm/db:/var/lib/postgresql/data

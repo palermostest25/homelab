@@ -1,0 +1,24 @@
+services:
+  coder:
+    image: ghcr.io/coder/coder:latest
+    restart: unless-stopped
+    ports:
+    - 192.168.1.10:9015:7080
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /opt/docker/appdata/coder/home:/home/coder
+    depends_on:
+    - database
+    environment:
+      CODER_PG_CONNECTION_URL: ${CODER_CODER_CODER_PG_CONNECTION_URL:?Set CODER_CODER_CODER_PG_CONNECTION_URL}
+      CODER_HTTP_ADDRESS: ${CODER_CODER_CODER_HTTP_ADDRESS:?Set CODER_CODER_CODER_HTTP_ADDRESS}
+      CODER_ACCESS_URL: ${CODER_CODER_CODER_ACCESS_URL:?Set CODER_CODER_CODER_ACCESS_URL}
+  database:
+    image: postgres:17
+    restart: unless-stopped
+    volumes:
+    - /opt/docker/appdata/coder/postgres:/var/lib/postgresql
+    environment:
+      POSTGRES_USER: ${CODER_DATABASE_POSTGRES_USER:?Set CODER_DATABASE_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${CODER_DATABASE_POSTGRES_PASSWORD:?Set CODER_DATABASE_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${CODER_DATABASE_POSTGRES_DB:?Set CODER_DATABASE_POSTGRES_DB}

@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_POSTGRES_POSTGRES_USER:?Set POSTGRES_POSTGRES_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_POSTGRES_POSTGRES_PASSWORD:?Set POSTGRES_POSTGRES_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_POSTGRES_POSTGRES_DB:?Set POSTGRES_POSTGRES_POSTGRES_DB}
+    ports:
+    - 5432:5432
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${POSTGRES_PGADMIN_PGADMIN_DEFAULT_EMAIL:?Set POSTGRES_PGADMIN_PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PGADMIN_PGADMIN_DEFAULT_PASSWORD:?Set POSTGRES_PGADMIN_PGADMIN_DEFAULT_PASSWORD}
+    ports:
+    - 501:80
+    volumes:
+    - /opt/docker/appdata/postgres/pgadmin:/var/lib/pgadmin
+    restart: unless-stopped
+    depends_on:
+    - postgres
+  databasus:
+    container_name: databasus
+    image: databasus/databasus:latest
+    ports:
+    - 4005:4005
+    volumes:
+    - /opt/docker/appdata/postgres/databasus:/databasus-data
+    restart: unless-stopped
+volumes:
+  postgres-data: null

@@ -1,0 +1,6 @@
+services:
+  withoutbg:
+    image: withoutbg/app:latest
+    restart: unless-stopped
+    ports:
+    - 1037:80

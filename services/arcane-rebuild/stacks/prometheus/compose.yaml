@@ -1,0 +1,13 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+    - 9090:9090
+    volumes:
+    - /opt/docker/appdata/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    - /opt/docker/appdata/prometheus/data:/prometheus
+    command:
+    - ${PROMETHEUS_PROMETHEUS_COMMAND_0:?Set PROMETHEUS_PROMETHEUS_COMMAND_0}
+    - ${PROMETHEUS_PROMETHEUS_COMMAND_1:?Set PROMETHEUS_PROMETHEUS_COMMAND_1}

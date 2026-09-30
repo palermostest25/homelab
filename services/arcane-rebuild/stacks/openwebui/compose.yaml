@@ -1,0 +1,10 @@
+services:
+  open-webui:
+    ports:
+    - 4002:8080
+    environment:
+      OLLAMA_BASE_URL: ${OPENWEBUI_OPEN_WEBUI_OLLAMA_BASE_URL:?Set OPENWEBUI_OPEN_WEBUI_OLLAMA_BASE_URL}
+    volumes:
+    - /opt/docker/appdata/openwebui:/app/backend/data
+    restart: always
+    image: ghcr.io/open-webui/open-webui:main

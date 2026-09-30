@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8.0
+    container_name: wordpress_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_MYSQL_DATABASE:?Set WORDPRESS_DB_MYSQL_DATABASE}
+      MYSQL_USER: ${WORDPRESS_DB_MYSQL_USER:?Set WORDPRESS_DB_MYSQL_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_MYSQL_PASSWORD:?Set WORDPRESS_DB_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_MYSQL_ROOT_PASSWORD:?Set WORDPRESS_DB_MYSQL_ROOT_PASSWORD}
+    volumes:
+    - /opt/docker/appdata/wordpress/db_data:/var/lib/mysql
+    networks:
+    - wordpress_net
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_app
+    restart: unless-stopped
+    depends_on:
+    - db
+    ports:
+    - 9000:80
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_WORDPRESS_WORDPRESS_DB_HOST:?Set WORDPRESS_WORDPRESS_WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_WORDPRESS_WORDPRESS_DB_NAME:?Set WORDPRESS_WORDPRESS_WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_WORDPRESS_WORDPRESS_DB_USER:?Set WORDPRESS_WORDPRESS_WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_WORDPRESS_WORDPRESS_DB_PASSWORD:?Set WORDPRESS_WORDPRESS_WORDPRESS_DB_PASSWORD}
+    volumes:
+    - /opt/docker/appdata/wordpress/wp_data:/var/www/html
+    networks:
+    - wordpress_net
+networks:
+  wordpress_net:
+    driver: bridge

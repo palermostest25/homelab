@@ -1,0 +1,72 @@
+services:
+  frontend:
+    image: ghcr.io/xiao-villamor/printstash-frontend:latest
+    container_name: printstash-frontend
+    restart: unless-stopped
+    ports:
+    - 192.168.1.10:9011:3000
+    environment:
+      NGINX_CLIENT_MAX_BODY_SIZE: ${PRINTSTASH_FRONTEND_NGINX_CLIENT_MAX_BODY_SIZE:?Set
+        PRINTSTASH_FRONTEND_NGINX_CLIENT_MAX_BODY_SIZE}
+    networks:
+    - printstash_net
+    depends_on:
+    - api
+  api:
+    image: ghcr.io/xiao-villamor/printstash-api:latest
+    container_name: printstash-api
+    restart: unless-stopped
+    environment:
+      VAULT_STORAGE_BACKEND: ${PRINTSTASH_API_VAULT_STORAGE_BACKEND:?Set PRINTSTASH_API_VAULT_STORAGE_BACKEND}
+      VAULT_DATA_DIR: ${PRINTSTASH_API_VAULT_DATA_DIR:?Set PRINTSTASH_API_VAULT_DATA_DIR}
+      VAULT_THUMB_DIR: ${PRINTSTASH_API_VAULT_THUMB_DIR:?Set PRINTSTASH_API_VAULT_THUMB_DIR}
+      VAULT_STAGING_DIR: ${PRINTSTASH_API_VAULT_STAGING_DIR:?Set PRINTSTASH_API_VAULT_STAGING_DIR}
+      VAULT_DB_URL: ${PRINTSTASH_API_VAULT_DB_URL:?Set PRINTSTASH_API_VAULT_DB_URL}
+      VAULT_BACKUP_DIR: ${PRINTSTASH_API_VAULT_BACKUP_DIR:?Set PRINTSTASH_API_VAULT_BACKUP_DIR}
+      VAULT_BACKUP_RETENTION_DAYS: ${PRINTSTASH_API_VAULT_BACKUP_RETENTION_DAYS:?Set
+        PRINTSTASH_API_VAULT_BACKUP_RETENTION_DAYS}
+      VAULT_JWT_SECRET: ${PRINTSTASH_API_VAULT_JWT_SECRET:?Set PRINTSTASH_API_VAULT_JWT_SECRET}
+      VAULT_ACCESS_TOKEN_EXPIRE_MINUTES: ${PRINTSTASH_API_VAULT_ACCESS_TOKEN_EXPIRE_MINUTES:?Set
+        PRINTSTASH_API_VAULT_ACCESS_TOKEN_EXPIRE_MINUTES}
+      VAULT_MAX_UPLOAD_MB: ${PRINTSTASH_API_VAULT_MAX_UPLOAD_MB:?Set PRINTSTASH_API_VAULT_MAX_UPLOAD_MB}
+      VAULT_LOG_LEVEL: ${PRINTSTASH_API_VAULT_LOG_LEVEL:?Set PRINTSTASH_API_VAULT_LOG_LEVEL}
+      TZ: ${PRINTSTASH_API_TZ:?Set PRINTSTASH_API_TZ}
+    volumes:
+    - /opt/docker/appdata/printstash/files:/data/files
+    - /opt/docker/appdata/printstash/thumbs:/data/thumbs
+    - /opt/docker/appdata/printstash/db:/data/db
+    - /opt/docker/appdata/printstash/staging:/data/staging
+    - /opt/docker/appdata/printstash/backups:/data/backups
+    networks:
+    - printstash_net
+  postgres:
+    image: postgres:16-alpine
+    container_name: printstash-postgres
+    restart: unless-stopped
+    profiles:
+    - postgres
+    environment:
+      POSTGRES_DB: ${PRINTSTASH_POSTGRES_POSTGRES_DB:?Set PRINTSTASH_POSTGRES_POSTGRES_DB}
+      POSTGRES_USER: ${PRINTSTASH_POSTGRES_POSTGRES_USER:?Set PRINTSTASH_POSTGRES_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${PRINTSTASH_POSTGRES_POSTGRES_PASSWORD:?Set PRINTSTASH_POSTGRES_POSTGRES_PASSWORD}
+    volumes:
+    - /opt/docker/appdata/printstash/postgres:/var/lib/postgresql/data
+    networks:
+    - printstash_net
+  minio:
+    image: minio/minio:latest
+    container_name: printstash-minio
+    restart: unless-stopped
+    profiles:
+    - s3
+    environment:
+      MINIO_ROOT_USER: ${PRINTSTASH_MINIO_MINIO_ROOT_USER:?Set PRINTSTASH_MINIO_MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${PRINTSTASH_MINIO_MINIO_ROOT_PASSWORD:?Set PRINTSTASH_MINIO_MINIO_ROOT_PASSWORD}
+    command: ${PRINTSTASH_MINIO_COMMAND:?Set PRINTSTASH_MINIO_COMMAND}
+    volumes:
+    - /opt/docker/appdata/printstash/minio:/data
+    networks:
+    - printstash_net
+networks:
+  printstash_net:
+    driver: bridge

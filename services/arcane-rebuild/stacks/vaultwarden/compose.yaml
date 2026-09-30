@@ -1,0 +1,13 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${VAULTWARDEN_VAULTWARDEN_DOMAIN:?Set VAULTWARDEN_VAULTWARDEN_DOMAIN}
+      ADMIN_TOKEN: ${VAULTWARDEN_VAULTWARDEN_ADMIN_TOKEN:?Set VAULTWARDEN_VAULTWARDEN_ADMIN_TOKEN}
+    volumes:
+    - /opt/docker/appdata/vaultwarden:/data/
+    ports:
+    - 1049:80
+networks: {}

@@ -1,0 +1,11 @@
+services:
+  asspp:
+    image: ghcr.io/lakr233/assppweb:latest
+    ports:
+    - 1043:8080
+    volumes:
+    - /opt/docker/appdata/asspp:/data
+    environment:
+      DATA_DIR: ${ASSPP_ASSPP_DATA_DIR:?Set ASSPP_ASSPP_DATA_DIR}
+      PORT: ${ASSPP_ASSPP_PORT:?Set ASSPP_ASSPP_PORT}
+    restart: unless-stopped

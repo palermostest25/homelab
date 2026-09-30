@@ -1,0 +1,8 @@
+services:
+  docuseal:
+    restart: always
+    ports:
+    - 1046:3000
+    volumes:
+    - /opt/docker/appdata/docuseal/data
+    image: docuseal/docuseal

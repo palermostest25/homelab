@@ -1,0 +1,47 @@
+services:
+  blackbox-server:
+    image: ghcr.io/maxjb-xyz/blackbox-server:latest
+    container_name: blackbox-server
+    restart: unless-stopped
+    ports:
+    - 192.168.1.10:1357:8080
+    volumes:
+    - /opt/docker/appdata/blackbox/data:/data
+    environment:
+      JWT_SECRET: ${BLACKBOX_BLACKBOX_SERVER_JWT_SECRET:?Set BLACKBOX_BLACKBOX_SERVER_JWT_SECRET}
+      AGENT_TOKENS: ${BLACKBOX_BLACKBOX_SERVER_AGENT_TOKENS:?Set BLACKBOX_BLACKBOX_SERVER_AGENT_TOKENS}
+      WEBHOOK_SECRET: ${BLACKBOX_BLACKBOX_SERVER_WEBHOOK_SECRET:?Set BLACKBOX_BLACKBOX_SERVER_WEBHOOK_SECRET}
+      TZ: ${BLACKBOX_BLACKBOX_SERVER_TZ:?Set BLACKBOX_BLACKBOX_SERVER_TZ}
+    networks:
+    - blackbox
+  blackbox-agent:
+    image: ghcr.io/maxjb-xyz/blackbox-agent:latest
+    container_name: blackbox-agent
+    restart: unless-stopped
+    cap_drop:
+    - ALL
+    cap_add:
+    - SETUID
+    - SETGID
+    security_opt:
+    - no-new-privileges:true
+    read_only: true
+    volumes:
+    - /opt/docker/appdata/blackbox/agent-data:/data
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /etc:/watch/etc:ro
+    - /run/log/journal:/run/log/journal:ro
+    - /var/log/journal:/var/log/journal:ro
+    - /etc/machine-id:/etc/machine-id:ro
+    environment:
+      SERVER_URL: ${BLACKBOX_BLACKBOX_AGENT_SERVER_URL:?Set BLACKBOX_BLACKBOX_AGENT_SERVER_URL}
+      AGENT_TOKEN: ${BLACKBOX_BLACKBOX_AGENT_AGENT_TOKEN:?Set BLACKBOX_BLACKBOX_AGENT_AGENT_TOKEN}
+      NODE_NAME: ${BLACKBOX_BLACKBOX_AGENT_NODE_NAME:?Set BLACKBOX_BLACKBOX_AGENT_NODE_NAME}
+      WATCH_PATHS: ${BLACKBOX_BLACKBOX_AGENT_WATCH_PATHS:?Set BLACKBOX_BLACKBOX_AGENT_WATCH_PATHS}
+      WATCH_SYSTEMD: ${BLACKBOX_BLACKBOX_AGENT_WATCH_SYSTEMD:?Set BLACKBOX_BLACKBOX_AGENT_WATCH_SYSTEMD}
+      TZ: ${BLACKBOX_BLACKBOX_AGENT_TZ:?Set BLACKBOX_BLACKBOX_AGENT_TZ}
+    networks:
+    - blackbox
+networks:
+  blackbox:
+    driver: bridge

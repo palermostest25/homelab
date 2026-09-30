@@ -1,0 +1,13 @@
+services:
+  remotepower:
+    image: ghcr.io/tyxak/remotepower:latest
+    container_name: remotepower
+    restart: unless-stopped
+    ports:
+    - 9010:8443
+    - 9009:8080
+    environment:
+      RP_TLS_SELFSIGNED: ${REMOTEPOWER_REMOTEPOWER_RP_TLS_SELFSIGNED:?Set REMOTEPOWER_REMOTEPOWER_RP_TLS_SELFSIGNED}
+      RP_TLS_HOST: ${REMOTEPOWER_REMOTEPOWER_RP_TLS_HOST:?Set REMOTEPOWER_REMOTEPOWER_RP_TLS_HOST}
+    volumes:
+    - /opt/docker/appdata/remotepower:/var/lib/remotepower

@@ -1,0 +1,12 @@
+services:
+  dockpeek:
+    image: dockpeek/dockpeek:latest
+    environment:
+      SECRET_KEY: ${DOCKPEEK_DOCKPEEK_SECRET_KEY:?Set DOCKPEEK_DOCKPEEK_SECRET_KEY}
+      USERNAME: ${DOCKPEEK_DOCKPEEK_USERNAME:?Set DOCKPEEK_DOCKPEEK_USERNAME}
+      PASSWORD: ${DOCKPEEK_DOCKPEEK_PASSWORD:?Set DOCKPEEK_DOCKPEEK_PASSWORD}
+    ports:
+    - 1031:8000
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped

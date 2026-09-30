@@ -1,0 +1,7 @@
+services:
+  maildev:
+    restart: always
+    ports:
+    - 1072:1080
+    - 1062:1025
+    image: maildev/maildev

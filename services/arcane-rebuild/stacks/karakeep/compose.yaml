@@ -1,0 +1,11 @@
+services:
+  karakeep:
+    image: ghcr.io/karakeep-app/karakeep:release
+    restart: unless-stopped
+    volumes:
+    - /opt/docker/appdata/karakeep:/data
+    ports:
+    - 1010:3000
+    environment:
+      DATA_DIR: ${KARAKEEP_KARAKEEP_DATA_DIR:?Set KARAKEEP_KARAKEEP_DATA_DIR}
+      NEXTAUTH_SECRET: ${KARAKEEP_KARAKEEP_NEXTAUTH_SECRET:?Set KARAKEEP_KARAKEEP_NEXTAUTH_SECRET}

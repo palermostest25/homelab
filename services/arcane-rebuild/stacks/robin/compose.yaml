@@ -1,0 +1,34 @@
+services:
+  robin:
+    container_name: robin
+    image: apurvsg/robin:latest
+    restart: always
+    depends_on:
+    - gluetun
+    command: ${ROBIN_ROBIN_COMMAND:?Set ROBIN_ROBIN_COMMAND}
+    network_mode: service:gluetun
+    volumes:
+    - /opt/docker/appdata/robin/.env:/app/.env
+  gluetun:
+    container_name: robin-gluetun
+    image: qmcgaw/gluetun:latest
+    restart: always
+    cap_add:
+    - NET_ADMIN
+    security_opt:
+    - apparmor=unconfined
+    environment:
+      TZ: ${ROBIN_GLUETUN_TZ:?Set ROBIN_GLUETUN_TZ}
+      VPN_SERVICE_PROVIDER: ${ROBIN_GLUETUN_VPN_SERVICE_PROVIDER:?Set ROBIN_GLUETUN_VPN_SERVICE_PROVIDER}
+      VPN_TYPE: ${ROBIN_GLUETUN_VPN_TYPE:?Set ROBIN_GLUETUN_VPN_TYPE}
+      OPENVPN_USER: ${ROBIN_GLUETUN_OPENVPN_USER:?Set ROBIN_GLUETUN_OPENVPN_USER}
+      OPENVPN_PASSWORD: ${ROBIN_GLUETUN_OPENVPN_PASSWORD:?Set ROBIN_GLUETUN_OPENVPN_PASSWORD}
+      SERVER_REGIONS: ${ROBIN_GLUETUN_SERVER_REGIONS:?Set ROBIN_GLUETUN_SERVER_REGIONS}
+      PORT_FORWARDING: ${ROBIN_GLUETUN_PORT_FORWARDING:?Set ROBIN_GLUETUN_PORT_FORWARDING}
+      FIREWALL: ${ROBIN_GLUETUN_FIREWALL:?Set ROBIN_GLUETUN_FIREWALL}
+      FIREWALL_OUTBOUND_SUBNETS: ${ROBIN_GLUETUN_FIREWALL_OUTBOUND_SUBNETS:?Set ROBIN_GLUETUN_FIREWALL_OUTBOUND_SUBNETS}
+    ports:
+    - 1073:8501
+    volumes:
+    - /opt/docker/appdata/robin/gluetn/config:/gluetun
+    - /opt/docker/appdata/robin/gluetn/openvpn:/gluetun/openvpn

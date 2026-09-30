@@ -1,0 +1,13 @@
+services:
+  prunemate:
+    image: anoniemerd/prunemate:latest
+    ports:
+    - 1018:8080
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /opt/docker/appdata/prunemate/logs:/var/log
+    - /opt/docker/appdata/prunemate/config:/config
+    environment:
+      PRUNEMATE_TZ: ${PRUNEMATE_PRUNEMATE_PRUNEMATE_TZ:?Set PRUNEMATE_PRUNEMATE_PRUNEMATE_TZ}
+      PRUNEMATE_TIME_24H: ${PRUNEMATE_PRUNEMATE_PRUNEMATE_TIME_24H:?Set PRUNEMATE_PRUNEMATE_PRUNEMATE_TIME_24H}
+    restart: unless-stopped

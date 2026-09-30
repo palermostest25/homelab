@@ -1,0 +1,23 @@
+services:
+  stremio:
+    image: tsaridas/stremio-docker:latest
+    container_name: stremio
+    ports:
+    - 9001:8080
+    environment:
+      NO_CORS: ${STREMIO_STREMIO_NO_CORS:?Set STREMIO_STREMIO_NO_CORS}
+      AUTO_SERVER_URL: ${STREMIO_STREMIO_AUTO_SERVER_URL:?Set STREMIO_STREMIO_AUTO_SERVER_URL}
+    volumes:
+    - /opt/docker/appdata/stremio/server:/root/.stremio-server
+    restart: unless-stopped
+  aiostreams:
+    image: ghcr.io/viren070/aiostreams:latest
+    container_name: aiostreams
+    ports:
+    - 9002:3000
+    environment:
+      BASE_URL: ${STREMIO_AIOSTREAMS_BASE_URL:?Set STREMIO_AIOSTREAMS_BASE_URL}
+      SECRET_KEY: ${STREMIO_AIOSTREAMS_SECRET_KEY:?Set STREMIO_AIOSTREAMS_SECRET_KEY}
+    volumes:
+    - /opt/docker/appdata/stremio/aiostreams:/app/data
+    restart: unless-stopped

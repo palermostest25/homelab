@@ -1,0 +1,10 @@
+services:
+  nut_webgui:
+    ports:
+    - 5000:9000
+    environment:
+      UPSD_ADDR: ${NUT_WEBGUI_NUT_WEBGUI_UPSD_ADDR:?Set NUT_WEBGUI_NUT_WEBGUI_UPSD_ADDR}
+      UPSD_USER: ${NUT_WEBGUI_NUT_WEBGUI_UPSD_USER:?Set NUT_WEBGUI_NUT_WEBGUI_UPSD_USER}
+      UPSD_PASS: ${NUT_WEBGUI_NUT_WEBGUI_UPSD_PASS:?Set NUT_WEBGUI_NUT_WEBGUI_UPSD_PASS}
+    image: ghcr.io/superioone/nut_webgui:latest
+    restart: always

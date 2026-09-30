@@ -1,0 +1,64 @@
+services:
+  app:
+    image: invoiceninja/invoiceninja-debian:latest
+    restart: unless-stopped
+    env_file:
+    - ./.env
+    volumes:
+    - invoiceninja_app_public:/var/www/html/public
+    - invoiceninja_app_storage:/var/www/html/storage
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+    - 8012:80
+    volumes:
+    - /opt/docker/appdata/invoiceninja/dockerfiles/debian/nginx:/etc/nginx/conf.d:ro
+    - invoiceninja_app_public:/var/www/html/public:ro
+    - invoiceninja_app_storage:/var/www/html/storage:ro
+    depends_on:
+      app:
+        condition: service_healthy
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${INVOICENINJA_MYSQL_MYSQL_DATABASE:?Set INVOICENINJA_MYSQL_MYSQL_DATABASE}
+      MYSQL_USER: ${INVOICENINJA_MYSQL_MYSQL_USER:?Set INVOICENINJA_MYSQL_MYSQL_USER}
+      MYSQL_PASSWORD: ${INVOICENINJA_MYSQL_MYSQL_PASSWORD:?Set INVOICENINJA_MYSQL_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${INVOICENINJA_MYSQL_MYSQL_ROOT_PASSWORD:?Set INVOICENINJA_MYSQL_MYSQL_ROOT_PASSWORD}
+    volumes:
+    - invoiceninja_mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_0:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_0}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_1:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_1}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_2:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_2}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_3:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_3}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_4:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_4}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_5:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_5}
+      - ${INVOICENINJA_MYSQL_HEALTHCHECK_TEST_6:?Set INVOICENINJA_MYSQL_HEALTHCHECK_TEST_6}
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    volumes:
+    - invoiceninja_redis_data:/data
+    healthcheck:
+      test:
+      - ${INVOICENINJA_REDIS_HEALTHCHECK_TEST_0:?Set INVOICENINJA_REDIS_HEALTHCHECK_TEST_0}
+      - ${INVOICENINJA_REDIS_HEALTHCHECK_TEST_1:?Set INVOICENINJA_REDIS_HEALTHCHECK_TEST_1}
+      - ${INVOICENINJA_REDIS_HEALTHCHECK_TEST_2:?Set INVOICENINJA_REDIS_HEALTHCHECK_TEST_2}
+volumes:
+  invoiceninja_app_public:
+    driver: local
+  invoiceninja_app_storage:
+    driver: local
+  invoiceninja_mysql_data:
+    driver: local
+  invoiceninja_redis_data:
+    driver: local

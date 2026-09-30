@@ -1,0 +1,8 @@
+services:
+  qui:
+    restart: always
+    ports:
+    - 1057:7476
+    volumes:
+    - /opt/docker/appdata/qui/config:/config
+    image: ghcr.io/autobrr/qui:latest

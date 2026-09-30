@@ -1,0 +1,6 @@
+services:
+  mini-qr:
+    image: ghcr.io/lyqht/mini-qr:latest
+    ports:
+    - 3018:8080
+    restart: unless-stopped

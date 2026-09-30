@@ -1,0 +1,13 @@
+services:
+  vikunja:
+    image: vikunja/vikunja:latest
+    restart: always
+    ports:
+    - 1008:3456
+    volumes:
+    - /opt/docker/appdata/vikunja/files:/app/vikunja/files
+    - /opt/docker/appdata/vikunja/db:/db
+    environment:
+      VIKUNJA_SERVICE_PUBLICURL: ${VIKUNJA_VIKUNJA_VIKUNJA_SERVICE_PUBLICURL:?Set
+        VIKUNJA_VIKUNJA_VIKUNJA_SERVICE_PUBLICURL}
+      VIKUNJA_CORS_ENABLE: ${VIKUNJA_VIKUNJA_VIKUNJA_CORS_ENABLE:?Set VIKUNJA_VIKUNJA_VIKUNJA_CORS_ENABLE}

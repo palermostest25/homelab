@@ -1,0 +1,14 @@
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:13
+    container_name: forgejo
+    environment:
+      USER_UID: ${FORGEJO_SERVER_USER_UID:?Set FORGEJO_SERVER_USER_UID}
+      USER_GID: ${FORGEJO_SERVER_USER_GID:?Set FORGEJO_SERVER_USER_GID}
+    restart: always
+    volumes:
+    - /opt/docker/appdata/forgejo:/data
+    - /etc/localtime:/etc/localtime:ro
+    ports:
+    - 1053:3000
+    - '1054:22'

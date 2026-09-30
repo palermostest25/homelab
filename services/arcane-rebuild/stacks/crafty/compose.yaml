@@ -1,0 +1,18 @@
+services:
+  crafty-4:
+    container_name: crafty_container
+    restart: always
+    ports:
+    - 1020:8443
+    - 1021:8123
+    - 19132:19132/udp
+    - 25500-25600:25500-25600
+    environment:
+      TZ: ${CRAFTY_CRAFTY_4_TZ:?Set CRAFTY_CRAFTY_4_TZ}
+    volumes:
+    - /opt/docker/appdata/crafty/backups:/crafty/backups
+    - /opt/docker/appdata/crafty/logs:/crafty/logs
+    - /opt/docker/appdata/crafty/servers:/crafty/servers
+    - /opt/docker/appdata/crafty/config:/crafty/app/config
+    - /opt/docker/appdata/crafty/import:/crafty/import
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest

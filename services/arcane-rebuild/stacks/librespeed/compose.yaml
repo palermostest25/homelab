@@ -1,0 +1,16 @@
+services:
+  librespeed:
+    image: lscr.io/linuxserver/librespeed:latest
+    container_name: librespeed
+    environment:
+      PUID: ${LIBRESPEED_LIBRESPEED_PUID:?Set LIBRESPEED_LIBRESPEED_PUID}
+      PGID: ${LIBRESPEED_LIBRESPEED_PGID:?Set LIBRESPEED_LIBRESPEED_PGID}
+      TZ: ${LIBRESPEED_LIBRESPEED_TZ:?Set LIBRESPEED_LIBRESPEED_TZ}
+      PASSWORD: ${LIBRESPEED_LIBRESPEED_PASSWORD:?Set LIBRESPEED_LIBRESPEED_PASSWORD}
+      CUSTOM_RESULTS: ${LIBRESPEED_LIBRESPEED_CUSTOM_RESULTS:?Set LIBRESPEED_LIBRESPEED_CUSTOM_RESULTS}
+      DB_TYPE: ${LIBRESPEED_LIBRESPEED_DB_TYPE:?Set LIBRESPEED_LIBRESPEED_DB_TYPE}
+    volumes:
+    - /opt/docker/appdata/librespeed:/config
+    ports:
+    - 9008:80
+    restart: unless-stopped

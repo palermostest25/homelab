@@ -1,0 +1,14 @@
+services:
+  gotify-to-ntfy-proxy:
+    image: levantinlynx/gotify-to-ntfy-proxy:latest
+    restart: unless-stopped
+    volumes:
+    - /opt/docker/appdata/gotify-ntfy/topics.js:/home/node/app/topics.js
+    ports:
+    - 1048:8008
+    environment:
+      RELAY_HOST_IP: ${GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_HOST_IP:?Set GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_HOST_IP}
+      RELAY_PORT: ${GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_PORT:?Set GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_PORT}
+      NTFY_SERVER: ${GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_NTFY_SERVER:?Set GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_NTFY_SERVER}
+      SPLIT_LARGE_MESSAGES: ${GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_SPLIT_LARGE_MESSAGES:?Set
+        GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_SPLIT_LARGE_MESSAGES}

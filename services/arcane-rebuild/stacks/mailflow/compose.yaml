@@ -1,0 +1,64 @@
+services:
+  frontend:
+    image: ghcr.io/maathimself/mailflow-frontend:latest
+    container_name: mailflow-frontend
+    restart: unless-stopped
+    ports:
+    - 192.168.1.10:1356:80
+    depends_on:
+    - backend
+    networks:
+    - mailflow
+  backend:
+    image: ghcr.io/maathimself/mailflow-backend:latest
+    container_name: mailflow-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${MAILFLOW_BACKEND_NODE_ENV:?Set MAILFLOW_BACKEND_NODE_ENV}
+      PORT: ${MAILFLOW_BACKEND_PORT:?Set MAILFLOW_BACKEND_PORT}
+      SESSION_SECRET: ${MAILFLOW_BACKEND_SESSION_SECRET:?Set MAILFLOW_BACKEND_SESSION_SECRET}
+      APP_URL: ${MAILFLOW_BACKEND_APP_URL:?Set MAILFLOW_BACKEND_APP_URL}
+      FRONTEND_URL: ${MAILFLOW_BACKEND_FRONTEND_URL:?Set MAILFLOW_BACKEND_FRONTEND_URL}
+      DB_HOST: ${MAILFLOW_BACKEND_DB_HOST:?Set MAILFLOW_BACKEND_DB_HOST}
+      DB_NAME: ${MAILFLOW_BACKEND_DB_NAME:?Set MAILFLOW_BACKEND_DB_NAME}
+      DB_USER: ${MAILFLOW_BACKEND_DB_USER:?Set MAILFLOW_BACKEND_DB_USER}
+      DB_PASSWORD: ${MAILFLOW_BACKEND_DB_PASSWORD:?Set MAILFLOW_BACKEND_DB_PASSWORD}
+      REDIS_URL: ${MAILFLOW_BACKEND_REDIS_URL:?Set MAILFLOW_BACKEND_REDIS_URL}
+      ENCRYPTION_KEY: ${MAILFLOW_BACKEND_ENCRYPTION_KEY:?Set MAILFLOW_BACKEND_ENCRYPTION_KEY}
+      GOOGLE_CLIENT_ID: ${MAILFLOW_BACKEND_GOOGLE_CLIENT_ID:?Set MAILFLOW_BACKEND_GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${MAILFLOW_BACKEND_GOOGLE_CLIENT_SECRET:?Set MAILFLOW_BACKEND_GOOGLE_CLIENT_SECRET}
+      VAPID_PUBLIC_KEY: ${MAILFLOW_BACKEND_VAPID_PUBLIC_KEY:?Set MAILFLOW_BACKEND_VAPID_PUBLIC_KEY}
+      VAPID_PRIVATE_KEY: ${MAILFLOW_BACKEND_VAPID_PRIVATE_KEY:?Set MAILFLOW_BACKEND_VAPID_PRIVATE_KEY}
+      VAPID_SUBJECT: ${MAILFLOW_BACKEND_VAPID_SUBJECT:?Set MAILFLOW_BACKEND_VAPID_SUBJECT}
+    depends_on:
+    - postgres
+    - redis
+    networks:
+    - mailflow
+  postgres:
+    image: postgres:16-alpine
+    container_name: mailflow-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${MAILFLOW_POSTGRES_POSTGRES_DB:?Set MAILFLOW_POSTGRES_POSTGRES_DB}
+      POSTGRES_USER: ${MAILFLOW_POSTGRES_POSTGRES_USER:?Set MAILFLOW_POSTGRES_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${MAILFLOW_POSTGRES_POSTGRES_PASSWORD:?Set MAILFLOW_POSTGRES_POSTGRES_PASSWORD}
+    volumes:
+    - mailflow_postgres:/var/lib/postgresql
+    networks:
+    - mailflow
+  redis:
+    image: redis:7-alpine
+    container_name: mailflow-redis
+    restart: unless-stopped
+    command: ${MAILFLOW_REDIS_COMMAND:?Set MAILFLOW_REDIS_COMMAND}
+    volumes:
+    - mailflow_redis:/data
+    networks:
+    - mailflow
+networks:
+  mailflow:
+    driver: bridge
+volumes:
+  mailflow_postgres: null
+  mailflow_redis: null

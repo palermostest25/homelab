@@ -1,0 +1,9 @@
+services:
+  truecommand:
+    restart: always
+    volumes:
+    - /opt/docker/appdata/truecommand:/data
+    ports:
+    - 1050:80
+    - 1051:443
+    image: ixsystems/truecommand:latest

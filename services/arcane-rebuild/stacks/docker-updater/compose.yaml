@@ -1,0 +1,14 @@
+services:
+  docker-updater:
+    image: ghcr.io/liquidguru/docker-updater:latest
+    container_name: docker-updater
+    restart: unless-stopped
+    ports:
+    - 9292:9090
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /opt/docker/appdata/docker-updater:/app/data
+    environment:
+      CHECK_TIME: ${DOCKER_UPDATER_DOCKER_UPDATER_CHECK_TIME:?Set DOCKER_UPDATER_DOCKER_UPDATER_CHECK_TIME}
+      TIMEZONE: ${DOCKER_UPDATER_DOCKER_UPDATER_TIMEZONE:?Set DOCKER_UPDATER_DOCKER_UPDATER_TIMEZONE}
+      DOCKER_HOST: ${DOCKER_UPDATER_DOCKER_UPDATER_DOCKER_HOST:?Set DOCKER_UPDATER_DOCKER_UPDATER_DOCKER_HOST}

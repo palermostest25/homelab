@@ -1,0 +1,7 @@
+services:
+  configclarity:
+    image: configclarity:latest
+    restart: unless-stopped
+    ports:
+    - 1196:80
+networks: {}

@@ -1,0 +1,10 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    environment:
+      TZ: ${CODE_SERVER_CODE_SERVER_TZ:?Set CODE_SERVER_CODE_SERVER_TZ}
+    volumes:
+    - /opt/docker/appdata/codeserver:/config
+    ports:
+    - 1019:8443
+    restart: unless-stopped

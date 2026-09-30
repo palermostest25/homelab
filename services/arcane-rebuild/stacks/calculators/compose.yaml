@@ -1,0 +1,6 @@
+services:
+  calculators:
+    image: binarycodes/calculators:latest
+    ports:
+    - 5001:8080
+    restart: unless-stopped

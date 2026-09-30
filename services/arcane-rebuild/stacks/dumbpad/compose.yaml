@@ -1,0 +1,8 @@
+services:
+  dumbpad:
+    ports:
+    - 2014:3000
+    volumes:
+    - /opt/docker/appdata/dumbpad/data:/app/data
+    restart: always
+    image: dumbwareio/dumbpad

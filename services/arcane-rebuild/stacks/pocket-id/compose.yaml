@@ -1,0 +1,10 @@
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v1
+    restart: unless-stopped
+    environment:
+      APP_URL: ${POCKET_ID_POCKET_ID_APP_URL:?Set POCKET_ID_POCKET_ID_APP_URL}
+    ports:
+    - 1066:1411
+    volumes:
+    - /opt/docker/appdata/pocket-id:/app/data

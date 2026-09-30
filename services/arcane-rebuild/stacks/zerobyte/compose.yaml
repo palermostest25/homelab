@@ -1,0 +1,16 @@
+services:
+  zerobyte:
+    image: ghcr.io/nicotsx/zerobyte:v0.28
+    container_name: zerobyte
+    restart: unless-stopped
+    cap_add:
+    - SYS_ADMIN
+    ports:
+    - 4096:4096
+    environment:
+      TZ: ${ZEROBYTE_ZEROBYTE_TZ:?Set ZEROBYTE_ZEROBYTE_TZ}
+      BASE_URL: ${ZEROBYTE_ZEROBYTE_BASE_URL:?Set ZEROBYTE_ZEROBYTE_BASE_URL}
+      APP_SECRET: ${ZEROBYTE_ZEROBYTE_APP_SECRET:?Set ZEROBYTE_ZEROBYTE_APP_SECRET}
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /opt/docker/appdata/zerobyte:/var/lib/zerobyte

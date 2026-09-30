@@ -1,0 +1,22 @@
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+    - 53:53/tcp
+    - 53:53/udp
+    - 1026:80/tcp
+    - 1027:443/tcp
+    environment:
+      TZ: ${PIHOLE_PIHOLE_TZ:?Set PIHOLE_PIHOLE_TZ}
+      FTLCONF_webserver_api_password: ${PIHOLE_PIHOLE_FTLCONF_WEBSERVER_API_PASSWORD:?Set
+        PIHOLE_PIHOLE_FTLCONF_WEBSERVER_API_PASSWORD}
+      FTLCONF_dns_listeningMode: ${PIHOLE_PIHOLE_FTLCONF_DNS_LISTENINGMODE:?Set PIHOLE_PIHOLE_FTLCONF_DNS_LISTENINGMODE}
+    volumes:
+    - /opt/docker/appdata/pihole:/etc/pihole
+    cap_add:
+    - NET_ADMIN
+    - SYS_TIME
+    - SYS_NICE
+    restart: unless-stopped
+networks: {}

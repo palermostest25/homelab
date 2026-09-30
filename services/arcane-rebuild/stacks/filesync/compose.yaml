@@ -1,0 +1,35 @@
+services:
+  caddy:
+    image: caddy
+    container_name: filesync-caddy
+    ports:
+    - 1025:1025
+    - 1024:1024
+    volumes:
+    - /opt/docker/appdata/filesync/Caddyfile:/etc/caddy/Caddyfile:ro
+    - filesync:/data
+    restart: unless-stopped
+  coturn:
+    image: coturn/coturn:alpine
+    container_name: filesync-coturn
+    command:
+    - ${FILESYNC_COTURN_COMMAND_0:?Set FILESYNC_COTURN_COMMAND_0}
+    - ${FILESYNC_COTURN_COMMAND_1:?Set FILESYNC_COTURN_COMMAND_1}
+    - ${FILESYNC_COTURN_COMMAND_2:?Set FILESYNC_COTURN_COMMAND_2}
+    - ${FILESYNC_COTURN_COMMAND_3:?Set FILESYNC_COTURN_COMMAND_3}
+    - ${FILESYNC_COTURN_COMMAND_4:?Set FILESYNC_COTURN_COMMAND_4}
+    restart: unless-stopped
+  peerjs:
+    image: peerjs/peerjs-server:1.1.0-rc.2
+    container_name: filesync-peerjs
+    command: ${FILESYNC_PEERJS_COMMAND:?Set FILESYNC_PEERJS_COMMAND}
+    restart: unless-stopped
+  filesync:
+    image: poliuscorp/filesync
+    container_name: filesync-app
+    environment:
+      SECRET_KEY: ${FILESYNC_FILESYNC_SECRET_KEY:?Set FILESYNC_FILESYNC_SECRET_KEY}
+    restart: unless-stopped
+volumes:
+  filesync: null
+networks: {}

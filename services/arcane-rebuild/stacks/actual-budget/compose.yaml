@@ -1,0 +1,17 @@
+services:
+  actual-server:
+    restart: unless-stopped
+    volumes:
+    - /opt/docker/appdata/actual-budget/data:/data
+    image: actualbudget/actual-server:latest
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+    - 5006:443
+    volumes:
+    - /opt/docker/appdata/actual-budget/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    - /opt/docker/appdata/actual-budget/caddy/data:/data
+    - /opt/docker/appdata/actual-budget/caddy/config:/config
+    depends_on:
+    - actual-server

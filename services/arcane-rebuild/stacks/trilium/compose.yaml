@@ -1,0 +1,13 @@
+services:
+  trilium:
+    image: triliumnext/notes:latest
+    restart: unless-stopped
+    environment:
+      TRILIUM_DATA_DIR: ${TRILIUM_TRILIUM_TRILIUM_DATA_DIR:?Set TRILIUM_TRILIUM_TRILIUM_DATA_DIR}
+    ports:
+    - 1009:8080
+    volumes:
+    - /opt/docker/appdata/trilium/data:/home/node/trilium-data
+    - /etc/timezone:/etc/timezone:ro
+    - /etc/localtime:/etc/localtime:ro
+networks: {}

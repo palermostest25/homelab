@@ -1,0 +1,12 @@
+services:
+  homelab-manger:
+    image: ghcr.io/spillebulle/homelab-manger:0.8.0
+    ports:
+    - 9028:8080
+    environment:
+      ADMIN_PASSWORD: ${HOMELAB_MANAGER_HOMELAB_MANGER_ADMIN_PASSWORD:?Set HOMELAB_MANAGER_HOMELAB_MANGER_ADMIN_PASSWORD}
+    volumes:
+    - homelab-data:/data
+    restart: unless-stopped
+volumes:
+  homelab-data: null

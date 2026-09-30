@@ -1,0 +1,12 @@
+services:
+  portracker:
+    image: mostafawahied/portracker:latest
+    container_name: portracker
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+    - /opt/docker/appdata/portracker:/data
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      DATABASE_PATH: ${PORTRACKER_PORTRACKER_DATABASE_PATH:?Set PORTRACKER_PORTRACKER_DATABASE_PATH}
+      PORT: ${PORTRACKER_PORTRACKER_PORT:?Set PORTRACKER_PORTRACKER_PORT}

@@ -1,0 +1,35 @@
+services:
+  app:
+    image: ghcr.io/przemekskw/imagemagick-webui:latest
+    ports:
+    - 1028:3000
+    - 1029:8000
+    environment:
+      DATABASE_URL: ${IMAGEMAGICK_APP_DATABASE_URL:?Set IMAGEMAGICK_APP_DATABASE_URL}
+      REDIS_URL: ${IMAGEMAGICK_APP_REDIS_URL:?Set IMAGEMAGICK_APP_REDIS_URL}
+      SECRET_KEY: ${IMAGEMAGICK_APP_SECRET_KEY:?Set IMAGEMAGICK_APP_SECRET_KEY}
+      IMAGEMAGICK_TIMEOUT: ${IMAGEMAGICK_APP_IMAGEMAGICK_TIMEOUT:?Set IMAGEMAGICK_APP_IMAGEMAGICK_TIMEOUT}
+      IMAGEMAGICK_MEMORY_LIMIT: ${IMAGEMAGICK_APP_IMAGEMAGICK_MEMORY_LIMIT:?Set IMAGEMAGICK_APP_IMAGEMAGICK_MEMORY_LIMIT}
+      MAX_UPLOAD_SIZE: ${IMAGEMAGICK_APP_MAX_UPLOAD_SIZE:?Set IMAGEMAGICK_APP_MAX_UPLOAD_SIZE}
+      ALLOWED_ORIGINS: ${IMAGEMAGICK_APP_ALLOWED_ORIGINS:?Set IMAGEMAGICK_APP_ALLOWED_ORIGINS}
+    volumes:
+    - /opt/docker/appdata/imagemagick/uploads:/app/uploads
+    - /opt/docker/appdata/imagemagick/processed:/app/processed
+    depends_on:
+    - postgres
+    - redis
+    restart: unless-stopped
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${IMAGEMAGICK_POSTGRES_POSTGRES_USER:?Set IMAGEMAGICK_POSTGRES_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${IMAGEMAGICK_POSTGRES_POSTGRES_PASSWORD:?Set IMAGEMAGICK_POSTGRES_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${IMAGEMAGICK_POSTGRES_POSTGRES_DB:?Set IMAGEMAGICK_POSTGRES_POSTGRES_DB}
+    volumes:
+    - /opt/docker/appdata/imagemagick/db:/var/lib/postgresql/data
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    volumes:
+    - /opt/docker/appdata/imagemagick/redis:/data
+    restart: unless-stopped

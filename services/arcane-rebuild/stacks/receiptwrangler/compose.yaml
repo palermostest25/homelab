@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:17
+    hostname: wrangler-db
+    security_opt:
+    - no-new-privileges:true
+    volumes:
+    - /opt/docker/appdata/receiptwrangler/db:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_DB: ${RECEIPTWRANGLER_DB_POSTGRES_DB:?Set RECEIPTWRANGLER_DB_POSTGRES_DB}
+      POSTGRES_USER: ${RECEIPTWRANGLER_DB_POSTGRES_USER:?Set RECEIPTWRANGLER_DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${RECEIPTWRANGLER_DB_POSTGRES_PASSWORD:?Set RECEIPTWRANGLER_DB_POSTGRES_PASSWORD}
+    restart: always
+  redis:
+    image: redis
+    hostname: wrangler-redis
+    command: ${RECEIPTWRANGLER_REDIS_COMMAND:?Set RECEIPTWRANGLER_REDIS_COMMAND}
+    container_name: Receipt-Wrangler-REDIS
+    user: 1026:100
+    volumes:
+    - /opt/docker/appdata/receiptwrangler/redis:/data:rw
+    environment:
+      TZ: ${RECEIPTWRANGLER_REDIS_TZ:?Set RECEIPTWRANGLER_REDIS_TZ}
+    restart: always
+  wrangler:
+    image: noah231515/receipt-wrangler:latest
+    entrypoint: ${RECEIPTWRANGLER_WRANGLER_ENTRYPOINT:?Set RECEIPTWRANGLER_WRANGLER_ENTRYPOINT}
+    restart: always
+    volumes:
+    - /opt/docker/appdata/receiptwrangler/data:/app/receipt-wrangler-api/sqlite:rw
+    - /opt/docker/appdata/receiptwrangler/data:/app/receipt-wrangler-api/data:rw
+    - /opt/docker/appdata/receiptwrangler/logs:/app/receipt-wrangler-api/logs:rw
+    environment:
+      ENCRYPTION_KEY: ${RECEIPTWRANGLER_WRANGLER_ENCRYPTION_KEY:?Set RECEIPTWRANGLER_WRANGLER_ENCRYPTION_KEY}
+      SECRET_KEY: ${RECEIPTWRANGLER_WRANGLER_SECRET_KEY:?Set RECEIPTWRANGLER_WRANGLER_SECRET_KEY}
+      REDIS_PORT: ${RECEIPTWRANGLER_WRANGLER_REDIS_PORT:?Set RECEIPTWRANGLER_WRANGLER_REDIS_PORT}
+      REDIS_HOST: ${RECEIPTWRANGLER_WRANGLER_REDIS_HOST:?Set RECEIPTWRANGLER_WRANGLER_REDIS_HOST}
+      REDIS_PASSWORD: ${RECEIPTWRANGLER_WRANGLER_REDIS_PASSWORD:?Set RECEIPTWRANGLER_WRANGLER_REDIS_PASSWORD}
+      DB_USER: ${RECEIPTWRANGLER_WRANGLER_DB_USER:?Set RECEIPTWRANGLER_WRANGLER_DB_USER}
+      DB_PASSWORD: ${RECEIPTWRANGLER_WRANGLER_DB_PASSWORD:?Set RECEIPTWRANGLER_WRANGLER_DB_PASSWORD}
+      DB_NAME: ${RECEIPTWRANGLER_WRANGLER_DB_NAME:?Set RECEIPTWRANGLER_WRANGLER_DB_NAME}
+      DB_HOST: ${RECEIPTWRANGLER_WRANGLER_DB_HOST:?Set RECEIPTWRANGLER_WRANGLER_DB_HOST}
+      DB_PORT: ${RECEIPTWRANGLER_WRANGLER_DB_PORT:?Set RECEIPTWRANGLER_WRANGLER_DB_PORT}
+      DB_ENGINE: ${RECEIPTWRANGLER_WRANGLER_DB_ENGINE:?Set RECEIPTWRANGLER_WRANGLER_DB_ENGINE}
+    depends_on:
+    - redis
+    - db
+    ports:
+    - 9112:80

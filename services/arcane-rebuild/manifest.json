@@ -1,0 +1,5328 @@
+{
+  "stacks": [
+    {
+      "name": "arcane",
+      "source": "/opt/docker/arcane/compose.yaml",
+      "required": {
+        "ARCANE_ARCANE_APP_URL": "arcane_APP_URL",
+        "ARCANE_ARCANE_PUID": "arcane_PUID",
+        "ARCANE_ARCANE_PGID": "arcane_PGID",
+        "ARCANE_ARCANE_ENCRYPTION_KEY": "arcane_ENCRYPTION_KEY",
+        "ARCANE_ARCANE_JWT_SECRET": "arcane_JWT_SECRET",
+        "ARCANE_ARCANE_PROJECTS_DIRECTORY": "arcane_PROJECTS_DIRECTORY"
+      },
+      "target": "/opt/docker/arcane",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "arcane",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/arcane/data",
+          "kind": "directory",
+          "service": "arcane",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/stacks",
+          "kind": "directory",
+          "service": "arcane",
+          "profiles": []
+        },
+        {
+          "path": "/root/.docker/config.json",
+          "kind": "file",
+          "service": "arcane",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "2fauth",
+      "source": "/opt/docker/stacks/2fauth/compose.yaml",
+      "required": {
+        "STACK_2FAUTH_2FAUTH_APP_URL": "2fauth_APP_URL",
+        "STACK_2FAUTH_2FAUTH_APP_KEY": "2fauth_APP_KEY",
+        "STACK_2FAUTH_2FAUTH_APP_ENV": "2fauth_APP_ENV",
+        "STACK_2FAUTH_2FAUTH_DB_CONNECTION": "2fauth_DB_CONNECTION",
+        "STACK_2FAUTH_2FAUTH_DB_DATABASE": "2fauth_DB_DATABASE",
+        "TAG": "Original Compose variable"
+      },
+      "target": "/opt/docker/stacks/2fauth",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "actual-budget",
+      "source": "/opt/docker/stacks/actual-budget/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/actual-budget",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/actual-budget/data",
+          "kind": "directory",
+          "service": "actual-server",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/actual-budget/caddy/Caddyfile",
+          "kind": "file",
+          "service": "caddy",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/actual-budget/caddy/data",
+          "kind": "directory",
+          "service": "caddy",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/actual-budget/caddy/config",
+          "kind": "directory",
+          "service": "caddy",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "aliasvault",
+      "source": "/opt/docker/stacks/aliasvault/compose.yaml",
+      "required": {
+        "ALIASVAULT_ALIASVAULT_HOSTNAME": "aliasvault_HOSTNAME",
+        "ALIASVAULT_ALIASVAULT_PUBLIC_REGISTRATION_ENABLED": "aliasvault_PUBLIC_REGISTRATION_ENABLED",
+        "ALIASVAULT_ALIASVAULT_IP_LOGGING_ENABLED": "aliasvault_IP_LOGGING_ENABLED",
+        "ALIASVAULT_ALIASVAULT_FORCE_HTTPS_REDIRECT": "aliasvault_FORCE_HTTPS_REDIRECT",
+        "ALIASVAULT_ALIASVAULT_SUPPORT_EMAIL": "aliasvault_SUPPORT_EMAIL",
+        "ALIASVAULT_ALIASVAULT_PRIVATE_EMAIL_DOMAINS": "aliasvault_PRIVATE_EMAIL_DOMAINS",
+        "ALIASVAULT_ALIASVAULT_SMTP_TLS_ENABLED": "aliasvault_SMTP_TLS_ENABLED"
+      },
+      "target": "/opt/docker/stacks/aliasvault",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/aliasvault/database",
+          "kind": "directory",
+          "service": "aliasvault",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/aliasvault/logs",
+          "kind": "directory",
+          "service": "aliasvault",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/aliasvault/secrets",
+          "kind": "directory",
+          "service": "aliasvault",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/aliasvault/certificates",
+          "kind": "directory",
+          "service": "aliasvault",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "arm",
+      "source": "/opt/docker/stacks/arm/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/arm",
+      "enabled": false,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/arm",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        },
+        {
+          "path": "/mnt/nas/ARM/Music",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/arm/logs",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        },
+        {
+          "path": "/mnt/nas/ARM/Media",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/arm/config",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        },
+        {
+          "path": "/run/udev",
+          "kind": "directory",
+          "service": "automatic-ripping-machine",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "asspp",
+      "source": "/opt/docker/stacks/asspp/compose.yaml",
+      "required": {
+        "ASSPP_ASSPP_DATA_DIR": "asspp_DATA_DIR",
+        "ASSPP_ASSPP_PORT": "asspp_PORT"
+      },
+      "target": "/opt/docker/stacks/asspp",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/asspp",
+          "kind": "directory",
+          "service": "asspp",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "backapp",
+      "source": "/opt/docker/stacks/backapp/compose.yaml",
+      "required": {
+        "BACKAPP_BACKAPP_COMMAND_0": "backapp_command_0"
+      },
+      "target": "/opt/docker/stacks/backapp",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/backapp/app-data",
+          "kind": "directory",
+          "service": "backapp",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/backapp/backups/app",
+          "kind": "directory",
+          "service": "backapp",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/backapp/backups/archive",
+          "kind": "directory",
+          "service": "backapp",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "beatportdl-ui",
+      "source": "/opt/docker/stacks/beatportdl-ui/compose.yaml",
+      "required": {
+        "BEATPORTDL_UI_BEATPORTDL_TZ": "beatportdl_TZ"
+      },
+      "target": "/opt/docker/stacks/beatportdl-ui",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "beszel",
+      "source": "/opt/docker/stacks/beszel/compose.yaml",
+      "required": {
+        "BESZEL_BESZEL_APP_URL": "beszel_APP_URL",
+        "BESZEL_BESZEL_AGENT_LISTEN": "beszel-agent_LISTEN",
+        "BESZEL_BESZEL_AGENT_KEY": "beszel-agent_KEY",
+        "BESZEL_BESZEL_AGENT_TOKEN": "beszel-agent_TOKEN",
+        "BESZEL_BESZEL_AGENT_HUB_URL": "beszel-agent_HUB_URL"
+      },
+      "target": "/opt/docker/stacks/beszel",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/beszel_data",
+          "kind": "directory",
+          "service": "beszel",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/beszel_socket",
+          "kind": "directory",
+          "service": "beszel",
+          "profiles": []
+        },
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "beszel-agent",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/stacks/beszel/beszel_agent_data",
+          "kind": "directory",
+          "service": "beszel-agent",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "blackbox",
+      "source": "/opt/docker/stacks/blackbox/compose.yaml",
+      "required": {
+        "BLACKBOX_BLACKBOX_SERVER_JWT_SECRET": "blackbox-server_JWT_SECRET",
+        "BLACKBOX_BLACKBOX_SERVER_AGENT_TOKENS": "blackbox-server_AGENT_TOKENS",
+        "BLACKBOX_BLACKBOX_SERVER_WEBHOOK_SECRET": "blackbox-server_WEBHOOK_SECRET",
+        "BLACKBOX_BLACKBOX_SERVER_TZ": "blackbox-server_TZ",
+        "BLACKBOX_BLACKBOX_AGENT_SERVER_URL": "blackbox-agent_SERVER_URL",
+        "BLACKBOX_BLACKBOX_AGENT_AGENT_TOKEN": "blackbox-agent_AGENT_TOKEN",
+        "BLACKBOX_BLACKBOX_AGENT_NODE_NAME": "blackbox-agent_NODE_NAME",
+        "BLACKBOX_BLACKBOX_AGENT_WATCH_PATHS": "blackbox-agent_WATCH_PATHS",
+        "BLACKBOX_BLACKBOX_AGENT_WATCH_SYSTEMD": "blackbox-agent_WATCH_SYSTEMD",
+        "BLACKBOX_BLACKBOX_AGENT_TZ": "blackbox-agent_TZ"
+      },
+      "target": "/opt/docker/stacks/blackbox",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/blackbox/data",
+          "kind": "directory",
+          "service": "blackbox-server",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/blackbox/agent-data",
+          "kind": "directory",
+          "service": "blackbox-agent",
+          "profiles": []
+        },
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "blackbox-agent",
+          "profiles": []
+        },
+        {
+          "path": "/etc",
+          "kind": "directory",
+          "service": "blackbox-agent",
+          "profiles": []
+        },
+        {
+          "path": "/run/log/journal",
+          "kind": "directory",
+          "service": "blackbox-agent",
+          "profiles": []
+        },
+        {
+          "path": "/var/log/journal",
+          "kind": "directory",
+          "service": "blackbox-agent",
+          "profiles": []
+        },
+        {
+          "path": "/etc/machine-id",
+          "kind": "file",
+          "service": "blackbox-agent",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "bookstack",
+      "source": "/opt/docker/stacks/bookstack/compose.yaml",
+      "required": {
+        "BOOKSTACK_BOOKSTACK_PUID": "bookstack_PUID",
+        "BOOKSTACK_BOOKSTACK_PGID": "bookstack_PGID",
+        "BOOKSTACK_BOOKSTACK_TZ": "bookstack_TZ",
+        "BOOKSTACK_BOOKSTACK_APP_URL": "bookstack_APP_URL",
+        "BOOKSTACK_BOOKSTACK_APP_KEY": "bookstack_APP_KEY",
+        "BOOKSTACK_BOOKSTACK_DB_HOST": "bookstack_DB_HOST",
+        "BOOKSTACK_BOOKSTACK_DB_PORT": "bookstack_DB_PORT",
+        "BOOKSTACK_BOOKSTACK_DB_DATABASE": "bookstack_DB_DATABASE",
+        "BOOKSTACK_BOOKSTACK_DB_USERNAME": "bookstack_DB_USERNAME",
+        "BOOKSTACK_BOOKSTACK_DB_PASSWORD": "bookstack_DB_PASSWORD",
+        "BOOKSTACK_MARIADB_PUID": "mariadb_PUID",
+        "BOOKSTACK_MARIADB_PGID": "mariadb_PGID",
+        "BOOKSTACK_MARIADB_TZ": "mariadb_TZ",
+        "BOOKSTACK_MARIADB_MYSQL_ROOT_PASSWORD": "mariadb_MYSQL_ROOT_PASSWORD",
+        "BOOKSTACK_MARIADB_MYSQL_DATABASE": "mariadb_MYSQL_DATABASE",
+        "BOOKSTACK_MARIADB_MYSQL_USER": "mariadb_MYSQL_USER",
+        "BOOKSTACK_MARIADB_MYSQL_PASSWORD": "mariadb_MYSQL_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/bookstack",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/bookstack/app",
+          "kind": "directory",
+          "service": "bookstack",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/bookstack/db",
+          "kind": "directory",
+          "service": "mariadb",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "bytestash",
+      "source": "/opt/docker/stacks/bytestash/compose.yaml",
+      "required": {
+        "BYTESTASH_BYTESTASH_BASE_PATH": "bytestash_BASE_PATH",
+        "BYTESTASH_BYTESTASH_JWT_SECRET": "bytestash_JWT_SECRET",
+        "BYTESTASH_BYTESTASH_TOKEN_EXPIRY": "bytestash_TOKEN_EXPIRY",
+        "BYTESTASH_BYTESTASH_ALLOW_NEW_ACCOUNTS": "bytestash_ALLOW_NEW_ACCOUNTS",
+        "BYTESTASH_BYTESTASH_DEBUG": "bytestash_DEBUG",
+        "BYTESTASH_BYTESTASH_DISABLE_ACCOUNTS": "bytestash_DISABLE_ACCOUNTS",
+        "BYTESTASH_BYTESTASH_DISABLE_INTERNAL_ACCOUNTS": "bytestash_DISABLE_INTERNAL_ACCOUNTS",
+        "BYTESTASH_BYTESTASH_OIDC_ENABLED": "bytestash_OIDC_ENABLED",
+        "BYTESTASH_BYTESTASH_OIDC_DISPLAY_NAME": "bytestash_OIDC_DISPLAY_NAME",
+        "BYTESTASH_BYTESTASH_OIDC_ISSUER_URL": "bytestash_OIDC_ISSUER_URL",
+        "BYTESTASH_BYTESTASH_OIDC_CLIENT_ID": "bytestash_OIDC_CLIENT_ID",
+        "BYTESTASH_BYTESTASH_OIDC_CLIENT_SECRET": "bytestash_OIDC_CLIENT_SECRET",
+        "BYTESTASH_BYTESTASH_OIDC_SCOPES": "bytestash_OIDC_SCOPES"
+      },
+      "target": "/opt/docker/stacks/bytestash",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/snippets",
+          "kind": "directory",
+          "service": "bytestash",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "cadvisor",
+      "source": "/opt/docker/stacks/cadvisor/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/cadvisor",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/",
+          "kind": "directory",
+          "service": "cadvisor",
+          "profiles": []
+        },
+        {
+          "path": "/var/run",
+          "kind": "directory",
+          "service": "cadvisor",
+          "profiles": []
+        },
+        {
+          "path": "/sys",
+          "kind": "directory",
+          "service": "cadvisor",
+          "profiles": []
+        },
+        {
+          "path": "/var/lib/docker",
+          "kind": "directory",
+          "service": "cadvisor",
+          "profiles": []
+        },
+        {
+          "path": "/dev/disk",
+          "kind": "directory",
+          "service": "cadvisor",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "calculators",
+      "source": "/opt/docker/stacks/calculators/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/calculators",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "cloudflared",
+      "source": "/opt/docker/stacks/cloudflared/compose.yml",
+      "required": {
+        "CLOUDFLARED_CLOUDFLARED_COMMAND": "cloudflared_command"
+      },
+      "target": "/opt/docker/stacks/cloudflared",
+      "enabled": true,
+      "exposure_gate": true,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "code-server",
+      "source": "/opt/docker/stacks/code-server/compose.yml",
+      "required": {
+        "CODE_SERVER_CODE_SERVER_TZ": "code-server_TZ"
+      },
+      "target": "/opt/docker/stacks/code-server",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/codeserver",
+          "kind": "directory",
+          "service": "code-server",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "coder",
+      "source": "/opt/docker/stacks/coder/compose.yaml",
+      "required": {
+        "CODER_CODER_CODER_PG_CONNECTION_URL": "coder_CODER_PG_CONNECTION_URL",
+        "CODER_CODER_CODER_HTTP_ADDRESS": "coder_CODER_HTTP_ADDRESS",
+        "CODER_CODER_CODER_ACCESS_URL": "coder_CODER_ACCESS_URL",
+        "CODER_DATABASE_POSTGRES_USER": "database_POSTGRES_USER",
+        "CODER_DATABASE_POSTGRES_PASSWORD": "database_POSTGRES_PASSWORD",
+        "CODER_DATABASE_POSTGRES_DB": "database_POSTGRES_DB"
+      },
+      "target": "/opt/docker/stacks/coder",
+      "enabled": false,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "coder",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/coder/home",
+          "kind": "directory",
+          "service": "coder",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/coder/postgres",
+          "kind": "directory",
+          "service": "database",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "compote",
+      "source": "/opt/docker/stacks/compote/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/compote",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/compote/data",
+          "kind": "directory",
+          "service": "compote",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/compote/Caddyfile",
+          "kind": "file",
+          "service": "caddy",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/compote/caddy",
+          "kind": "directory",
+          "service": "caddy",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "configclarity",
+      "source": "/opt/docker/stacks/configclarity/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/configclarity",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "converttoit",
+      "source": "/opt/docker/stacks/converttoit/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/converttoit",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "convertx",
+      "source": "/opt/docker/stacks/convertx/compose.yml",
+      "required": {
+        "CONVERTX_CONVERTX_ACCOUNT_REGISTRATION": "convertx_ACCOUNT_REGISTRATION",
+        "CONVERTX_CONVERTX_JWT_SECRET": "convertx_JWT_SECRET",
+        "CONVERTX_CONVERTX_HTTP_ALLOWED": "convertx_HTTP_ALLOWED",
+        "CONVERTX_CONVERTX_ALLOW_UNAUTHENTICATED": "convertx_ALLOW_UNAUTHENTICATED",
+        "CONVERTX_CONVERTX_AUTO_DELETE_EVERY_N_HOURS": "convertx_AUTO_DELETE_EVERY_N_HOURS"
+      },
+      "target": "/opt/docker/stacks/convertx",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/convertx",
+          "kind": "directory",
+          "service": "convertx",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "crafty",
+      "source": "/opt/docker/stacks/crafty/compose.yml",
+      "required": {
+        "CRAFTY_CRAFTY_4_TZ": "crafty-4_TZ"
+      },
+      "target": "/opt/docker/stacks/crafty",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/crafty/backups",
+          "kind": "directory",
+          "service": "crafty-4",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/crafty/logs",
+          "kind": "directory",
+          "service": "crafty-4",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/crafty/servers",
+          "kind": "directory",
+          "service": "crafty-4",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/crafty/config",
+          "kind": "directory",
+          "service": "crafty-4",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/crafty/import",
+          "kind": "directory",
+          "service": "crafty-4",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "cronmaster",
+      "source": "/opt/docker/stacks/cronmaster/compose.yml",
+      "required": {
+        "CRONMASTER_CRONMASTER_NODE_ENV": "cronmaster_NODE_ENV",
+        "CRONMASTER_CRONMASTER_DOCKER": "cronmaster_DOCKER",
+        "CRONMASTER_CRONMASTER_NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL": "cronmaster_NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL",
+        "CRONMASTER_CRONMASTER_NEXT_PUBLIC_HOST_PROJECT_DIR": "cronmaster_NEXT_PUBLIC_HOST_PROJECT_DIR"
+      },
+      "target": "/opt/docker/stacks/cronmaster",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/spool/cron/crontabs",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/etc/crontab",
+          "kind": "file",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/proc",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/sys",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/etc",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/usr",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/cronmaster/scripts",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/cronmaster/data",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/cronmaster/snippets",
+          "kind": "directory",
+          "service": "cronmaster",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "cve4pve-admin",
+      "source": "/opt/docker/stacks/cve4pve-admin/compose.yml",
+      "required": {
+        "CVE4PVE_ADMIN_CV4PVE_ADMIN_TZ": "cv4pve-admin_TZ"
+      },
+      "target": "/opt/docker/stacks/cve4pve-admin",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/cv4pve-admin/data",
+          "kind": "directory",
+          "service": "cv4pve-admin",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/cv4pve-admin/appsettings.json",
+          "kind": "file",
+          "service": "cv4pve-admin",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "cyberchef",
+      "source": "/opt/docker/stacks/cyberchef/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/cyberchef",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "dock-dploy",
+      "source": "/opt/docker/stacks/dock-dploy/compose.yaml",
+      "required": {
+        "DOCK_DPLOY_DOCK_DPLOY_NODE_ENV": "dock-dploy_NODE_ENV"
+      },
+      "target": "/opt/docker/stacks/dock-dploy",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "docker-updater",
+      "source": "/opt/docker/stacks/docker-updater/compose.yaml",
+      "required": {
+        "DOCKER_UPDATER_DOCKER_UPDATER_CHECK_TIME": "docker-updater_CHECK_TIME",
+        "DOCKER_UPDATER_DOCKER_UPDATER_TIMEZONE": "docker-updater_TIMEZONE",
+        "DOCKER_UPDATER_DOCKER_UPDATER_DOCKER_HOST": "docker-updater_DOCKER_HOST"
+      },
+      "target": "/opt/docker/stacks/docker-updater",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "docker-updater",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/docker-updater",
+          "kind": "directory",
+          "service": "docker-updater",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "dockpeek",
+      "source": "/opt/docker/stacks/dockpeek/compose.yaml",
+      "required": {
+        "DOCKPEEK_DOCKPEEK_SECRET_KEY": "dockpeek_SECRET_KEY",
+        "DOCKPEEK_DOCKPEEK_USERNAME": "dockpeek_USERNAME",
+        "DOCKPEEK_DOCKPEEK_PASSWORD": "dockpeek_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/dockpeek",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "dockpeek",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "dockwatch",
+      "source": "/opt/docker/stacks/dockwatch/compose.yaml",
+      "required": {
+        "DOCKWATCH_DOCKWATCH_PUID": "dockwatch_PUID",
+        "DOCKWATCH_DOCKWATCH_PGID": "dockwatch_PGID",
+        "DOCKWATCH_DOCKWATCH_TZ": "dockwatch_TZ"
+      },
+      "target": "/opt/docker/stacks/dockwatch",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/dockwatch",
+          "kind": "directory",
+          "service": "dockwatch",
+          "profiles": []
+        },
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "dockwatch",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "docuseal",
+      "source": "/opt/docker/stacks/docuseal/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/docuseal",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "dozzle",
+      "source": "/opt/docker/stacks/dozzle/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/dozzle",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "dozzle",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "dumbpad",
+      "source": "/opt/docker/stacks/dumbpad/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/dumbpad",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/dumbpad/data",
+          "kind": "directory",
+          "service": "dumbpad",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "filesync",
+      "source": "/opt/docker/stacks/filesync/compose.yaml",
+      "required": {
+        "FILESYNC_COTURN_COMMAND_0": "coturn_command_0",
+        "FILESYNC_COTURN_COMMAND_1": "coturn_command_1",
+        "FILESYNC_COTURN_COMMAND_2": "coturn_command_2",
+        "FILESYNC_COTURN_COMMAND_3": "coturn_command_3",
+        "FILESYNC_COTURN_COMMAND_4": "coturn_command_4",
+        "FILESYNC_PEERJS_COMMAND": "peerjs_command",
+        "FILESYNC_FILESYNC_SECRET_KEY": "filesync_SECRET_KEY"
+      },
+      "target": "/opt/docker/stacks/filesync",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/filesync/Caddyfile",
+          "kind": "file",
+          "service": "caddy",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "filewizard",
+      "source": "/opt/docker/stacks/filewizard/compose.yaml",
+      "required": {
+        "FILEWIZARD_WEB_LOCAL_ONLY": "web_LOCAL_ONLY",
+        "FILEWIZARD_WEB_UPLOADS_DIR": "web_UPLOADS_DIR",
+        "FILEWIZARD_WEB_PROCESSED_DIR": "web_PROCESSED_DIR",
+        "FILEWIZARD_WEB_OMP_NUM_THREADS": "web_OMP_NUM_THREADS"
+      },
+      "target": "/opt/docker/stacks/filewizard",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/filewizard/config",
+          "kind": "directory",
+          "service": "web",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/filewizard/uploads_data",
+          "kind": "directory",
+          "service": "web",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/filewizard/processed_data",
+          "kind": "directory",
+          "service": "web",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "forgejo",
+      "source": "/opt/docker/stacks/forgejo/compose.yaml",
+      "required": {
+        "FORGEJO_SERVER_USER_UID": "server_USER_UID",
+        "FORGEJO_SERVER_USER_GID": "server_USER_GID"
+      },
+      "target": "/opt/docker/stacks/forgejo",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/forgejo",
+          "kind": "directory",
+          "service": "server",
+          "profiles": []
+        },
+        {
+          "path": "/etc/localtime",
+          "kind": "file",
+          "service": "server",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "gotify-ntfy",
+      "source": "/opt/docker/stacks/gotify-ntfy/compose.yml",
+      "required": {
+        "GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_HOST_IP": "gotify-to-ntfy-proxy_RELAY_HOST_IP",
+        "GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_RELAY_PORT": "gotify-to-ntfy-proxy_RELAY_PORT",
+        "GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_NTFY_SERVER": "gotify-to-ntfy-proxy_NTFY_SERVER",
+        "GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_SPLIT_LARGE_MESSAGES": "gotify-to-ntfy-proxy_SPLIT_LARGE_MESSAGES"
+      },
+      "target": "/opt/docker/stacks/gotify-ntfy",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/gotify-ntfy/topics.js",
+          "kind": "file",
+          "service": "gotify-to-ntfy-proxy",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "grafana",
+      "source": "/opt/docker/stacks/grafana/compose.yaml",
+      "required": {
+        "GRAFANA_GRAFANA_ENTERPRISE_GF_AUTH_LOGIN_MAXIMUM_INACTIVE_LIFETIME_DURATION": "grafana-enterprise_GF_AUTH_LOGIN_MAXIMUM_INACTIVE_LIFETIME_DURATION",
+        "GRAFANA_GRAFANA_ENTERPRISE_GF_AUTH_LOGIN_MAXIMUM_LIFETIME_DURATION": "grafana-enterprise_GF_AUTH_LOGIN_MAXIMUM_LIFETIME_DURATION"
+      },
+      "target": "/opt/docker/stacks/grafana",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/grafana",
+          "kind": "directory",
+          "service": "grafana-enterprise",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "guacamole",
+      "source": "/opt/docker/stacks/guacamole/compose.yml",
+      "required": {
+        "GUACAMOLE_GUACAMOLE_POSTGRESQL_HOSTNAME": "guacamole_POSTGRESQL_HOSTNAME",
+        "GUACAMOLE_GUACAMOLE_POSTGRESQL_PORT": "guacamole_POSTGRESQL_PORT",
+        "GUACAMOLE_GUACAMOLE_POSTGRESQL_DATABASE": "guacamole_POSTGRESQL_DATABASE",
+        "GUACAMOLE_GUACAMOLE_POSTGRESQL_USER": "guacamole_POSTGRESQL_USER",
+        "GUACAMOLE_GUACAMOLE_POSTGRESQL_PASSWORD": "guacamole_POSTGRESQL_PASSWORD",
+        "GUACAMOLE_GUACAMOLE_GUACD_HOSTNAME": "guacamole_GUACD_HOSTNAME",
+        "GUACAMOLE_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB",
+        "GUACAMOLE_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "GUACAMOLE_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/guacamole",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/guacamole/config",
+          "kind": "directory",
+          "service": "guacamole",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/guacamole/db",
+          "kind": "directory",
+          "service": "postgres",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/guacamole/nginx.conf",
+          "kind": "file",
+          "service": "nginx",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "happy",
+      "source": "/opt/docker/stacks/happy/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/happy",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "hastebin",
+      "source": "/opt/docker/stacks/hastebin/compose.yaml",
+      "required": {
+        "HASTEBIN_HASTEBIN_STORAGE_TYPE": "hastebin_STORAGE_TYPE",
+        "HASTEBIN_HASTEBIN_STORAGE_HOST": "hastebin_STORAGE_HOST",
+        "HASTEBIN_HASTEBINREDIS_ENTRYPOINT": "hastebinredis_entrypoint"
+      },
+      "target": "/opt/docker/stacks/hastebin",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/hastebin/redis",
+          "kind": "directory",
+          "service": "hastebinredis",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "homarr",
+      "source": "/opt/docker/stacks/homarr/compose.yaml",
+      "required": {
+        "HOMARR_HOMARR_SECRET_ENCRYPTION_KEY": "homarr_SECRET_ENCRYPTION_KEY"
+      },
+      "target": "/opt/docker/stacks/homarr",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "homarr",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/homarr",
+          "kind": "directory",
+          "service": "homarr",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "homebox",
+      "source": "/opt/docker/stacks/homebox/compose.yaml",
+      "required": {
+        "HOMEBOX_HOMEBOX_TZ": "homebox_TZ",
+        "HOMEBOX_HOMEBOX_HBOX_AUTH_API_KEY_PEPPER": "homebox_HBOX_AUTH_API_KEY_PEPPER"
+      },
+      "target": "/opt/docker/stacks/homebox",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/homebox",
+          "kind": "directory",
+          "service": "homebox",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "homelab-manager",
+      "source": "/opt/docker/stacks/homelab-manager/compose.yaml",
+      "required": {
+        "HOMELAB_MANAGER_HOMELAB_MANGER_ADMIN_PASSWORD": "homelab-manger_ADMIN_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/homelab-manager",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "imagemagick",
+      "source": "/opt/docker/stacks/imagemagick/compose.yaml",
+      "required": {
+        "IMAGEMAGICK_APP_DATABASE_URL": "app_DATABASE_URL",
+        "IMAGEMAGICK_APP_REDIS_URL": "app_REDIS_URL",
+        "IMAGEMAGICK_APP_SECRET_KEY": "app_SECRET_KEY",
+        "IMAGEMAGICK_APP_IMAGEMAGICK_TIMEOUT": "app_IMAGEMAGICK_TIMEOUT",
+        "IMAGEMAGICK_APP_IMAGEMAGICK_MEMORY_LIMIT": "app_IMAGEMAGICK_MEMORY_LIMIT",
+        "IMAGEMAGICK_APP_MAX_UPLOAD_SIZE": "app_MAX_UPLOAD_SIZE",
+        "IMAGEMAGICK_APP_ALLOWED_ORIGINS": "app_ALLOWED_ORIGINS",
+        "IMAGEMAGICK_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "IMAGEMAGICK_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD",
+        "IMAGEMAGICK_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB"
+      },
+      "target": "/opt/docker/stacks/imagemagick",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/imagemagick/uploads",
+          "kind": "directory",
+          "service": "app",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/imagemagick/processed",
+          "kind": "directory",
+          "service": "app",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/imagemagick/db",
+          "kind": "directory",
+          "service": "postgres",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/imagemagick/redis",
+          "kind": "directory",
+          "service": "redis",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "invoiceninja",
+      "source": "/opt/docker/stacks/invoiceninja/compose.yaml",
+      "required": {
+        "INVOICENINJA_MYSQL_MYSQL_DATABASE": "mysql_MYSQL_DATABASE",
+        "INVOICENINJA_MYSQL_MYSQL_USER": "mysql_MYSQL_USER",
+        "INVOICENINJA_MYSQL_MYSQL_PASSWORD": "mysql_MYSQL_PASSWORD",
+        "INVOICENINJA_MYSQL_MYSQL_ROOT_PASSWORD": "mysql_MYSQL_ROOT_PASSWORD",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_0": "mysql_healthcheck_test_0",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_1": "mysql_healthcheck_test_1",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_2": "mysql_healthcheck_test_2",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_3": "mysql_healthcheck_test_3",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_4": "mysql_healthcheck_test_4",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_5": "mysql_healthcheck_test_5",
+        "INVOICENINJA_MYSQL_HEALTHCHECK_TEST_6": "mysql_healthcheck_test_6",
+        "INVOICENINJA_REDIS_HEALTHCHECK_TEST_0": "redis_healthcheck_test_0",
+        "INVOICENINJA_REDIS_HEALTHCHECK_TEST_1": "redis_healthcheck_test_1",
+        "INVOICENINJA_REDIS_HEALTHCHECK_TEST_2": "redis_healthcheck_test_2"
+      },
+      "target": "/opt/docker/stacks/invoiceninja",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/invoiceninja/dockerfiles/debian/nginx",
+          "kind": "directory",
+          "service": "nginx",
+          "profiles": []
+        }
+      ],
+      "env_files": [
+        {
+          "path": "/opt/docker/stacks/invoiceninja/.env",
+          "keys": [
+            "APP_URL",
+            "APP_KEY",
+            "APP_ENV",
+            "APP_DEBUG",
+            "REQUIRE_HTTPS",
+            "PHANTOMJS_PDF_GENERATION",
+            "PDF_GENERATOR",
+            "TRUSTED_PROXIES",
+            "CACHE_DRIVER",
+            "QUEUE_CONNECTION",
+            "SESSION_DRIVER",
+            "REDIS_HOST",
+            "REDIS_PASSWORD",
+            "REDIS_PORT",
+            "FILESYSTEM_DISK",
+            "DB_HOST",
+            "DB_PORT",
+            "DB_DATABASE",
+            "DB_USERNAME",
+            "DB_PASSWORD",
+            "DB_ROOT_PASSWORD",
+            "DB_CONNECTION",
+            "IN_USER_EMAIL",
+            "IN_PASSWORD",
+            "MAIL_MAILER",
+            "MAIL_HOST",
+            "MAIL_PORT",
+            "MAIL_USERNAME",
+            "MAIL_PASSWORD",
+            "MAIL_ENCRYPTION",
+            "MAIL_FROM_ADDRESS",
+            "MAIL_FROM_NAME",
+            "MYSQL_ROOT_PASSWORD",
+            "MYSQL_USER",
+            "MYSQL_PASSWORD",
+            "MYSQL_DATABASE",
+            "NORDIGEN_SECRET_ID",
+            "NORDIGEN_SECRET_KEY",
+            "IS_DOCKER",
+            "SCOUT_DRIVER"
+          ]
+        }
+      ],
+      "profiles": []
+    },
+    {
+      "name": "it-tools",
+      "source": "/opt/docker/stacks/it-tools/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/it-tools",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "karakeep",
+      "source": "/opt/docker/stacks/karakeep/compose.yml",
+      "required": {
+        "KARAKEEP_KARAKEEP_DATA_DIR": "karakeep_DATA_DIR",
+        "KARAKEEP_KARAKEEP_NEXTAUTH_SECRET": "karakeep_NEXTAUTH_SECRET"
+      },
+      "target": "/opt/docker/stacks/karakeep",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/karakeep",
+          "kind": "directory",
+          "service": "karakeep",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "languard",
+      "source": "/opt/docker/stacks/languard/compose.yaml",
+      "required": {
+        "LANGUARD_BACKEND_SECRET_KEY": "backend_SECRET_KEY",
+        "LANGUARD_BACKEND_ALLOWED_HOSTS": "backend_ALLOWED_HOSTS",
+        "LANGUARD_BACKEND_BACKEND_LISTEN_PORT": "backend_BACKEND_LISTEN_PORT",
+        "LANGUARD_SCANNER_SECRET_KEY": "scanner_SECRET_KEY",
+        "LANGUARD_SCANNER_ALLOWED_HOSTS": "scanner_ALLOWED_HOSTS",
+        "LANGUARD_SCANNER_COMMAND_0": "scanner_command_0",
+        "LANGUARD_SCANNER_COMMAND_1": "scanner_command_1",
+        "LANGUARD_SCANNER_COMMAND_2": "scanner_command_2",
+        "LANGUARD_SCANNER_COMMAND_3": "scanner_command_3",
+        "LANGUARD_SCANNER_COMMAND_4": "scanner_command_4",
+        "LANGUARD_FRONTEND_BACKEND_UPSTREAM": "frontend_BACKEND_UPSTREAM",
+        "LANGUARD_FRONTEND_FRONTEND_LISTEN_ADDRESS": "frontend_FRONTEND_LISTEN_ADDRESS"
+      },
+      "target": "/opt/docker/stacks/languard",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/languard/database",
+          "kind": "directory",
+          "service": "backend",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/languard/static",
+          "kind": "directory",
+          "service": "backend",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/languard/database",
+          "kind": "directory",
+          "service": "scanner",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/languard/static",
+          "kind": "directory",
+          "service": "scanner",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "librespeed",
+      "source": "/opt/docker/stacks/librespeed/compose.yaml",
+      "required": {
+        "LIBRESPEED_LIBRESPEED_PUID": "librespeed_PUID",
+        "LIBRESPEED_LIBRESPEED_PGID": "librespeed_PGID",
+        "LIBRESPEED_LIBRESPEED_TZ": "librespeed_TZ",
+        "LIBRESPEED_LIBRESPEED_PASSWORD": "librespeed_PASSWORD",
+        "LIBRESPEED_LIBRESPEED_CUSTOM_RESULTS": "librespeed_CUSTOM_RESULTS",
+        "LIBRESPEED_LIBRESPEED_DB_TYPE": "librespeed_DB_TYPE"
+      },
+      "target": "/opt/docker/stacks/librespeed",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/librespeed",
+          "kind": "directory",
+          "service": "librespeed",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "litellm",
+      "source": "/opt/docker/stacks/litellm/compose.yml",
+      "required": {
+        "LITELLM_LITELLM_DATABASE_URL": "litellm_DATABASE_URL",
+        "LITELLM_LITELLM_STORE_MODEL_IN_DB": "litellm_STORE_MODEL_IN_DB",
+        "LITELLM_LITELLM_LITELLM_MASTER_KEY": "litellm_LITELLM_MASTER_KEY",
+        "LITELLM_LITELLM_LITELLM_SALT_KEY": "litellm_LITELLM_SALT_KEY",
+        "LITELLM_DB_POSTGRES_DB": "db_POSTGRES_DB",
+        "LITELLM_DB_POSTGRES_USER": "db_POSTGRES_USER",
+        "LITELLM_DB_POSTGRES_PASSWORD": "db_POSTGRES_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/litellm",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/litellm/db",
+          "kind": "directory",
+          "service": "db",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "maildrop",
+      "source": "/opt/docker/stacks/maildrop/compose.yaml",
+      "required": {
+        "MAILDROP_MAILDROP_DOMAIN": "maildrop_DOMAIN"
+      },
+      "target": "/opt/docker/stacks/maildrop",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "mailed",
+      "source": "/opt/docker/stacks/mailed/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/mailed",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "mailflow",
+      "source": "/opt/docker/stacks/mailflow/compose.yaml",
+      "required": {
+        "MAILFLOW_BACKEND_NODE_ENV": "backend_NODE_ENV",
+        "MAILFLOW_BACKEND_PORT": "backend_PORT",
+        "MAILFLOW_BACKEND_SESSION_SECRET": "backend_SESSION_SECRET",
+        "MAILFLOW_BACKEND_APP_URL": "backend_APP_URL",
+        "MAILFLOW_BACKEND_FRONTEND_URL": "backend_FRONTEND_URL",
+        "MAILFLOW_BACKEND_DB_HOST": "backend_DB_HOST",
+        "MAILFLOW_BACKEND_DB_NAME": "backend_DB_NAME",
+        "MAILFLOW_BACKEND_DB_USER": "backend_DB_USER",
+        "MAILFLOW_BACKEND_DB_PASSWORD": "backend_DB_PASSWORD",
+        "MAILFLOW_BACKEND_REDIS_URL": "backend_REDIS_URL",
+        "MAILFLOW_BACKEND_ENCRYPTION_KEY": "backend_ENCRYPTION_KEY",
+        "MAILFLOW_BACKEND_GOOGLE_CLIENT_ID": "backend_GOOGLE_CLIENT_ID",
+        "MAILFLOW_BACKEND_GOOGLE_CLIENT_SECRET": "backend_GOOGLE_CLIENT_SECRET",
+        "MAILFLOW_BACKEND_VAPID_PUBLIC_KEY": "backend_VAPID_PUBLIC_KEY",
+        "MAILFLOW_BACKEND_VAPID_PRIVATE_KEY": "backend_VAPID_PRIVATE_KEY",
+        "MAILFLOW_BACKEND_VAPID_SUBJECT": "backend_VAPID_SUBJECT",
+        "MAILFLOW_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB",
+        "MAILFLOW_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "MAILFLOW_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD",
+        "MAILFLOW_REDIS_COMMAND": "redis_command"
+      },
+      "target": "/opt/docker/stacks/mailflow",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "mailhog",
+      "source": "/opt/docker/stacks/mailhog/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/mailhog",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "memos",
+      "source": "/opt/docker/stacks/memos/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/memos",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/memos",
+          "kind": "directory",
+          "service": "memos",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "mini-qr",
+      "source": "/opt/docker/stacks/mini-qr/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/mini-qr",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "muilticam-studio",
+      "source": "/opt/docker/stacks/muilticam-studio/compose.yaml",
+      "required": {
+        "MUILTICAM_STUDIO_MULTICAM_STUDIO_MULTICAM_ALLOWED_HOSTS": "multicam-studio_MULTICAM_ALLOWED_HOSTS"
+      },
+      "target": "/opt/docker/stacks/muilticam-studio",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/Docker/appdata/multicam-studio/recordings",
+          "kind": "directory",
+          "service": "multicam-studio",
+          "profiles": []
+        },
+        {
+          "path": "/opt/Docker/appdata/multicam-studio/exports",
+          "kind": "directory",
+          "service": "multicam-studio",
+          "profiles": []
+        },
+        {
+          "path": "/opt/Docker/appdata/multicam-studio/state",
+          "kind": "directory",
+          "service": "multicam-studio",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "n8n",
+      "source": "/opt/docker/stacks/n8n/compose.yml",
+      "required": {
+        "N8N_N8N_N8N_SECURE_COOKIE": "n8n_N8N_SECURE_COOKIE",
+        "N8N_N8N_N8N_HOST": "n8n_N8N_HOST",
+        "N8N_N8N_N8N_PORT": "n8n_N8N_PORT"
+      },
+      "target": "/opt/docker/stacks/n8n",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/n8n",
+          "kind": "directory",
+          "service": "n8n",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "netboot",
+      "source": "/opt/docker/stacks/netboot/compose.yml",
+      "required": {
+        "NETBOOT_NETBOOTXYZ_PUID": "netbootxyz_PUID",
+        "NETBOOT_NETBOOTXYZ_PGID": "netbootxyz_PGID",
+        "NETBOOT_NETBOOTXYZ_TZ": "netbootxyz_TZ"
+      },
+      "target": "/opt/docker/stacks/netboot",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/netboot/config",
+          "kind": "directory",
+          "service": "netbootxyz",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/netboot/assets",
+          "kind": "directory",
+          "service": "netbootxyz",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "netronome",
+      "source": "/opt/docker/stacks/netronome/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/netronome",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/netronome",
+          "kind": "directory",
+          "service": "netronome",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "nginx-proxy-manager",
+      "source": "/opt/docker/stacks/nginx-proxy-manager/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/nginx-proxy-manager",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/nginxproxymanager/data",
+          "kind": "directory",
+          "service": "app",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/nginxproxymanager/letsencrypt",
+          "kind": "directory",
+          "service": "app",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "nut_webgui",
+      "source": "/opt/docker/stacks/nut_webgui/compose.yaml",
+      "required": {
+        "NUT_WEBGUI_NUT_WEBGUI_UPSD_ADDR": "nut_webgui_UPSD_ADDR",
+        "NUT_WEBGUI_NUT_WEBGUI_UPSD_USER": "nut_webgui_UPSD_USER",
+        "NUT_WEBGUI_NUT_WEBGUI_UPSD_PASS": "nut_webgui_UPSD_PASS"
+      },
+      "target": "/opt/docker/stacks/nut_webgui",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "obsidian-livesync",
+      "source": "/opt/docker/stacks/obsidian-livesync/compose.yml",
+      "required": {
+        "OBSIDIAN_LIVESYNC_COUCHDB_OBSIDIAN_LIVESYNC_SERVER_URL": "couchdb-obsidian-livesync_SERVER_URL",
+        "OBSIDIAN_LIVESYNC_COUCHDB_OBSIDIAN_LIVESYNC_COUCHDB_USER": "couchdb-obsidian-livesync_COUCHDB_USER",
+        "OBSIDIAN_LIVESYNC_COUCHDB_OBSIDIAN_LIVESYNC_COUCHDB_PASSWORD": "couchdb-obsidian-livesync_COUCHDB_PASSWORD",
+        "OBSIDIAN_LIVESYNC_COUCHDB_OBSIDIAN_LIVESYNC_COUCHDB_DATABASE": "couchdb-obsidian-livesync_COUCHDB_DATABASE"
+      },
+      "target": "/opt/docker/stacks/obsidian-livesync",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/obsidian-livesync",
+          "kind": "directory",
+          "service": "couchdb-obsidian-livesync",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "odoo",
+      "source": "/opt/docker/stacks/odoo/compose.yml",
+      "required": {
+        "ODOO_DB_POSTGRES_DB": "db_POSTGRES_DB",
+        "ODOO_DB_POSTGRES_PASSWORD": "db_POSTGRES_PASSWORD",
+        "ODOO_DB_POSTGRES_USER": "db_POSTGRES_USER"
+      },
+      "target": "/opt/docker/stacks/odoo",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "omni-tools",
+      "source": "/opt/docker/stacks/omni-tools/compose.yml",
+      "required": {},
+      "target": "/opt/docker/stacks/omni-tools",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "openwebui",
+      "source": "/opt/docker/stacks/openwebui/compose.yml",
+      "required": {
+        "OPENWEBUI_OPEN_WEBUI_OLLAMA_BASE_URL": "open-webui_OLLAMA_BASE_URL"
+      },
+      "target": "/opt/docker/stacks/openwebui",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/openwebui",
+          "kind": "directory",
+          "service": "open-webui",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "outline",
+      "source": "/opt/docker/stacks/outline/compose.yaml",
+      "required": {
+        "OUTLINE_OUTLINE_NODE_ENV": "outline_NODE_ENV",
+        "OUTLINE_OUTLINE_URL": "outline_URL",
+        "OUTLINE_OUTLINE_PORT": "outline_PORT",
+        "OUTLINE_OUTLINE_COLLABORATION_URL": "outline_COLLABORATION_URL",
+        "OUTLINE_OUTLINE_CDN_URL": "outline_CDN_URL",
+        "OUTLINE_OUTLINE_WEB_CONCURRENCY": "outline_WEB_CONCURRENCY",
+        "OUTLINE_OUTLINE_SECRET_KEY": "outline_SECRET_KEY",
+        "OUTLINE_OUTLINE_UTILS_SECRET": "outline_UTILS_SECRET",
+        "OUTLINE_OUTLINE_DEFAULT_LANGUAGE": "outline_DEFAULT_LANGUAGE",
+        "OUTLINE_OUTLINE_DATABASE_URL": "outline_DATABASE_URL",
+        "OUTLINE_OUTLINE_DATABASE_CONNECTION_POOL_MIN": "outline_DATABASE_CONNECTION_POOL_MIN",
+        "OUTLINE_OUTLINE_DATABASE_CONNECTION_POOL_MAX": "outline_DATABASE_CONNECTION_POOL_MAX",
+        "OUTLINE_OUTLINE_REDIS_URL": "outline_REDIS_URL",
+        "OUTLINE_OUTLINE_REDIS_COLLABORATION_URL": "outline_REDIS_COLLABORATION_URL",
+        "OUTLINE_OUTLINE_FILE_STORAGE": "outline_FILE_STORAGE",
+        "OUTLINE_OUTLINE_FILE_STORAGE_LOCAL_ROOT_DIR": "outline_FILE_STORAGE_LOCAL_ROOT_DIR",
+        "OUTLINE_OUTLINE_FILE_STORAGE_UPLOAD_MAX_SIZE": "outline_FILE_STORAGE_UPLOAD_MAX_SIZE",
+        "OUTLINE_OUTLINE_FILE_STORAGE_IMPORT_MAX_SIZE": "outline_FILE_STORAGE_IMPORT_MAX_SIZE",
+        "OUTLINE_OUTLINE_FILE_STORAGE_WORKSPACE_IMPORT_MAX_SIZE": "outline_FILE_STORAGE_WORKSPACE_IMPORT_MAX_SIZE",
+        "OUTLINE_OUTLINE_AWS_ACCESS_KEY_ID": "outline_AWS_ACCESS_KEY_ID",
+        "OUTLINE_OUTLINE_AWS_SECRET_ACCESS_KEY": "outline_AWS_SECRET_ACCESS_KEY",
+        "OUTLINE_OUTLINE_AWS_REGION": "outline_AWS_REGION",
+        "OUTLINE_OUTLINE_AWS_S3_ACCELERATE_URL": "outline_AWS_S3_ACCELERATE_URL",
+        "OUTLINE_OUTLINE_AWS_S3_UPLOAD_BUCKET_URL": "outline_AWS_S3_UPLOAD_BUCKET_URL",
+        "OUTLINE_OUTLINE_AWS_S3_UPLOAD_BUCKET_NAME": "outline_AWS_S3_UPLOAD_BUCKET_NAME",
+        "OUTLINE_OUTLINE_AWS_S3_FORCE_PATH_STYLE": "outline_AWS_S3_FORCE_PATH_STYLE",
+        "OUTLINE_OUTLINE_AWS_S3_ACL": "outline_AWS_S3_ACL",
+        "OUTLINE_OUTLINE_SSL_KEY": "outline_SSL_KEY",
+        "OUTLINE_OUTLINE_SSL_CERT": "outline_SSL_CERT",
+        "OUTLINE_OUTLINE_FORCE_HTTPS": "outline_FORCE_HTTPS",
+        "OUTLINE_OUTLINE_SLACK_CLIENT_ID": "outline_SLACK_CLIENT_ID",
+        "OUTLINE_OUTLINE_SLACK_CLIENT_SECRET": "outline_SLACK_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_GOOGLE_CLIENT_ID": "outline_GOOGLE_CLIENT_ID",
+        "OUTLINE_OUTLINE_GOOGLE_CLIENT_SECRET": "outline_GOOGLE_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_AZURE_CLIENT_ID": "outline_AZURE_CLIENT_ID",
+        "OUTLINE_OUTLINE_AZURE_CLIENT_SECRET": "outline_AZURE_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_AZURE_RESOURCE_APP_ID": "outline_AZURE_RESOURCE_APP_ID",
+        "OUTLINE_OUTLINE_DISCORD_CLIENT_ID": "outline_DISCORD_CLIENT_ID",
+        "OUTLINE_OUTLINE_DISCORD_CLIENT_SECRET": "outline_DISCORD_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_DISCORD_SERVER_ID": "outline_DISCORD_SERVER_ID",
+        "OUTLINE_OUTLINE_DISCORD_SERVER_ROLES": "outline_DISCORD_SERVER_ROLES",
+        "OUTLINE_OUTLINE_OIDC_CLIENT_ID": "outline_OIDC_CLIENT_ID",
+        "OUTLINE_OUTLINE_OIDC_CLIENT_SECRET": "outline_OIDC_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_OIDC_AUTH_URI": "outline_OIDC_AUTH_URI",
+        "OUTLINE_OUTLINE_OIDC_TOKEN_URI": "outline_OIDC_TOKEN_URI",
+        "OUTLINE_OUTLINE_OIDC_USERINFO_URI": "outline_OIDC_USERINFO_URI",
+        "OUTLINE_OUTLINE_OIDC_LOGOUT_URI": "outline_OIDC_LOGOUT_URI",
+        "OUTLINE_OUTLINE_OIDC_USERNAME_CLAIM": "outline_OIDC_USERNAME_CLAIM",
+        "OUTLINE_OUTLINE_OIDC_DISPLAY_NAME": "outline_OIDC_DISPLAY_NAME",
+        "OUTLINE_OUTLINE_OIDC_SCOPES": "outline_OIDC_SCOPES",
+        "OUTLINE_OUTLINE_SMTP_SERVICE": "outline_SMTP_SERVICE",
+        "OUTLINE_OUTLINE_SMTP_USERNAME": "outline_SMTP_USERNAME",
+        "OUTLINE_OUTLINE_SMTP_PASSWORD": "outline_SMTP_PASSWORD",
+        "OUTLINE_OUTLINE_SMTP_FROM_EMAIL": "outline_SMTP_FROM_EMAIL",
+        "OUTLINE_OUTLINE_RATE_LIMITER_ENABLED": "outline_RATE_LIMITER_ENABLED",
+        "OUTLINE_OUTLINE_RATE_LIMITER_REQUESTS": "outline_RATE_LIMITER_REQUESTS",
+        "OUTLINE_OUTLINE_RATE_LIMITER_DURATION_WINDOW": "outline_RATE_LIMITER_DURATION_WINDOW",
+        "OUTLINE_OUTLINE_RATE_LIMITER_MULTIPLIER": "outline_RATE_LIMITER_MULTIPLIER",
+        "OUTLINE_OUTLINE_GITHUB_CLIENT_ID": "outline_GITHUB_CLIENT_ID",
+        "OUTLINE_OUTLINE_GITHUB_CLIENT_SECRET": "outline_GITHUB_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_GITHUB_WEBHOOK_SECRET": "outline_GITHUB_WEBHOOK_SECRET",
+        "OUTLINE_OUTLINE_GITHUB_APP_NAME": "outline_GITHUB_APP_NAME",
+        "OUTLINE_OUTLINE_GITHUB_APP_ID": "outline_GITHUB_APP_ID",
+        "OUTLINE_OUTLINE_GITHUB_APP_PRIVATE_KEY": "outline_GITHUB_APP_PRIVATE_KEY",
+        "OUTLINE_OUTLINE_GITLAB_CLIENT_ID": "outline_GITLAB_CLIENT_ID",
+        "OUTLINE_OUTLINE_GITLAB_CLIENT_SECRET": "outline_GITLAB_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_LINEAR_CLIENT_ID": "outline_LINEAR_CLIENT_ID",
+        "OUTLINE_OUTLINE_LINEAR_CLIENT_SECRET": "outline_LINEAR_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_SLACK_VERIFICATION_TOKEN": "outline_SLACK_VERIFICATION_TOKEN",
+        "OUTLINE_OUTLINE_SLACK_APP_ID": "outline_SLACK_APP_ID",
+        "OUTLINE_OUTLINE_SLACK_MESSAGE_ACTIONS": "outline_SLACK_MESSAGE_ACTIONS",
+        "OUTLINE_OUTLINE_FIGMA_CLIENT_ID": "outline_FIGMA_CLIENT_ID",
+        "OUTLINE_OUTLINE_FIGMA_CLIENT_SECRET": "outline_FIGMA_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_DROPBOX_APP_KEY": "outline_DROPBOX_APP_KEY",
+        "OUTLINE_OUTLINE_SENTRY_DSN": "outline_SENTRY_DSN",
+        "OUTLINE_OUTLINE_SENTRY_TUNNEL": "outline_SENTRY_TUNNEL",
+        "OUTLINE_OUTLINE_NOTION_CLIENT_ID": "outline_NOTION_CLIENT_ID",
+        "OUTLINE_OUTLINE_NOTION_CLIENT_SECRET": "outline_NOTION_CLIENT_SECRET",
+        "OUTLINE_OUTLINE_IFRAMELY_URL": "outline_IFRAMELY_URL",
+        "OUTLINE_OUTLINE_IFRAMELY_API_KEY": "outline_IFRAMELY_API_KEY",
+        "OUTLINE_OUTLINE_ENABLE_UPDATES": "outline_ENABLE_UPDATES",
+        "OUTLINE_OUTLINE_DEBUG": "outline_DEBUG",
+        "OUTLINE_OUTLINE_LOG_LEVEL": "outline_LOG_LEVEL",
+        "OUTLINE_OUTLINE_PGSSLMODE": "outline_PGSSLMODE",
+        "OUTLINE_REDIS_COMMAND_0": "redis_command_0",
+        "OUTLINE_REDIS_COMMAND_1": "redis_command_1",
+        "OUTLINE_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "OUTLINE_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD",
+        "OUTLINE_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB"
+      },
+      "target": "/opt/docker/stacks/outline",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/outline/storage",
+          "kind": "directory",
+          "service": "outline",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/outline/redis.conf",
+          "kind": "file",
+          "service": "redis",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/outline/database",
+          "kind": "directory",
+          "service": "postgres",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "paperless-ngx",
+      "source": "/opt/docker/stacks/paperless-ngx/compose.yml",
+      "required": {
+        "PAPERLESS_NGX_PAPERLESS_GPT_PAPERLESS_BASE_URL": "paperless-gpt_PAPERLESS_BASE_URL",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PAPERLESS_API_TOKEN": "paperless-gpt_PAPERLESS_API_TOKEN",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PAPERLESS_PUBLIC_URL": "paperless-gpt_PAPERLESS_PUBLIC_URL",
+        "PAPERLESS_NGX_PAPERLESS_GPT_MANUAL_TAG": "paperless-gpt_MANUAL_TAG",
+        "PAPERLESS_NGX_PAPERLESS_GPT_AUTO_TAG": "paperless-gpt_AUTO_TAG",
+        "PAPERLESS_NGX_PAPERLESS_GPT_LLM_PROVIDER": "paperless-gpt_LLM_PROVIDER",
+        "PAPERLESS_NGX_PAPERLESS_GPT_LLM_MODEL": "paperless-gpt_LLM_MODEL",
+        "PAPERLESS_NGX_PAPERLESS_GPT_OLLAMA_HOST": "paperless-gpt_OLLAMA_HOST",
+        "PAPERLESS_NGX_PAPERLESS_GPT_OLLAMA_CONTEXT_LENGTH": "paperless-gpt_OLLAMA_CONTEXT_LENGTH",
+        "PAPERLESS_NGX_PAPERLESS_GPT_TOKEN_LIMIT": "paperless-gpt_TOKEN_LIMIT",
+        "PAPERLESS_NGX_PAPERLESS_GPT_OCR_PROVIDER": "paperless-gpt_OCR_PROVIDER",
+        "PAPERLESS_NGX_PAPERLESS_GPT_VISION_LLM_PROVIDER": "paperless-gpt_VISION_LLM_PROVIDER",
+        "PAPERLESS_NGX_PAPERLESS_GPT_VISION_LLM_MODEL": "paperless-gpt_VISION_LLM_MODEL",
+        "PAPERLESS_NGX_PAPERLESS_GPT_OCR_PROCESS_MODE": "paperless-gpt_OCR_PROCESS_MODE",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_SKIP_EXISTING_OCR": "paperless-gpt_PDF_SKIP_EXISTING_OCR",
+        "PAPERLESS_NGX_PAPERLESS_GPT_CREATE_LOCAL_HOCR": "paperless-gpt_CREATE_LOCAL_HOCR",
+        "PAPERLESS_NGX_PAPERLESS_GPT_LOCAL_HOCR_PATH": "paperless-gpt_LOCAL_HOCR_PATH",
+        "PAPERLESS_NGX_PAPERLESS_GPT_CREATE_LOCAL_PDF": "paperless-gpt_CREATE_LOCAL_PDF",
+        "PAPERLESS_NGX_PAPERLESS_GPT_LOCAL_PDF_PATH": "paperless-gpt_LOCAL_PDF_PATH",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_UPLOAD": "paperless-gpt_PDF_UPLOAD",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_REPLACE": "paperless-gpt_PDF_REPLACE",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_COPY_METADATA": "paperless-gpt_PDF_COPY_METADATA",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_OCR_TAGGING": "paperless-gpt_PDF_OCR_TAGGING",
+        "PAPERLESS_NGX_PAPERLESS_GPT_PDF_OCR_COMPLETE_TAG": "paperless-gpt_PDF_OCR_COMPLETE_TAG",
+        "PAPERLESS_NGX_PAPERLESS_GPT_AUTO_OCR_TAG": "paperless-gpt_AUTO_OCR_TAG",
+        "PAPERLESS_NGX_PAPERLESS_GPT_OCR_LIMIT_PAGES": "paperless-gpt_OCR_LIMIT_PAGES",
+        "PAPERLESS_NGX_PAPERLESS_GPT_LOG_LEVEL": "paperless-gpt_LOG_LEVEL",
+        "PAPERLESS_NGX_WEBSERVER_PAPERLESS_REDIS": "webserver_PAPERLESS_REDIS"
+      },
+      "target": "/opt/docker/stacks/paperless-ngx",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/redis",
+          "kind": "directory",
+          "service": "broker",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/paperless-ai/paperless-ai",
+          "kind": "directory",
+          "service": "paperless-ai",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/paperless-ai/prompts",
+          "kind": "directory",
+          "service": "paperless-gpt",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/paperless-ai/hocr",
+          "kind": "directory",
+          "service": "paperless-gpt",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/paperless-ai/pdf",
+          "kind": "directory",
+          "service": "paperless-gpt",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/data",
+          "kind": "directory",
+          "service": "webserver",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/media",
+          "kind": "directory",
+          "service": "webserver",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/data/export",
+          "kind": "directory",
+          "service": "webserver",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/paperless-ngx/data/consume",
+          "kind": "directory",
+          "service": "webserver",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "pihole",
+      "source": "/opt/docker/stacks/pihole/compose.yaml",
+      "required": {
+        "PIHOLE_PIHOLE_TZ": "pihole_TZ",
+        "PIHOLE_PIHOLE_FTLCONF_WEBSERVER_API_PASSWORD": "pihole_FTLCONF_webserver_api_password",
+        "PIHOLE_PIHOLE_FTLCONF_DNS_LISTENINGMODE": "pihole_FTLCONF_dns_listeningMode"
+      },
+      "target": "/opt/docker/stacks/pihole",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/pihole",
+          "kind": "directory",
+          "service": "pihole",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "playit",
+      "source": "/opt/docker/stacks/playit/compose.yaml",
+      "required": {
+        "PLAYIT_PLAYIT_SECRET_KEY": "playit_SECRET_KEY"
+      },
+      "target": "/opt/docker/stacks/playit",
+      "enabled": true,
+      "exposure_gate": true,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "pocket-id",
+      "source": "/opt/docker/stacks/pocket-id/compose.yml",
+      "required": {
+        "POCKET_ID_POCKET_ID_APP_URL": "pocket-id_APP_URL"
+      },
+      "target": "/opt/docker/stacks/pocket-id",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/pocket-id",
+          "kind": "directory",
+          "service": "pocket-id",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "portracker",
+      "source": "/opt/docker/stacks/portracker/compose.yml",
+      "required": {
+        "PORTRACKER_PORTRACKER_DATABASE_PATH": "portracker_DATABASE_PATH",
+        "PORTRACKER_PORTRACKER_PORT": "portracker_PORT"
+      },
+      "target": "/opt/docker/stacks/portracker",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/portracker",
+          "kind": "directory",
+          "service": "portracker",
+          "profiles": []
+        },
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "portracker",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "ports",
+      "source": "/opt/docker/stacks/ports/compose.yaml",
+      "required": {
+        "PORTS_PORTS_PORT_RANGES": "ports_PORT_RANGES",
+        "PORTS_PORTS_RESERVED_PORTS": "ports_RESERVED_PORTS",
+        "PORTS_PORTS_HTTPS_PORTS": "ports_HTTPS_PORTS",
+        "PORTS_PORTS_AVAILABLE_COUNT": "ports_AVAILABLE_COUNT",
+        "PORTS_PORTS_SHOW_ALL_CONTAINERS": "ports_SHOW_ALL_CONTAINERS",
+        "PORTS_PORTS_CHECK_HOST_BIND": "ports_CHECK_HOST_BIND"
+      },
+      "target": "/opt/docker/stacks/ports",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "ports",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "postgres",
+      "source": "/opt/docker/stacks/postgres/compose.yaml",
+      "required": {
+        "POSTGRES_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "POSTGRES_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD",
+        "POSTGRES_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB",
+        "POSTGRES_PGADMIN_PGADMIN_DEFAULT_EMAIL": "pgadmin_PGADMIN_DEFAULT_EMAIL",
+        "POSTGRES_PGADMIN_PGADMIN_DEFAULT_PASSWORD": "pgadmin_PGADMIN_DEFAULT_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/postgres",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/postgres/pgadmin",
+          "kind": "directory",
+          "service": "pgadmin",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/postgres/databasus",
+          "kind": "directory",
+          "service": "databasus",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "printstash",
+      "source": "/opt/docker/stacks/printstash/compose.yaml",
+      "required": {
+        "PRINTSTASH_FRONTEND_NGINX_CLIENT_MAX_BODY_SIZE": "frontend_NGINX_CLIENT_MAX_BODY_SIZE",
+        "PRINTSTASH_API_VAULT_STORAGE_BACKEND": "api_VAULT_STORAGE_BACKEND",
+        "PRINTSTASH_API_VAULT_DATA_DIR": "api_VAULT_DATA_DIR",
+        "PRINTSTASH_API_VAULT_THUMB_DIR": "api_VAULT_THUMB_DIR",
+        "PRINTSTASH_API_VAULT_STAGING_DIR": "api_VAULT_STAGING_DIR",
+        "PRINTSTASH_API_VAULT_DB_URL": "api_VAULT_DB_URL",
+        "PRINTSTASH_API_VAULT_BACKUP_DIR": "api_VAULT_BACKUP_DIR",
+        "PRINTSTASH_API_VAULT_BACKUP_RETENTION_DAYS": "api_VAULT_BACKUP_RETENTION_DAYS",
+        "PRINTSTASH_API_VAULT_JWT_SECRET": "api_VAULT_JWT_SECRET",
+        "PRINTSTASH_API_VAULT_ACCESS_TOKEN_EXPIRE_MINUTES": "api_VAULT_ACCESS_TOKEN_EXPIRE_MINUTES",
+        "PRINTSTASH_API_VAULT_MAX_UPLOAD_MB": "api_VAULT_MAX_UPLOAD_MB",
+        "PRINTSTASH_API_VAULT_LOG_LEVEL": "api_VAULT_LOG_LEVEL",
+        "PRINTSTASH_API_TZ": "api_TZ",
+        "PRINTSTASH_POSTGRES_POSTGRES_DB": "postgres_POSTGRES_DB",
+        "PRINTSTASH_POSTGRES_POSTGRES_USER": "postgres_POSTGRES_USER",
+        "PRINTSTASH_POSTGRES_POSTGRES_PASSWORD": "postgres_POSTGRES_PASSWORD",
+        "PRINTSTASH_MINIO_MINIO_ROOT_USER": "minio_MINIO_ROOT_USER",
+        "PRINTSTASH_MINIO_MINIO_ROOT_PASSWORD": "minio_MINIO_ROOT_PASSWORD",
+        "PRINTSTASH_MINIO_COMMAND": "minio_command"
+      },
+      "target": "/opt/docker/stacks/printstash",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/printstash/files",
+          "kind": "directory",
+          "service": "api",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/thumbs",
+          "kind": "directory",
+          "service": "api",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/db",
+          "kind": "directory",
+          "service": "api",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/staging",
+          "kind": "directory",
+          "service": "api",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/backups",
+          "kind": "directory",
+          "service": "api",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/postgres",
+          "kind": "missing",
+          "service": "postgres",
+          "profiles": [
+            "postgres"
+          ]
+        },
+        {
+          "path": "/opt/docker/appdata/printstash/minio",
+          "kind": "missing",
+          "service": "minio",
+          "profiles": [
+            "s3"
+          ]
+        }
+      ],
+      "env_files": [],
+      "profiles": [
+        "postgres",
+        "s3"
+      ]
+    },
+    {
+      "name": "prometheus",
+      "source": "/opt/docker/stacks/prometheus/compose.yaml",
+      "required": {
+        "PROMETHEUS_PROMETHEUS_COMMAND_0": "prometheus_command_0",
+        "PROMETHEUS_PROMETHEUS_COMMAND_1": "prometheus_command_1"
+      },
+      "target": "/opt/docker/stacks/prometheus",
+      "enabled": false,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/prometheus/prometheus.yml",
+          "kind": "file",
+          "service": "prometheus",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/prometheus/data",
+          "kind": "directory",
+          "service": "prometheus",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "prunemate",
+      "source": "/opt/docker/stacks/prunemate/compose.yaml",
+      "required": {
+        "PRUNEMATE_PRUNEMATE_PRUNEMATE_TZ": "prunemate_PRUNEMATE_TZ",
+        "PRUNEMATE_PRUNEMATE_PRUNEMATE_TIME_24H": "prunemate_PRUNEMATE_TIME_24H"
+      },
+      "target": "/opt/docker/stacks/prunemate",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "prunemate",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/prunemate/logs",
+          "kind": "directory",
+          "service": "prunemate",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/prunemate/config",
+          "kind": "directory",
+          "service": "prunemate",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "pve-notebuddy",
+      "source": "/opt/docker/stacks/pve-notebuddy/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/pve-notebuddy",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "qui",
+      "source": "/opt/docker/stacks/qui/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/qui",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/qui/config",
+          "kind": "directory",
+          "service": "qui",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "receiptwrangler",
+      "source": "/opt/docker/stacks/receiptwrangler/compose.yaml",
+      "required": {
+        "RECEIPTWRANGLER_DB_POSTGRES_DB": "db_POSTGRES_DB",
+        "RECEIPTWRANGLER_DB_POSTGRES_USER": "db_POSTGRES_USER",
+        "RECEIPTWRANGLER_DB_POSTGRES_PASSWORD": "db_POSTGRES_PASSWORD",
+        "RECEIPTWRANGLER_REDIS_TZ": "redis_TZ",
+        "RECEIPTWRANGLER_REDIS_COMMAND": "redis_command",
+        "RECEIPTWRANGLER_WRANGLER_ENCRYPTION_KEY": "wrangler_ENCRYPTION_KEY",
+        "RECEIPTWRANGLER_WRANGLER_SECRET_KEY": "wrangler_SECRET_KEY",
+        "RECEIPTWRANGLER_WRANGLER_REDIS_PORT": "wrangler_REDIS_PORT",
+        "RECEIPTWRANGLER_WRANGLER_REDIS_HOST": "wrangler_REDIS_HOST",
+        "RECEIPTWRANGLER_WRANGLER_REDIS_PASSWORD": "wrangler_REDIS_PASSWORD",
+        "RECEIPTWRANGLER_WRANGLER_DB_USER": "wrangler_DB_USER",
+        "RECEIPTWRANGLER_WRANGLER_DB_PASSWORD": "wrangler_DB_PASSWORD",
+        "RECEIPTWRANGLER_WRANGLER_DB_NAME": "wrangler_DB_NAME",
+        "RECEIPTWRANGLER_WRANGLER_DB_HOST": "wrangler_DB_HOST",
+        "RECEIPTWRANGLER_WRANGLER_DB_PORT": "wrangler_DB_PORT",
+        "RECEIPTWRANGLER_WRANGLER_DB_ENGINE": "wrangler_DB_ENGINE",
+        "RECEIPTWRANGLER_WRANGLER_ENTRYPOINT": "wrangler_entrypoint"
+      },
+      "target": "/opt/docker/stacks/receiptwrangler",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/receiptwrangler/db",
+          "kind": "directory",
+          "service": "db",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/receiptwrangler/redis",
+          "kind": "directory",
+          "service": "redis",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/receiptwrangler/data",
+          "kind": "directory",
+          "service": "wrangler",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/receiptwrangler/data",
+          "kind": "directory",
+          "service": "wrangler",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/receiptwrangler/logs",
+          "kind": "directory",
+          "service": "wrangler",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "remotepower",
+      "source": "/opt/docker/stacks/remotepower/compose.yaml",
+      "required": {
+        "REMOTEPOWER_REMOTEPOWER_RP_TLS_SELFSIGNED": "remotepower_RP_TLS_SELFSIGNED",
+        "REMOTEPOWER_REMOTEPOWER_RP_TLS_HOST": "remotepower_RP_TLS_HOST"
+      },
+      "target": "/opt/docker/stacks/remotepower",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/remotepower",
+          "kind": "directory",
+          "service": "remotepower",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "robin",
+      "source": "/opt/docker/stacks/robin/compose.yaml",
+      "required": {
+        "ROBIN_ROBIN_COMMAND": "robin_command",
+        "ROBIN_GLUETUN_TZ": "gluetun_TZ",
+        "ROBIN_GLUETUN_VPN_SERVICE_PROVIDER": "gluetun_VPN_SERVICE_PROVIDER",
+        "ROBIN_GLUETUN_VPN_TYPE": "gluetun_VPN_TYPE",
+        "ROBIN_GLUETUN_OPENVPN_USER": "gluetun_OPENVPN_USER",
+        "ROBIN_GLUETUN_OPENVPN_PASSWORD": "gluetun_OPENVPN_PASSWORD",
+        "ROBIN_GLUETUN_SERVER_REGIONS": "gluetun_SERVER_REGIONS",
+        "ROBIN_GLUETUN_PORT_FORWARDING": "gluetun_PORT_FORWARDING",
+        "ROBIN_GLUETUN_FIREWALL": "gluetun_FIREWALL",
+        "ROBIN_GLUETUN_FIREWALL_OUTBOUND_SUBNETS": "gluetun_FIREWALL_OUTBOUND_SUBNETS"
+      },
+      "target": "/opt/docker/stacks/robin",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/robin/.env",
+          "kind": "file",
+          "service": "robin",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/robin/gluetn/config",
+          "kind": "directory",
+          "service": "gluetun",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/robin/gluetn/openvpn",
+          "kind": "directory",
+          "service": "gluetun",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "rustdesk",
+      "source": "/opt/docker/stacks/rustdesk/compose.yml",
+      "required": {
+        "RUSTDESK_HBBS_COMMAND": "hbbs_command",
+        "RUSTDESK_HBBR_COMMAND": "hbbr_command"
+      },
+      "target": "/opt/docker/stacks/rustdesk",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/rustdesk/data",
+          "kind": "directory",
+          "service": "hbbs",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/rustdesk/data",
+          "kind": "directory",
+          "service": "hbbr",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "schoolboxmarkviewer",
+      "source": "/opt/docker/stacks/schoolboxmarkviewer/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/schoolboxmarkviewer",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "searxng",
+      "source": "/opt/docker/stacks/searxng/compose.yml",
+      "required": {
+        "SEARXNG_SEARXNG_SEARXNG_BASE_URL": "searxng_SEARXNG_BASE_URL"
+      },
+      "target": "/opt/docker/stacks/searxng",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/searxng/searxng",
+          "kind": "directory",
+          "service": "searxng",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/searxng/searxng-data",
+          "kind": "directory",
+          "service": "searxng",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "shlink",
+      "source": "/opt/docker/stacks/shlink/compose.yml",
+      "required": {
+        "SHLINK_SHLINK_DEFAULT_DOMAIN": "shlink_DEFAULT_DOMAIN",
+        "SHLINK_SHLINK_IS_HTTPS_ENABLED": "shlink_IS_HTTPS_ENABLED",
+        "SHLINK_SHLINK_GEOLITE_LICENSE_KEY": "shlink_GEOLITE_LICENSE_KEY",
+        "SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_URL": "shlink-web-client_SHLINK_SERVER_URL",
+        "SHLINK_SHLINK_WEB_CLIENT_SHLINK_SERVER_API_KEY": "shlink-web-client_SHLINK_SERVER_API_KEY"
+      },
+      "target": "/opt/docker/stacks/shlink",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/shlink",
+          "kind": "directory",
+          "service": "shlink",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "stirlingpdf",
+      "source": "/opt/docker/stacks/stirlingpdf/compose.yml",
+      "required": {
+        "STIRLINGPDF_STIRLING_PDF_DOCKER_ENABLE_SECURITY": "stirling-pdf_DOCKER_ENABLE_SECURITY",
+        "STIRLINGPDF_STIRLING_PDF_LANGS": "stirling-pdf_LANGS"
+      },
+      "target": "/opt/docker/stacks/stirlingpdf",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/stirlingpdf/trainingData",
+          "kind": "directory",
+          "service": "stirling-pdf",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/stirlingpdf/extraConfigs",
+          "kind": "directory",
+          "service": "stirling-pdf",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/stirlingpdf/customFiles",
+          "kind": "directory",
+          "service": "stirling-pdf",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/stirlingpdf/logs",
+          "kind": "directory",
+          "service": "stirling-pdf",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/stirlingpdf/pipeline",
+          "kind": "directory",
+          "service": "stirling-pdf",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "stremio",
+      "source": "/opt/docker/stacks/stremio/compose.yaml",
+      "required": {
+        "STREMIO_STREMIO_NO_CORS": "stremio_NO_CORS",
+        "STREMIO_STREMIO_AUTO_SERVER_URL": "stremio_AUTO_SERVER_URL",
+        "STREMIO_AIOSTREAMS_BASE_URL": "aiostreams_BASE_URL",
+        "STREMIO_AIOSTREAMS_SECRET_KEY": "aiostreams_SECRET_KEY"
+      },
+      "target": "/opt/docker/stacks/stremio",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/stremio/server",
+          "kind": "directory",
+          "service": "stremio",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/stremio/aiostreams",
+          "kind": "directory",
+          "service": "aiostreams",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "telecloud",
+      "source": "/opt/docker/stacks/telecloud/compose.yaml",
+      "required": {
+        "TELECLOUD_TELECLOUD_GO_API_ID": "telecloud-go_API_ID",
+        "TELECLOUD_TELECLOUD_GO_API_HASH": "telecloud-go_API_HASH",
+        "TELECLOUD_TELECLOUD_GO_LOG_GROUP_ID": "telecloud-go_LOG_GROUP_ID",
+        "TELECLOUD_TELECLOUD_GO_PORT": "telecloud-go_PORT",
+        "TELECLOUD_TELECLOUD_GO_DATABASE_PATH": "telecloud-go_DATABASE_PATH",
+        "TELECLOUD_TELECLOUD_GO_THUMBS_DIR": "telecloud-go_THUMBS_DIR",
+        "TELECLOUD_TELECLOUD_GO_TEMP_DIR": "telecloud-go_TEMP_DIR",
+        "TELECLOUD_TELECLOUD_GO_SESSION_FILE": "telecloud-go_SESSION_FILE",
+        "TELECLOUD_TELECLOUD_GO_FFMPEG_PATH": "telecloud-go_FFMPEG_PATH",
+        "TELECLOUD_TELECLOUD_GO_YTDLP_PATH": "telecloud-go_YTDLP_PATH"
+      },
+      "target": "/opt/docker/stacks/telecloud",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "termix",
+      "source": "/opt/docker/stacks/termix/compose.yml",
+      "required": {
+        "TERMIX_TERMIX_PORT": "termix_PORT"
+      },
+      "target": "/opt/docker/stacks/termix",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/termix",
+          "kind": "directory",
+          "service": "termix",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "trilium",
+      "source": "/opt/docker/stacks/trilium/compose.yml",
+      "required": {
+        "TRILIUM_TRILIUM_TRILIUM_DATA_DIR": "trilium_TRILIUM_DATA_DIR"
+      },
+      "target": "/opt/docker/stacks/trilium",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/trilium/data",
+          "kind": "directory",
+          "service": "trilium",
+          "profiles": []
+        },
+        {
+          "path": "/etc/timezone",
+          "kind": "file",
+          "service": "trilium",
+          "profiles": []
+        },
+        {
+          "path": "/etc/localtime",
+          "kind": "file",
+          "service": "trilium",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "truecommand",
+      "source": "/opt/docker/stacks/truecommand/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/truecommand",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/truecommand",
+          "kind": "directory",
+          "service": "truecommand",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "twingate",
+      "source": "/opt/docker/stacks/twingate/compose.yaml",
+      "required": {
+        "TWINGATE_CONNECTOR_TWINGATE_NETWORK": "connector_TWINGATE_NETWORK",
+        "TWINGATE_CONNECTOR_TWINGATE_ACCESS_TOKEN": "connector_TWINGATE_ACCESS_TOKEN",
+        "TWINGATE_CONNECTOR_TWINGATE_REFRESH_TOKEN": "connector_TWINGATE_REFRESH_TOKEN",
+        "TWINGATE_CONNECTOR_TWINGATE_LABEL_HOSTNAME": "connector_TWINGATE_LABEL_HOSTNAME",
+        "TWINGATE_CONNECTOR_TWINGATE_LABEL_DEPLOYED_BY": "connector_TWINGATE_LABEL_DEPLOYED_BY"
+      },
+      "target": "/opt/docker/stacks/twingate",
+      "enabled": true,
+      "exposure_gate": true,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "uptime-kuma",
+      "source": "/opt/docker/stacks/uptime-kuma/compose.yml",
+      "required": {
+        "UPTIME_KUMA_UPTIMEKUMA_UPTIME_KUMA_DISABLE_FRAME_DENY": "uptimekuma_UPTIME_KUMA_DISABLE_FRAME_DENY"
+      },
+      "target": "/opt/docker/stacks/uptime-kuma",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/uptimekuma/data",
+          "kind": "directory",
+          "service": "uptimekuma",
+          "profiles": []
+        },
+        {
+          "path": "/var/run/docker.sock",
+          "kind": "socket",
+          "service": "uptimekuma",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "vaultwarden",
+      "source": "/opt/docker/stacks/vaultwarden/compose.yaml",
+      "required": {
+        "VAULTWARDEN_VAULTWARDEN_DOMAIN": "vaultwarden_DOMAIN",
+        "VAULTWARDEN_VAULTWARDEN_ADMIN_TOKEN": "vaultwarden_ADMIN_TOKEN"
+      },
+      "target": "/opt/docker/stacks/vaultwarden",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/vaultwarden",
+          "kind": "directory",
+          "service": "vaultwarden",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "vikunja",
+      "source": "/opt/docker/stacks/vikunja/compose.yml",
+      "required": {
+        "VIKUNJA_VIKUNJA_VIKUNJA_SERVICE_PUBLICURL": "vikunja_VIKUNJA_SERVICE_PUBLICURL",
+        "VIKUNJA_VIKUNJA_VIKUNJA_CORS_ENABLE": "vikunja_VIKUNJA_CORS_ENABLE"
+      },
+      "target": "/opt/docker/stacks/vikunja",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/vikunja/files",
+          "kind": "directory",
+          "service": "vikunja",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/vikunja/db",
+          "kind": "directory",
+          "service": "vikunja",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "wallabag",
+      "source": "/opt/docker/stacks/wallabag/compose.yaml",
+      "required": {
+        "WALLABAG_WALLABAG_SYMFONY__ENV__DOMAIN_NAME": "wallabag_SYMFONY__ENV__DOMAIN_NAME",
+        "WALLABAG_WALLABAG_SYMFONY__ENV__DATABASE_DRIVER": "wallabag_SYMFONY__ENV__DATABASE_DRIVER"
+      },
+      "target": "/opt/docker/stacks/wallabag",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/wallabag/data",
+          "kind": "directory",
+          "service": "wallabag",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/wallabag/images",
+          "kind": "directory",
+          "service": "wallabag",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "wallos",
+      "source": "/opt/docker/stacks/wallos/compose.yml",
+      "required": {
+        "WALLOS_WALLOS_TZ": "wallos_TZ"
+      },
+      "target": "/opt/docker/stacks/wallos",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/wallos/db",
+          "kind": "directory",
+          "service": "wallos",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/wallos/logos",
+          "kind": "directory",
+          "service": "wallos",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "wireguard",
+      "source": "/opt/docker/stacks/wireguard/compose.yml",
+      "required": {
+        "WIREGUARD_WIREGUARD_WG_HOST": "wireguard_WG_HOST",
+        "WIREGUARD_WIREGUARD_WG_DEFAULT_DNS": "wireguard_WG_DEFAULT_DNS",
+        "WIREGUARD_WIREGUARD_WG_ALLOWED_IPS": "wireguard_WG_ALLOWED_IPS",
+        "WIREGUARD_WIREGUARD_INSECURE": "wireguard_INSECURE"
+      },
+      "target": "/opt/docker/stacks/wireguard",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/wireguard",
+          "kind": "directory",
+          "service": "wireguard",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "withoutbg",
+      "source": "/opt/docker/stacks/withoutbg/compose.yaml",
+      "required": {},
+      "target": "/opt/docker/stacks/withoutbg",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "wordpress",
+      "source": "/opt/docker/stacks/wordpress/compose.yaml",
+      "required": {
+        "WORDPRESS_DB_MYSQL_DATABASE": "db_MYSQL_DATABASE",
+        "WORDPRESS_DB_MYSQL_USER": "db_MYSQL_USER",
+        "WORDPRESS_DB_MYSQL_PASSWORD": "db_MYSQL_PASSWORD",
+        "WORDPRESS_DB_MYSQL_ROOT_PASSWORD": "db_MYSQL_ROOT_PASSWORD",
+        "WORDPRESS_WORDPRESS_WORDPRESS_DB_HOST": "wordpress_WORDPRESS_DB_HOST",
+        "WORDPRESS_WORDPRESS_WORDPRESS_DB_NAME": "wordpress_WORDPRESS_DB_NAME",
+        "WORDPRESS_WORDPRESS_WORDPRESS_DB_USER": "wordpress_WORDPRESS_DB_USER",
+        "WORDPRESS_WORDPRESS_WORDPRESS_DB_PASSWORD": "wordpress_WORDPRESS_DB_PASSWORD"
+      },
+      "target": "/opt/docker/stacks/wordpress",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/opt/docker/appdata/wordpress/db_data",
+          "kind": "directory",
+          "service": "db",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/wordpress/wp_data",
+          "kind": "directory",
+          "service": "wordpress",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    },
+    {
+      "name": "zerobyte",
+      "source": "/opt/docker/stacks/zerobyte/compose.yaml",
+      "required": {
+        "ZEROBYTE_ZEROBYTE_TZ": "zerobyte_TZ",
+        "ZEROBYTE_ZEROBYTE_BASE_URL": "zerobyte_BASE_URL",
+        "ZEROBYTE_ZEROBYTE_APP_SECRET": "zerobyte_APP_SECRET"
+      },
+      "target": "/opt/docker/stacks/zerobyte",
+      "enabled": true,
+      "exposure_gate": false,
+      "binds": [
+        {
+          "path": "/etc/localtime",
+          "kind": "file",
+          "service": "zerobyte",
+          "profiles": []
+        },
+        {
+          "path": "/opt/docker/appdata/zerobyte",
+          "kind": "directory",
+          "service": "zerobyte",
+          "profiles": []
+        }
+      ],
+      "env_files": [],
+      "profiles": []
+    }
+  ],
+  "errors": [],
+  "projects": [
+    {
+      "name": "2fauth",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/2fauth/compose.yaml"
+    },
+    {
+      "name": "actual-budget",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/actual-budget/compose.yaml"
+    },
+    {
+      "name": "aliasvault",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/aliasvault/compose.yaml"
+    },
+    {
+      "name": "arcane",
+      "status": "running(1)",
+      "config": "/opt/docker/arcane/compose.yaml"
+    },
+    {
+      "name": "arm",
+      "status": "created(1)",
+      "config": "/opt/docker/stacks/arm/compose.yaml"
+    },
+    {
+      "name": "asspp",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/asspp/compose.yaml"
+    },
+    {
+      "name": "backapp",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/backapp/compose.yaml"
+    },
+    {
+      "name": "beatportdl-ui",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/beatportdl-ui/compose.yaml"
+    },
+    {
+      "name": "beszel",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/beszel/compose.yaml"
+    },
+    {
+      "name": "blackbox",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/blackbox/compose.yaml"
+    },
+    {
+      "name": "bookstack",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/bookstack/compose.yaml"
+    },
+    {
+      "name": "bytestash",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/bytestash/compose.yaml"
+    },
+    {
+      "name": "cadvisor",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/cadvisor/compose.yaml"
+    },
+    {
+      "name": "calculators",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/calculators/compose.yaml"
+    },
+    {
+      "name": "cloudflared",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/cloudflared/compose.yml"
+    },
+    {
+      "name": "code-server",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/code-server/compose.yml"
+    },
+    {
+      "name": "compote",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/compote/compose.yaml"
+    },
+    {
+      "name": "configclarity",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/configclarity/compose.yaml"
+    },
+    {
+      "name": "converttoit",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/converttoit/compose.yaml"
+    },
+    {
+      "name": "convertx",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/convertx/compose.yml"
+    },
+    {
+      "name": "crafty",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/crafty/compose.yml"
+    },
+    {
+      "name": "cronmaster",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/cronmaster/compose.yml"
+    },
+    {
+      "name": "cve4pve-admin",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/cve4pve-admin/compose.yml"
+    },
+    {
+      "name": "cyberchef",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/cyberchef/compose.yml"
+    },
+    {
+      "name": "dock-dploy",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/dock-dploy/compose.yaml"
+    },
+    {
+      "name": "docker-updater",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/docker-updater/compose.yaml"
+    },
+    {
+      "name": "dockpeek",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/dockpeek/compose.yaml"
+    },
+    {
+      "name": "dockwatch",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/dockwatch/compose.yaml"
+    },
+    {
+      "name": "docuseal",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/docuseal/compose.yml"
+    },
+    {
+      "name": "dozzle",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/dozzle/compose.yaml"
+    },
+    {
+      "name": "dumbpad",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/dumbpad/compose.yml"
+    },
+    {
+      "name": "filesync",
+      "status": "running(4)",
+      "config": "/opt/docker/stacks/filesync/compose.yaml"
+    },
+    {
+      "name": "filewizard",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/filewizard/compose.yaml"
+    },
+    {
+      "name": "forgejo",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/forgejo/compose.yaml"
+    },
+    {
+      "name": "gotify-ntfy",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/gotify-ntfy/compose.yml"
+    },
+    {
+      "name": "grafana",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/grafana/compose.yaml"
+    },
+    {
+      "name": "guacamole",
+      "status": "running(4)",
+      "config": "/opt/docker/stacks/guacamole/compose.yml"
+    },
+    {
+      "name": "happy",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/happy/compose.yaml"
+    },
+    {
+      "name": "hastebin",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/hastebin/compose.yaml"
+    },
+    {
+      "name": "homarr",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/homarr/compose.yaml"
+    },
+    {
+      "name": "homebox",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/homebox/compose.yaml"
+    },
+    {
+      "name": "homelab-manager",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/homelab-manager/compose.yaml"
+    },
+    {
+      "name": "imagemagick",
+      "status": "running(3)",
+      "config": "/opt/docker/stacks/imagemagick/compose.yaml"
+    },
+    {
+      "name": "invoiceninja",
+      "status": "running(4)",
+      "config": "/opt/docker/stacks/invoiceninja/compose.yaml"
+    },
+    {
+      "name": "it-tools",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/it-tools/compose.yml"
+    },
+    {
+      "name": "karakeep",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/karakeep/compose.yml"
+    },
+    {
+      "name": "languard",
+      "status": "running(3)",
+      "config": "/opt/docker/stacks/languard/compose.yaml"
+    },
+    {
+      "name": "librespeed",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/librespeed/compose.yaml"
+    },
+    {
+      "name": "litellm",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/litellm/compose.yml"
+    },
+    {
+      "name": "maildrop",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/maildrop/compose.yaml"
+    },
+    {
+      "name": "mailed",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/mailed/compose.yaml"
+    },
+    {
+      "name": "mailflow",
+      "status": "running(4)",
+      "config": "/opt/docker/stacks/mailflow/compose.yaml"
+    },
+    {
+      "name": "mailhog",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/mailhog/compose.yml"
+    },
+    {
+      "name": "memos",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/memos/compose.yaml"
+    },
+    {
+      "name": "mini-qr",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/mini-qr/compose.yml"
+    },
+    {
+      "name": "muilticam-studio",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/muilticam-studio/compose.yaml"
+    },
+    {
+      "name": "n8n",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/n8n/compose.yml"
+    },
+    {
+      "name": "netboot",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/netboot/compose.yml"
+    },
+    {
+      "name": "netronome",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/netronome/compose.yaml"
+    },
+    {
+      "name": "nginx-proxy-manager",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/nginx-proxy-manager/compose.yml"
+    },
+    {
+      "name": "nut_webgui",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/nut_webgui/compose.yaml"
+    },
+    {
+      "name": "obsidian-livesync",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/obsidian-livesync/compose.yml"
+    },
+    {
+      "name": "odoo",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/odoo/compose.yml"
+    },
+    {
+      "name": "omni-tools",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/omni-tools/compose.yml"
+    },
+    {
+      "name": "openwebui",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/openwebui/compose.yml"
+    },
+    {
+      "name": "outline",
+      "status": "running(3)",
+      "config": "/opt/docker/stacks/outline/compose.yaml"
+    },
+    {
+      "name": "paperless-ngx",
+      "status": "running(4)",
+      "config": "/opt/docker/stacks/paperless-ngx/compose.yml"
+    },
+    {
+      "name": "pihole",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/pihole/compose.yaml"
+    },
+    {
+      "name": "playit",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/playit/compose.yaml"
+    },
+    {
+      "name": "pocket-id",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/pocket-id/compose.yml"
+    },
+    {
+      "name": "portracker",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/portracker/compose.yml"
+    },
+    {
+      "name": "ports",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/ports/compose.yaml"
+    },
+    {
+      "name": "postgres",
+      "status": "running(3)",
+      "config": "/opt/docker/stacks/postgres/compose.yaml"
+    },
+    {
+      "name": "printstash",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/printstash/compose.yaml"
+    },
+    {
+      "name": "prometheus",
+      "status": "exited(1)",
+      "config": "/opt/docker/stacks/prometheus/compose.yaml"
+    },
+    {
+      "name": "prunemate",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/prunemate/compose.yaml"
+    },
+    {
+      "name": "pve-notebuddy",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/pve-notebuddy/compose.yaml"
+    },
+    {
+      "name": "qui",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/qui/compose.yaml"
+    },
+    {
+      "name": "receiptwrangler",
+      "status": "running(3)",
+      "config": "/opt/docker/stacks/receiptwrangler/compose.yaml"
+    },
+    {
+      "name": "remotepower",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/remotepower/compose.yaml"
+    },
+    {
+      "name": "robin",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/robin/compose.yaml"
+    },
+    {
+      "name": "rustdesk",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/rustdesk/compose.yml"
+    },
+    {
+      "name": "schoolboxmarkviewer",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/schoolboxmarkviewer/compose.yaml"
+    },
+    {
+      "name": "searxng",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/searxng/compose.yml"
+    },
+    {
+      "name": "shlink",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/shlink/compose.yml"
+    },
+    {
+      "name": "stirlingpdf",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/stirlingpdf/compose.yml"
+    },
+    {
+      "name": "stremio",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/stremio/compose.yaml"
+    },
+    {
+      "name": "telecloud",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/telecloud/compose.yaml"
+    },
+    {
+      "name": "termix",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/termix/compose.yml"
+    },
+    {
+      "name": "trilium",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/trilium/compose.yml"
+    },
+    {
+      "name": "truecommand",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/truecommand/compose.yaml"
+    },
+    {
+      "name": "twingate",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/twingate/compose.yaml"
+    },
+    {
+      "name": "uptime-kuma",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/uptime-kuma/compose.yml"
+    },
+    {
+      "name": "vaultwarden",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/vaultwarden/compose.yaml"
+    },
+    {
+      "name": "vikunja",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/vikunja/compose.yml"
+    },
+    {
+      "name": "wallabag",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/wallabag/compose.yaml"
+    },
+    {
+      "name": "wallos",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/wallos/compose.yml"
+    },
+    {
+      "name": "wireguard",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/wireguard/compose.yml"
+    },
+    {
+      "name": "withoutbg",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/withoutbg/compose.yaml"
+    },
+    {
+      "name": "wordpress",
+      "status": "running(2)",
+      "config": "/opt/docker/stacks/wordpress/compose.yaml"
+    },
+    {
+      "name": "zerobyte",
+      "status": "running(1)",
+      "config": "/opt/docker/stacks/zerobyte/compose.yaml"
+    }
+  ],
+  "networks": [
+    {
+      "name": "2fauth_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.60.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.60.1"
+        }
+      ]
+    },
+    {
+      "name": "actual-budget_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.70.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.70.1"
+        }
+      ]
+    },
+    {
+      "name": "aliasvault_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.69.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.69.1"
+        }
+      ]
+    },
+    {
+      "name": "arcane_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.43.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.43.1"
+        }
+      ]
+    },
+    {
+      "name": "arm_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.66.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.66.1"
+        }
+      ]
+    },
+    {
+      "name": "asspp_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.5.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.5.1"
+        }
+      ]
+    },
+    {
+      "name": "backapp_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.37.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.37.1"
+        }
+      ]
+    },
+    {
+      "name": "beatportdl-ui_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.48.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.48.1"
+        }
+      ]
+    },
+    {
+      "name": "beszel_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.64.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.64.1"
+        }
+      ]
+    },
+    {
+      "name": "blackbox_blackbox",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.51.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.51.1"
+        }
+      ]
+    },
+    {
+      "name": "bookstack_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.49.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.49.1"
+        }
+      ]
+    },
+    {
+      "name": "bridge",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.0.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.0.1"
+        }
+      ]
+    },
+    {
+      "name": "bytestash_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.45.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.45.1"
+        }
+      ]
+    },
+    {
+      "name": "cadvisor_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.71.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.71.1"
+        }
+      ]
+    },
+    {
+      "name": "calculators_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.68.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.68.1"
+        }
+      ]
+    },
+    {
+      "name": "cloudflared_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.19.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.19.0.1"
+        }
+      ]
+    },
+    {
+      "name": "code-server_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.2.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.2.1"
+        }
+      ]
+    },
+    {
+      "name": "compote_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.63.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.63.1"
+        }
+      ]
+    },
+    {
+      "name": "configclarity_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.38.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.38.1"
+        }
+      ]
+    },
+    {
+      "name": "converttoit_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.46.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.46.1"
+        }
+      ]
+    },
+    {
+      "name": "convertx_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.16.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.16.1"
+        }
+      ]
+    },
+    {
+      "name": "crafty_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.208.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.208.1"
+        }
+      ]
+    },
+    {
+      "name": "cronmaster_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.3.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.3.1"
+        }
+      ]
+    },
+    {
+      "name": "cve4pve-admin_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.23.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.23.0.1"
+        }
+      ]
+    },
+    {
+      "name": "cyberchef_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.24.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.24.0.1"
+        }
+      ]
+    },
+    {
+      "name": "deploy_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.62.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.62.1"
+        }
+      ]
+    },
+    {
+      "name": "dock-dploy_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.29.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.29.1"
+        }
+      ]
+    },
+    {
+      "name": "docker-updater_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.52.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.52.1"
+        }
+      ]
+    },
+    {
+      "name": "dockpeek_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.22.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.22.0.1"
+        }
+      ]
+    },
+    {
+      "name": "dockwatch_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.13.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.13.1"
+        }
+      ]
+    },
+    {
+      "name": "docuseal_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.112.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.112.1"
+        }
+      ]
+    },
+    {
+      "name": "dozzle_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.32.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.32.1"
+        }
+      ]
+    },
+    {
+      "name": "dumbpad_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.20.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.20.0.1"
+        }
+      ]
+    },
+    {
+      "name": "filesync_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.25.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.25.0.1"
+        }
+      ]
+    },
+    {
+      "name": "filewizard_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.21.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.21.1"
+        }
+      ]
+    },
+    {
+      "name": "forgejo_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.36.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.36.1"
+        }
+      ]
+    },
+    {
+      "name": "gotify-ntfy_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.16.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.16.1"
+        }
+      ]
+    },
+    {
+      "name": "grafana_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.28.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.28.1"
+        }
+      ]
+    },
+    {
+      "name": "guacamole_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.6.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.6.1"
+        }
+      ]
+    },
+    {
+      "name": "happy_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.53.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.53.1"
+        }
+      ]
+    },
+    {
+      "name": "hastebin_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.35.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.35.1"
+        }
+      ]
+    },
+    {
+      "name": "homarr_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.65.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.65.1"
+        }
+      ]
+    },
+    {
+      "name": "homebox_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.59.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.59.1"
+        }
+      ]
+    },
+    {
+      "name": "homelab-manager_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.74.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.74.1"
+        }
+      ]
+    },
+    {
+      "name": "host",
+      "driver": "host",
+      "internal": false,
+      "ipam": null
+    },
+    {
+      "name": "imagemagick_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.30.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.30.1"
+        }
+      ]
+    },
+    {
+      "name": "invoiceninja_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.19.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.19.1"
+        }
+      ]
+    },
+    {
+      "name": "it-tools_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.27.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.27.0.1"
+        }
+      ]
+    },
+    {
+      "name": "karakeep_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.7.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.7.1"
+        }
+      ]
+    },
+    {
+      "name": "librespeed_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.56.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.56.1"
+        }
+      ]
+    },
+    {
+      "name": "litellm_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.4.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.4.1"
+        }
+      ]
+    },
+    {
+      "name": "maildrop_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.30.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.30.0.1"
+        }
+      ]
+    },
+    {
+      "name": "mailed_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.73.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.73.1"
+        }
+      ]
+    },
+    {
+      "name": "mailflow_mailflow",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.50.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.50.1"
+        }
+      ]
+    },
+    {
+      "name": "mailhog_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.28.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.28.0.1"
+        }
+      ]
+    },
+    {
+      "name": "memos_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.26.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.26.0.1"
+        }
+      ]
+    },
+    {
+      "name": "mini-qr_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.192.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.192.1"
+        }
+      ]
+    },
+    {
+      "name": "muilticam-studio_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.75.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.75.1"
+        }
+      ]
+    },
+    {
+      "name": "n8n_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.22.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.22.1"
+        }
+      ]
+    },
+    {
+      "name": "netboot_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "172.29.0.0/16",
+          "IPRange": "",
+          "Gateway": "172.29.0.1"
+        }
+      ]
+    },
+    {
+      "name": "netronome_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.44.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.44.1"
+        }
+      ]
+    },
+    {
+      "name": "nginx-proxy-manager_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.17.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.17.1"
+        }
+      ]
+    },
+    {
+      "name": "none",
+      "driver": "null",
+      "internal": false,
+      "ipam": null
+    },
+    {
+      "name": "nut_webgui_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.67.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.67.1"
+        }
+      ]
+    },
+    {
+      "name": "obsidian-livesync_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.12.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.12.1"
+        }
+      ]
+    },
+    {
+      "name": "odoo_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.11.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.11.1"
+        }
+      ]
+    },
+    {
+      "name": "omni-tools_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.32.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.32.1"
+        }
+      ]
+    },
+    {
+      "name": "openwebui_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.20.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.20.1"
+        }
+      ]
+    },
+    {
+      "name": "outline_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.26.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.26.1"
+        }
+      ]
+    },
+    {
+      "name": "paperless-ngx_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.10.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.10.1"
+        }
+      ]
+    },
+    {
+      "name": "pihole_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.80.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.80.1"
+        }
+      ]
+    },
+    {
+      "name": "pocket-id_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.64.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.64.1"
+        }
+      ]
+    },
+    {
+      "name": "ports_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.1.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.1.1"
+        }
+      ]
+    },
+    {
+      "name": "postgres_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.61.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.61.1"
+        }
+      ]
+    },
+    {
+      "name": "printstash_printstash_net",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.58.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.58.1"
+        }
+      ]
+    },
+    {
+      "name": "prometheus_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.27.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.27.1"
+        }
+      ]
+    },
+    {
+      "name": "prunemate_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.48.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.48.1"
+        }
+      ]
+    },
+    {
+      "name": "pve-notebuddy_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.34.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.34.1"
+        }
+      ]
+    },
+    {
+      "name": "qui_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.40.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.40.1"
+        }
+      ]
+    },
+    {
+      "name": "receiptwrangler_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.41.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.41.1"
+        }
+      ]
+    },
+    {
+      "name": "remotepower_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.57.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.57.1"
+        }
+      ]
+    },
+    {
+      "name": "robin_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.42.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.42.1"
+        }
+      ]
+    },
+    {
+      "name": "schoolboxmarkviewer_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.47.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.47.1"
+        }
+      ]
+    },
+    {
+      "name": "searxng_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.128.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.128.1"
+        }
+      ]
+    },
+    {
+      "name": "shlink_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.14.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.14.1"
+        }
+      ]
+    },
+    {
+      "name": "stirlingpdf_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.18.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.18.1"
+        }
+      ]
+    },
+    {
+      "name": "stremio_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.55.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.55.1"
+        }
+      ]
+    },
+    {
+      "name": "telecloud_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.25.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.25.1"
+        }
+      ]
+    },
+    {
+      "name": "termix_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.9.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.9.1"
+        }
+      ]
+    },
+    {
+      "name": "trilium_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.8.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.8.1"
+        }
+      ]
+    },
+    {
+      "name": "truecommand_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.31.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.31.1"
+        }
+      ]
+    },
+    {
+      "name": "twingate_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.72.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.72.1"
+        }
+      ]
+    },
+    {
+      "name": "uptime-kuma_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.15.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.15.1"
+        }
+      ]
+    },
+    {
+      "name": "vaultwarden_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.224.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.224.1"
+        }
+      ]
+    },
+    {
+      "name": "vikunja_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.144.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.144.1"
+        }
+      ]
+    },
+    {
+      "name": "wallabag_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.39.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.39.1"
+        }
+      ]
+    },
+    {
+      "name": "wallos_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.23.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.23.1"
+        }
+      ]
+    },
+    {
+      "name": "wireguard_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "192.168.240.0/20",
+          "IPRange": "",
+          "Gateway": "192.168.240.1"
+        }
+      ]
+    },
+    {
+      "name": "withoutbg_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.24.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.24.1"
+        }
+      ]
+    },
+    {
+      "name": "wordpress_wordpress_net",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.54.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.54.1"
+        }
+      ]
+    },
+    {
+      "name": "zerobyte_default",
+      "driver": "bridge",
+      "internal": false,
+      "ipam": [
+        {
+          "Subnet": "10.10.33.0/24",
+          "IPRange": "",
+          "Gateway": "10.10.33.1"
+        }
+      ]
+    }
+  ],
+  "volumes": [
+    {
+      "name": "2fauth_2fauth",
+      "driver": "local"
+    },
+    {
+      "name": "3f4043fd122cb17c3b2e9ae78b0c93475fedda73828d18681a899c42a9b46b72",
+      "driver": "local"
+    },
+    {
+      "name": "6b86c16ffc9d2568a4b94ac09b7470c17874da67262aada6d195704b52903e05",
+      "driver": "local"
+    },
+    {
+      "name": "7eabff93a8e32d897df45a8b2bda107b5287c1a1e1af56e1169570922c6cd85b",
+      "driver": "local"
+    },
+    {
+      "name": "39e34e313d20771e2dc4ba49c8370fd25b124df9a6a32ea71417f9eb11213c12",
+      "driver": "local"
+    },
+    {
+      "name": "40e65f1d409918acd82c17b108f4c4d62c95fb4f5b369d318e84da9e14a0aa7e",
+      "driver": "local"
+    },
+    {
+      "name": "54da04b0aa34d501d47b2b9f8f14378e9f96395520d17dab6196ac0a33cf6c48",
+      "driver": "local"
+    },
+    {
+      "name": "73f3869ec2a74bc6c78e09e0a058a1ba4d9da95a1a9d8ae67717ea64edcb7000",
+      "driver": "local"
+    },
+    {
+      "name": "93da21f8e551b197ced74b8774f38c906df7305aed9b2c9a2c8406fbc9549ac1",
+      "driver": "local"
+    },
+    {
+      "name": "178fa4e867c242fd4e46a4f8d19db5c8eaf4a72b96f5fea94a0db7c2a49a6eeb",
+      "driver": "local"
+    },
+    {
+      "name": "934efc6eefb4372140be7ef6d12c098ad3911212910c479beba5c792991a8cbc",
+      "driver": "local"
+    },
+    {
+      "name": "7517b0dc8147bbba0c40d5e430a2deec73b390d2af714c64c7aaa717e30a26b1",
+      "driver": "local"
+    },
+    {
+      "name": "34531a14482ace4f231c77bc4e1408614219ab8cef23ae6c0f389f30cd21763e",
+      "driver": "local"
+    },
+    {
+      "name": "277997fdc2824936e9cae27934ce65fc306e2b57a58b70d518e96ac2e7f00ef4",
+      "driver": "local"
+    },
+    {
+      "name": "453006dfb9cb07af7e475faa1e50b51ff7699e2746492c708b214c7d30f542c9",
+      "driver": "local"
+    },
+    {
+      "name": "5733503d79f2a78bbf771c87f5c8e72fadded99824604551c29ebf0d585710ff",
+      "driver": "local"
+    },
+    {
+      "name": "9106732d3ef9098e46e3cd65ac27aca9cfb1076070dcd5e4d43d9322d0e2e87c",
+      "driver": "local"
+    },
+    {
+      "name": "a63e2a0c1423098b579b54807d9c82b45ae79173825a416a88ab8064e9c6fbd7",
+      "driver": "local"
+    },
+    {
+      "name": "a578bd754aeb4086d241ad1cb3c1648f043c444e60c8f6c8a53417d809debd46",
+      "driver": "local"
+    },
+    {
+      "name": "aa74820b9ca09f6d1471c35cda7382a7a5e7dcee7d37d1f832cd96f3a91a1b0c",
+      "driver": "local"
+    },
+    {
+      "name": "b164a1e3cdac5856bcdd63b151626e69a3bc84b800364e6f19c7612a4207fe12",
+      "driver": "local"
+    },
+    {
+      "name": "beatportdl-ui_beatportdl_config",
+      "driver": "local"
+    },
+    {
+      "name": "beatportdl-ui_beatportdl_downloads",
+      "driver": "local"
+    },
+    {
+      "name": "cb7a9718cc70635fae6f80efece8bc5a7bf5491dd991b9d0978da006f9b1e9c6",
+      "driver": "local"
+    },
+    {
+      "name": "deploy_filesync",
+      "driver": "local"
+    },
+    {
+      "name": "df02e605125fd87353c6cce53ed0f7a67d51c09f4cfe2944c8d6e44185af535e",
+      "driver": "local"
+    },
+    {
+      "name": "f1b7c00d14f02708b49675e105f918113873ff6065131cb4dfd4d5400375d963",
+      "driver": "local"
+    },
+    {
+      "name": "f4ae5d002dfb7d3412bd78a66d4d6ff9153b87c76ff5af9502891a6dffd7dc85",
+      "driver": "local"
+    },
+    {
+      "name": "f97de61652e4485f31ff1a2ec2bd464c1c6dce54a02d85112d1a99856ce72286",
+      "driver": "local"
+    },
+    {
+      "name": "filesync_filesync",
+      "driver": "local"
+    },
+    {
+      "name": "homelab-manager_homelab-data",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_invoiceninja_app_public",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_invoiceninja_app_storage",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_invoiceninja_mysql_data",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_invoiceninja_redis_data",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_mysql_data",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_ninja_config",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_ninja_public",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_ninja_storage",
+      "driver": "local"
+    },
+    {
+      "name": "invoiceninja_redis_data",
+      "driver": "local"
+    },
+    {
+      "name": "kasm_kasm_opt",
+      "driver": "local"
+    },
+    {
+      "name": "kasm_kasm_profiles",
+      "driver": "local"
+    },
+    {
+      "name": "koffan",
+      "driver": "local"
+    },
+    {
+      "name": "mailflow_mailflow_postgres",
+      "driver": "local"
+    },
+    {
+      "name": "mailflow_mailflow_redis",
+      "driver": "local"
+    },
+    {
+      "name": "postgres_postgres-data",
+      "driver": "local"
+    },
+    {
+      "name": "rancher_rancher-data",
+      "driver": "local"
+    },
+    {
+      "name": "telecloud-data",
+      "driver": "local"
+    },
+    {
+      "name": "telecloud_telecloud-data",
+      "driver": "local"
+    }
+  ],
+  "container_count": 140,
+  "captured": "2026-09-30",
+  "host_prerequisites": {
+    "bind_paths": {
+      "/": "directory",
+      "/dev/disk": "directory",
+      "/etc": "directory",
+      "/etc/crontab": "file",
+      "/etc/localtime": "file",
+      "/etc/machine-id": "file",
+      "/etc/timezone": "file",
+      "/mnt/nas/ARM/Media": "directory",
+      "/mnt/nas/ARM/Music": "directory",
+      "/opt/Docker/appdata/multicam-studio/exports": "directory",
+      "/opt/Docker/appdata/multicam-studio/recordings": "directory",
+      "/opt/Docker/appdata/multicam-studio/state": "directory",
+      "/opt/docker/appdata/actual-budget/caddy/Caddyfile": "file",
+      "/opt/docker/appdata/actual-budget/caddy/config": "directory",
+      "/opt/docker/appdata/actual-budget/caddy/data": "directory",
+      "/opt/docker/appdata/actual-budget/data": "directory",
+      "/opt/docker/appdata/aliasvault/certificates": "directory",
+      "/opt/docker/appdata/aliasvault/database": "directory",
+      "/opt/docker/appdata/aliasvault/logs": "directory",
+      "/opt/docker/appdata/aliasvault/secrets": "directory",
+      "/opt/docker/appdata/arm": "directory",
+      "/opt/docker/appdata/arm/config": "directory",
+      "/opt/docker/appdata/arm/logs": "directory",
+      "/opt/docker/appdata/asspp": "directory",
+      "/opt/docker/appdata/backapp/app-data": "directory",
+      "/opt/docker/appdata/backapp/backups/app": "directory",
+      "/opt/docker/appdata/backapp/backups/archive": "directory",
+      "/opt/docker/appdata/beszel_data": "directory",
+      "/opt/docker/appdata/beszel_socket": "directory",
+      "/opt/docker/appdata/blackbox/agent-data": "directory",
+      "/opt/docker/appdata/blackbox/data": "directory",
+      "/opt/docker/appdata/bookstack/app": "directory",
+      "/opt/docker/appdata/bookstack/db": "directory",
+      "/opt/docker/appdata/coder/home": "directory",
+      "/opt/docker/appdata/coder/postgres": "directory",
+      "/opt/docker/appdata/codeserver": "directory",
+      "/opt/docker/appdata/compote/Caddyfile": "file",
+      "/opt/docker/appdata/compote/caddy": "directory",
+      "/opt/docker/appdata/compote/data": "directory",
+      "/opt/docker/appdata/convertx": "directory",
+      "/opt/docker/appdata/crafty/backups": "directory",
+      "/opt/docker/appdata/crafty/config": "directory",
+      "/opt/docker/appdata/crafty/import": "directory",
+      "/opt/docker/appdata/crafty/logs": "directory",
+      "/opt/docker/appdata/crafty/servers": "directory",
+      "/opt/docker/appdata/cronmaster/data": "directory",
+      "/opt/docker/appdata/cronmaster/scripts": "directory",
+      "/opt/docker/appdata/cronmaster/snippets": "directory",
+      "/opt/docker/appdata/cv4pve-admin/appsettings.json": "file",
+      "/opt/docker/appdata/cv4pve-admin/data": "directory",
+      "/opt/docker/appdata/docker-updater": "directory",
+      "/opt/docker/appdata/dockwatch": "directory",
+      "/opt/docker/appdata/dumbpad/data": "directory",
+      "/opt/docker/appdata/filesync/Caddyfile": "file",
+      "/opt/docker/appdata/filewizard/config": "directory",
+      "/opt/docker/appdata/filewizard/processed_data": "directory",
+      "/opt/docker/appdata/filewizard/uploads_data": "directory",
+      "/opt/docker/appdata/forgejo": "directory",
+      "/opt/docker/appdata/gotify-ntfy/topics.js": "file",
+      "/opt/docker/appdata/grafana": "directory",
+      "/opt/docker/appdata/guacamole/config": "directory",
+      "/opt/docker/appdata/guacamole/db": "directory",
+      "/opt/docker/appdata/guacamole/nginx.conf": "file",
+      "/opt/docker/appdata/hastebin/redis": "directory",
+      "/opt/docker/appdata/homarr": "directory",
+      "/opt/docker/appdata/homebox": "directory",
+      "/opt/docker/appdata/imagemagick/db": "directory",
+      "/opt/docker/appdata/imagemagick/processed": "directory",
+      "/opt/docker/appdata/imagemagick/redis": "directory",
+      "/opt/docker/appdata/imagemagick/uploads": "directory",
+      "/opt/docker/appdata/invoiceninja/dockerfiles/debian/nginx": "directory",
+      "/opt/docker/appdata/karakeep": "directory",
+      "/opt/docker/appdata/languard/database": "directory",
+      "/opt/docker/appdata/languard/static": "directory",
+      "/opt/docker/appdata/librespeed": "directory",
+      "/opt/docker/appdata/litellm/db": "directory",
+      "/opt/docker/appdata/memos": "directory",
+      "/opt/docker/appdata/n8n": "directory",
+      "/opt/docker/appdata/netboot/assets": "directory",
+      "/opt/docker/appdata/netboot/config": "directory",
+      "/opt/docker/appdata/netronome": "directory",
+      "/opt/docker/appdata/nginxproxymanager/data": "directory",
+      "/opt/docker/appdata/nginxproxymanager/letsencrypt": "directory",
+      "/opt/docker/appdata/obsidian-livesync": "directory",
+      "/opt/docker/appdata/openwebui": "directory",
+      "/opt/docker/appdata/outline/database": "directory",
+      "/opt/docker/appdata/outline/redis.conf": "file",
+      "/opt/docker/appdata/outline/storage": "directory",
+      "/opt/docker/appdata/paperless-ngx/data": "directory",
+      "/opt/docker/appdata/paperless-ngx/data/consume": "directory",
+      "/opt/docker/appdata/paperless-ngx/data/export": "directory",
+      "/opt/docker/appdata/paperless-ngx/media": "directory",
+      "/opt/docker/appdata/paperless-ngx/paperless-ai/hocr": "directory",
+      "/opt/docker/appdata/paperless-ngx/paperless-ai/paperless-ai": "directory",
+      "/opt/docker/appdata/paperless-ngx/paperless-ai/pdf": "directory",
+      "/opt/docker/appdata/paperless-ngx/paperless-ai/prompts": "directory",
+      "/opt/docker/appdata/paperless-ngx/redis": "directory",
+      "/opt/docker/appdata/pihole": "directory",
+      "/opt/docker/appdata/pocket-id": "directory",
+      "/opt/docker/appdata/portracker": "directory",
+      "/opt/docker/appdata/postgres/databasus": "directory",
+      "/opt/docker/appdata/postgres/pgadmin": "directory",
+      "/opt/docker/appdata/printstash/backups": "directory",
+      "/opt/docker/appdata/printstash/db": "directory",
+      "/opt/docker/appdata/printstash/files": "directory",
+      "/opt/docker/appdata/printstash/minio": "missing",
+      "/opt/docker/appdata/printstash/postgres": "missing",
+      "/opt/docker/appdata/printstash/staging": "directory",
+      "/opt/docker/appdata/printstash/thumbs": "directory",
+      "/opt/docker/appdata/prometheus/data": "directory",
+      "/opt/docker/appdata/prometheus/prometheus.yml": "file",
+      "/opt/docker/appdata/prunemate/config": "directory",
+      "/opt/docker/appdata/prunemate/logs": "directory",
+      "/opt/docker/appdata/qui/config": "directory",
+      "/opt/docker/appdata/receiptwrangler/data": "directory",
+      "/opt/docker/appdata/receiptwrangler/db": "directory",
+      "/opt/docker/appdata/receiptwrangler/logs": "directory",
+      "/opt/docker/appdata/receiptwrangler/redis": "directory",
+      "/opt/docker/appdata/remotepower": "directory",
+      "/opt/docker/appdata/robin/.env": "file",
+      "/opt/docker/appdata/robin/gluetn/config": "directory",
+      "/opt/docker/appdata/robin/gluetn/openvpn": "directory",
+      "/opt/docker/appdata/rustdesk/data": "directory",
+      "/opt/docker/appdata/searxng/searxng": "directory",
+      "/opt/docker/appdata/searxng/searxng-data": "directory",
+      "/opt/docker/appdata/shlink": "directory",
+      "/opt/docker/appdata/snippets": "directory",
+      "/opt/docker/appdata/stirlingpdf/customFiles": "directory",
+      "/opt/docker/appdata/stirlingpdf/extraConfigs": "directory",
+      "/opt/docker/appdata/stirlingpdf/logs": "directory",
+      "/opt/docker/appdata/stirlingpdf/pipeline": "directory",
+      "/opt/docker/appdata/stirlingpdf/trainingData": "directory",
+      "/opt/docker/appdata/stremio/aiostreams": "directory",
+      "/opt/docker/appdata/stremio/server": "directory",
+      "/opt/docker/appdata/termix": "directory",
+      "/opt/docker/appdata/trilium/data": "directory",
+      "/opt/docker/appdata/truecommand": "directory",
+      "/opt/docker/appdata/uptimekuma/data": "directory",
+      "/opt/docker/appdata/vaultwarden": "directory",
+      "/opt/docker/appdata/vikunja/db": "directory",
+      "/opt/docker/appdata/vikunja/files": "directory",
+      "/opt/docker/appdata/wallabag/data": "directory",
+      "/opt/docker/appdata/wallabag/images": "directory",
+      "/opt/docker/appdata/wallos/db": "directory",
+      "/opt/docker/appdata/wallos/logos": "directory",
+      "/opt/docker/appdata/wireguard": "directory",
+      "/opt/docker/appdata/wordpress/db_data": "directory",
+      "/opt/docker/appdata/wordpress/wp_data": "directory",
+      "/opt/docker/appdata/zerobyte": "directory",
+      "/opt/docker/arcane/data": "directory",
+      "/opt/docker/stacks": "directory",
+      "/opt/docker/stacks/beszel/beszel_agent_data": "directory",
+      "/proc": "directory",
+      "/root/.docker/config.json": "file",
+      "/run/log/journal": "directory",
+      "/run/udev": "directory",
+      "/sys": "directory",
+      "/usr": "directory",
+      "/var/lib/docker": "directory",
+      "/var/log/journal": "directory",
+      "/var/run": "directory",
+      "/var/run/docker.sock": "missing",
+      "/var/spool/cron/crontabs": "directory"
+    },
+    "env_file_keys": {
+      "/opt/docker/stacks/invoiceninja/.env": [
+        "APP_URL",
+        "APP_KEY",
+        "APP_ENV",
+        "APP_DEBUG",
+        "REQUIRE_HTTPS",
+        "PHANTOMJS_PDF_GENERATION",
+        "PDF_GENERATOR",
+        "TRUSTED_PROXIES",
+        "CACHE_DRIVER",
+        "QUEUE_CONNECTION",
+        "SESSION_DRIVER",
+        "REDIS_HOST",
+        "REDIS_PASSWORD",
+        "REDIS_PORT",
+        "FILESYSTEM_DISK",
+        "DB_HOST",
+        "DB_PORT",
+        "DB_DATABASE",
+        "DB_USERNAME",
+        "DB_PASSWORD",
+        "DB_ROOT_PASSWORD",
+        "DB_CONNECTION",
+        "IN_USER_EMAIL",
+        "IN_PASSWORD",
+        "MAIL_MAILER",
+        "MAIL_HOST",
+        "MAIL_PORT",
+        "MAIL_USERNAME",
+        "MAIL_PASSWORD",
+        "MAIL_ENCRYPTION",
+        "MAIL_FROM_ADDRESS",
+        "MAIL_FROM_NAME",
+        "MYSQL_ROOT_PASSWORD",
+        "MYSQL_USER",
+        "MYSQL_PASSWORD",
+        "MYSQL_DATABASE",
+        "NORDIGEN_SECRET_ID",
+        "NORDIGEN_SECRET_KEY",
+        "IS_DOCKER",
+        "SCOUT_DRIVER"
+      ]
+    },
+    "mount_targets": [
+      "/ ext4",
+      "/dev tmpfs",
+      "/proc proc",
+      "/sys sysfs",
+      "/sys/fs/fuse/connections fusectl",
+      "/dev/serial/by-id devtmpfs",
+      "/dev/ttyUSB0 devtmpfs",
+      "/dev/ttyUSB1 devtmpfs",
+      "/sys/fs/cgroup cgroup2",
+      "/proc/cpuinfo fuse.lxcfs",
+      "/proc/diskstats fuse.lxcfs",
+      "/proc/loadavg fuse.lxcfs",
+      "/proc/meminfo fuse.lxcfs",
+      "/proc/pressure fuse.lxcfs",
+      "/proc/slabinfo fuse.lxcfs",
+      "/proc/stat fuse.lxcfs",
+      "/proc/swaps fuse.lxcfs",
+      "/proc/uptime fuse.lxcfs",
+      "/sys/devices/system/cpu fuse.lxcfs",
+      "/dev/pts devpts",
+      "/dev/ptmx devpts",
+      "/dev/console devpts",
+      "/dev/tty1 devpts",
+      "/dev/tty2 devpts",
+      "/proc/sys/kernel/random/boot_id tmpfs",
+      "/dev/shm tmpfs",
+      "/run tmpfs",
+      "/run/lock tmpfs",
+      "/dev/hugepages hugetlbfs",
+      "/dev/mqueue mqueue",
+      "/run/credentials/systemd-sysctl.service ramfs",
+      "/run/credentials/systemd-sysusers.service ramfs",
+      "/run/credentials/systemd-tmpfiles-setup-dev.service ramfs",
+      "/run/credentials/systemd-tmpfiles-setup.service ramfs",
+      "/var/lib/docker/rootfs/overlayfs/fbb66bc5d937420804c55346204515746b25a62230422fb9a80fb4c9f9c7bf82 overlay",
+      "/var/lib/docker/rootfs/overlayfs/193873bc134cb240da9c9005bae22bd1cd103c935ecc001e309f20a2a11a170f overlay",
+      "/var/lib/docker/rootfs/overlayfs/36bab21dbba2a14d375e05827231956be69331bebb7d09f7c229c61f9dfd2f26 overlay",
+      "/var/lib/docker/rootfs/overlayfs/3044453505d660e4e84346e504cd02817f860b6829be7a18ae1a682c3af06d5a overlay",
+      "/var/lib/docker/rootfs/overlayfs/1d77c7ad95b6d1311e0d040f295856c115ab64de7e24d83f2e3be387febf428f overlay",
+      "/var/lib/docker/rootfs/overlayfs/07eeb665088d4df133cc0550bc7523888dea5c165a5106118aeab4463c08815a overlay",
+      "/var/lib/docker/rootfs/overlayfs/8bdafdf5212ded9a763c63e4066c6215f0dc03e7fc331ba40f55b9935d610b3e overlay",
+      "/var/lib/docker/rootfs/overlayfs/6fdca662092f05198002086637b78493968c34524ec427135e493a7e38a5172f overlay",
+      "/var/lib/docker/rootfs/overlayfs/eec97b3dac6b4f1d04544e9dd855702cb94b0226d1e3c5f284b59bad6a1e1f52 overlay",
+      "/var/lib/docker/rootfs/overlayfs/3e5f8a146acdc9e418cd948095375251e26e1c48b5b29080494d6283d91bcb65 overlay",
+      "/var/lib/docker/rootfs/overlayfs/6953f532c70506923b87464024a67050385aa25945b859af6704101a9ddccc04 overlay",
+      "/var/lib/docker/rootfs/overlayfs/f5dcefc13f87ec8659fc085aac7e88637ca59f584daa282f21d27298c92971a9 overlay",
+      "/var/lib/docker/rootfs/overlayfs/cadf3885d5e3de2c88f75c266c21b61802c4ca5a6a31e0a5cd32850530b5af9d overlay",
+      "/var/lib/docker/rootfs/overlayfs/964783c00d526a76f607360f4314e8b056ed9dd542bd00c71d89a8bc7edac15c overlay",
+      "/var/lib/docker/rootfs/overlayfs/e13468c6076812028027e348cd01ad4137f539fbd5c95db6d40be1a8a1cd511d overlay",
+      "/var/lib/docker/rootfs/overlayfs/97e84a7e342b9948ba2d3d62e91a09cbb85ce4975fafa184d326e1188a47d186 overlay",
+      "/var/lib/docker/rootfs/overlayfs/d2e2a8bcf0a4f31e88dfa96c45e1123923105a04cd1450186cb5615e13b53144 overlay",
+      "/var/lib/docker/rootfs/overlayfs/4ee03aa2c61da8dd123ffb7c759c3cdcb74c2c45efce4619761db16879cf17b8 overlay",
+      "/var/lib/docker/rootfs/overlayfs/ea29119f30fcc4d0f7c30c6be16cdbf40032fdb31d9c5ae9a6346adba7ce65b6 overlay",
+      "/var/lib/docker/rootfs/overlayfs/8ef7c1e6b41769ef398e017ce5117122e049b6efa97c781d3d29a8ff32f7b18d overlay",
+      "/var/lib/docker/rootfs/overlayfs/486af6973158f9db4d1fec9402efda02a90cbdbe6dedf0195b9b20eda5527315 overlay",
+      "/var/lib/docker/rootfs/overlayfs/c5bfa3c1a6688fc49c9041c791871d36b69ebcdb847069bc92ff97ba46f67af4 overlay",
+      "/var/lib/docker/rootfs/overlayfs/d9cafe25e2639df355a292c38d7ccda33a7cf7e6121a2b50b5631f307a20e975 overlay",
+      "/var/lib/docker/rootfs/overlayfs/9c9cf1280111c3d5d6f479b65518518d58e734dc40563aa3a822dedfb916855b overlay",
+      "/var/lib/docker/rootfs/overlayfs/6433193c05afb7a822239254c73150f93ddda9700fd3e70c40d13a4f498c2ff1 overlay",
+      "/var/lib/docker/rootfs/overlayfs/89a696e6f2b65ea54890d9217467be85699521678172b7633b9f95b6c0603146 overlay",
+      "/var/lib/docker/rootfs/overlayfs/1caeed13876a820483b30ed4a8f22d53cdaaeaf83e6d2e0c6c435b309f62d3a8 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a01d021e04a934bb97f30a24f1dfc83f29ea78dae4dfb3cc69b978359a051921 overlay",
+      "/var/lib/docker/rootfs/overlayfs/d6e1ee8871618d9281b4997b3b9bd64ca6960c705944d315ecee9c35df23e762 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b4411bae64e0a0fb6ff2011e702062746974367506b8dea9ff451277a4fe7a83 overlay",
+      "/var/lib/docker/rootfs/overlayfs/bb980ad1c92ec4579c633ad8c48c5499d1ba99cca6790cb6b92d7f32fe9ac1e3 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b41fb2f2c03349914591e71def5423e831950c29c61ee563f581c9d11a0dc70b overlay",
+      "/var/lib/docker/rootfs/overlayfs/345ce483c88696b31bc2adaceb00226137b1370bcc18c4f5bc2c17f0351a0ab1 overlay",
+      "/var/lib/docker/rootfs/overlayfs/bb934709fa91c95ff448b0955958231d6fb4ff5ce8be6df2974ff42e88aaf80c overlay",
+      "/var/lib/docker/rootfs/overlayfs/9c21a3b04913c21cd8384f60409e102d85fec7ce7c0230e6c0d817707a03be11 overlay",
+      "/var/lib/docker/rootfs/overlayfs/e9a3cd6d438559cbab8a021aab4472f8fffa4418f536dd24fe68d82d69198e9e overlay",
+      "/var/lib/docker/rootfs/overlayfs/bb037c46d6a2ed75594a1572943b8c4a42284aaeabd6c5571e62dc32d6f0f1f7 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b10d88bd4d672cb09fe571f6284decec51e5ce7a16e27ca3f461c115426b007e overlay",
+      "/var/lib/docker/rootfs/overlayfs/246b5a7682064553301002948061918c265d1df747b60e9c4cad6ec045ae7e47 overlay",
+      "/var/lib/docker/rootfs/overlayfs/5aa4e199f4010cc47c631fd2be5267f6af9f449b28c2794090e442f0e752b20b overlay",
+      "/var/lib/docker/rootfs/overlayfs/2f8cd449b33e74105a7eea1e03eda3ad031760e1a5127086a09211cec8ee3023 overlay",
+      "/var/lib/docker/rootfs/overlayfs/2e1bdeacc1056ea285186d2d08796da381c33f95960f3f9cc5c125f5a1395995 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b42a33d5958509773b6a3355b26bd435e61fa7406664322fa09f3599d7aa92a3 overlay",
+      "/var/lib/docker/rootfs/overlayfs/d30be223acbf2caf99b2b3464a0a0903bf19b2f313efea2c7e46c50e9dcc6cf4 overlay",
+      "/var/lib/docker/rootfs/overlayfs/343396d789249fdb1f04ad550b6aa762cdc45aff741dbc312e679a61c856d858 overlay",
+      "/var/lib/docker/rootfs/overlayfs/ff11be1d6597f824633731b185222b77b8a5945c46144dc800a76a40b95d0699 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a2635dca3038314d1465ee54bf140c83fa63137a2b5745006909524a99e902ac overlay",
+      "/var/lib/docker/rootfs/overlayfs/1df03bc1be4fe3a0728cc86801216ab78435f5a08bc63982ae61d438d26c1891 overlay",
+      "/var/lib/docker/rootfs/overlayfs/0e0cba7b55a65c00953aa613a937014e1e9ae48925bc9bc0a4094954fb82477b overlay",
+      "/var/lib/docker/rootfs/overlayfs/cb8682db020a7b1e41cb22c89046dc00498e641f0694bee317d9e858ad5a10a2 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b8878d3e7097ebac0d8e1f03c86bc9a76a2716c182792c45ca05b3f09a0fe6e6 overlay",
+      "/var/lib/docker/rootfs/overlayfs/c305f9e515a9c0f1494e469d21e59f2a6d42a115e4880c2d37b8bd3c9680b241 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a37441e277b31a1c3f8a0055bbf467b347ba0958bf02867964f133f1c61bccf3 overlay",
+      "/var/lib/docker/rootfs/overlayfs/2cf59255e7e3f71d36972e05875eb429d7258ae8e1dd9a301aa685779ea9017c overlay",
+      "/var/lib/docker/rootfs/overlayfs/0cdb365715befdfdb017db3f8273e4917f08ac9ebd5bd817b9a9a833d863ca29 overlay",
+      "/var/lib/docker/rootfs/overlayfs/674713b37c1690d3306b375f3aad3aafd275385d2e78dac59578399134351061 overlay",
+      "/var/lib/docker/rootfs/overlayfs/2a2091910144d4cc5b57e9926ac51c513431f75f8b50e9603d6001162e99e8be overlay",
+      "/var/lib/docker/rootfs/overlayfs/b1fdb17cff270a2fbe82e42bf47b07fbb91fa5054c481a9872b6203270003381 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a184a4164162ea1fadee92071b6b87302198af5f296e25a481448cffa9b43ffa overlay",
+      "/var/lib/docker/rootfs/overlayfs/817d656831b0f782a7064ad74d7b8c34bf5743da967d1385e1d7d3e9639e55e9 overlay",
+      "/var/lib/docker/rootfs/overlayfs/f9aa8d926169869a8014e2ea729701edb11b2e79b9e585494c1157afeafc2e6e overlay",
+      "/var/lib/docker/rootfs/overlayfs/847f53e400d6f629bb68c49a033adfe39e380d7059f05dc13b7afec25cce873b overlay",
+      "/var/lib/docker/rootfs/overlayfs/f82bf5c7d22ede661d160089c8a5adb81afe4884f343077363e3c3047136ce1d overlay",
+      "/var/lib/docker/rootfs/overlayfs/043539195b15b781ff4dc887c20ecc03d4edc1ccd6a2554e20d95600c3830ac0 overlay",
+      "/var/lib/docker/rootfs/overlayfs/e56d3c1c304bf028bbe6c2a4fd19d211d9eaa3adaf2138a9d961da929f661e36 overlay",
+      "/var/lib/docker/rootfs/overlayfs/83ca329de7a03907a7ed43a4cf0e6015191da93201c22d36d2a520f671551521 overlay",
+      "/var/lib/docker/rootfs/overlayfs/3cbc006a3099719ab5076d5c8ae0a7f9e6504e79e502a49d44c53da878de19e5 overlay",
+      "/var/lib/docker/rootfs/overlayfs/70b5cd3e28b09642e920b8316917f2458ed8eb34f7158301f1e418a7a7426f15 overlay",
+      "/var/lib/docker/rootfs/overlayfs/60cc4f41f1271934c48c57e1083e93b446a8f317ae5f129823d57d3a83501f09 overlay",
+      "/var/lib/docker/rootfs/overlayfs/1132e41a00ddb6e53f09167b7849c5631be65fcce88e714565922484efa82182 overlay",
+      "/var/lib/docker/rootfs/overlayfs/668b14a448e8f617146fd7409f6d03ead1ec64deadb21c347503eb518e393136 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b62fc4f11c8b913a42f7f5775bf1b0216005a37100bf0023e930e0f1b884856e overlay",
+      "/var/lib/docker/rootfs/overlayfs/684a59d7cfc0309b6c6aaf430b752a921a9131eba3638379fa435d2024d26b54 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a7ca189628832af3eddb2fcff59aa1fd0bdb001d3e7841711ba196d2517f2335 overlay",
+      "/var/lib/docker/rootfs/overlayfs/30ce809b7437955b4d33d725127b797b22a421fdf7680d8b0ac03e96c9e0ecc1 overlay",
+      "/var/lib/docker/rootfs/overlayfs/e1cef316c15b8cbb916a314c1c9762e7c9ee7c2327f3207792f0853bada447b5 overlay",
+      "/var/lib/docker/rootfs/overlayfs/648efbd5697a590cf0d1dbd224d346866edcecb1902cd0f8bf62e6e3923e52d1 overlay",
+      "/var/lib/docker/rootfs/overlayfs/044a0ffb39fcfeec6155b592db48043be692731364036a95773d108b66033f10 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a77991b99ffc2d03ac8cf90aab75a59a54f89461c3b75f8ab3d19e892db79718 overlay",
+      "/var/lib/docker/rootfs/overlayfs/6edf6d6d9dbe9849260445b86fa97be1e1c5c04017c53555a7991f1f8cac5352 overlay",
+      "/var/lib/docker/rootfs/overlayfs/2f0a0e4a55d1464215a2adef42ff5976c2eb20eae701fea886b6e53dc4d155f6 overlay",
+      "/var/lib/docker/rootfs/overlayfs/42eccc2d65273a3a7fa3e5742e3e9ee03db81e93327b6d444bf14545f739a9de overlay",
+      "/var/lib/docker/rootfs/overlayfs/6c4112d5edabb768e2e2a7f726e668b781e8c9778cf5f8480f342ae00612abfe overlay",
+      "/var/lib/docker/rootfs/overlayfs/f878a1c3aba6487ca20ba31bd639883681edad9a50844801f37c04c77b46baed overlay",
+      "/var/lib/docker/rootfs/overlayfs/7fe8f7d58b2bd8e9ad6271d7ba32b02518852c679ceb4135a5c9f38275f76d18 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b844dfa1c7db276f4941ed04dec0a1d7b1ebf2bf04dd1ce590c7a4fa116b1b89 overlay",
+      "/var/lib/docker/rootfs/overlayfs/91e4b8a74c4c5f153918ed8366842175701a25467783576b33706ca3e58b52a8 overlay",
+      "/var/lib/docker/rootfs/overlayfs/3a5dd1a012e02b986577055b6b91a90139a54dfa0ca999336b0477710107db18 overlay",
+      "/var/lib/docker/rootfs/overlayfs/0ffce8b3a68d86187f5705008735f48d2e127e757cc202366ce57fe1724a57a2 overlay",
+      "/run/docker/netns/default nsfs",
+      "/var/lib/docker/rootfs/overlayfs/e5265011cd1bcd7411184d27aaae6c880be3d1fb8a26beb46ce1b2c63da6a2d5 overlay",
+      "/var/lib/docker/rootfs/overlayfs/2a8daec623adf9fc19c43be577789334e8e8b83151609d32b0532cc0fe063993 overlay",
+      "/var/lib/docker/rootfs/overlayfs/e307585bab58e56e2de0eecc3e585daf0f4af5407bf22bca216f2845e3c35de8 overlay",
+      "/var/lib/docker/rootfs/overlayfs/733f3a038b059200f09222ac5d23c4904f0493948430739d3f5bfe4332436125 overlay",
+      "/var/lib/docker/rootfs/overlayfs/5ffb9538922f15997692fe47cc61482eedd6f28eb163d4fba7ad3bd391483960 overlay",
+      "/var/lib/docker/rootfs/overlayfs/75e6b8d5c4e4d4ff6580ab835349baff3c7d39cd508e16a00fbfe1e2b6240a65 overlay",
+      "/var/lib/docker/rootfs/overlayfs/13646127877af80592a79a9609452bfaa4cdaf6354122b08d4fbd348f982c6e4 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b72469074acf75f80d5bce2be4853e3022063938138e9e025c05731b50d187e4 overlay",
+      "/var/lib/docker/rootfs/overlayfs/adca0bb1a17acfb712119ce16f97cbeb9d1ae9d0a4413b34e0716d31ac332d51 overlay",
+      "/var/lib/docker/rootfs/overlayfs/b9ccc4d15dbb15d68141a201fcb53c80823f06ad19c7cca0d7276b5629dd0282 overlay",
+      "/var/lib/docker/rootfs/overlayfs/cef9c7c06e47b24f45dbf2170bfd15357038bb6a216c452f8721ba199bd6ec54 overlay",
+      "/var/lib/docker/rootfs/overlayfs/0904fc1663353158c1bfde999e4862c887b9117067e12c76bfde84adb5ccd798 overlay",
+      "/var/lib/docker/rootfs/overlayfs/4a48f425af7c7f4a496abb372a6198c1fe968aab1cc22ba25d8e7504e9cef22d overlay",
+      "/var/lib/docker/rootfs/overlayfs/5caaba4f414d10df359fb6120c858babc92dda0637cf56c94bdfac493d970822 overlay",
+      "/var/lib/docker/rootfs/overlayfs/33f13658c8e4f568e460c6bdc5d33ddf8a7ed0bc1869b999246016863c6ce3fe overlay",
+      "/var/lib/docker/rootfs/overlayfs/6565646d8dec7b40e180f76820cf9a37a740627d0d1798c52b6b7f7e7a25429e overlay",
+      "/var/lib/docker/rootfs/overlayfs/cd340d0866bfe62e33f380efbae526998f66cdc9bd2e927d66241484382a17b9 overlay",
+      "/var/lib/docker/rootfs/overlayfs/43f0653819a19800829dea932f33a4dfc000b0052cdd36a97560d682c51fb096 overlay",
+      "/var/lib/docker/rootfs/overlayfs/8d588e2dc701ec423f97bcd2eab092ff82926c513363dae37631aa27601c0ad9 overlay",
+      "/var/lib/docker/rootfs/overlayfs/77d11d7553ec8e03f4f46e978a1584171951b129b535ff227cd725ed45f0b98e overlay",
+      "/var/lib/docker/rootfs/overlayfs/f6d255ea1a8a68004944eb2ee5b733489d059600a49f28e6a0e1ded863409cba overlay",
+      "/var/lib/docker/rootfs/overlayfs/2c3dd1499e280ef10099f9c5981d83ab2390c3758b814bc3c311ba63d0e6b0a9 overlay",
+      "/var/lib/docker/rootfs/overlayfs/484f92aff900d3aa3ea0fa10d1c5283d8e01c7f51951a8a53aff63a2e082b03d overlay",
+      "/var/lib/docker/rootfs/overlayfs/477850f2bb3d351e56cff61971a582f4f7dc16efe6fa840ad8b1dce524430b2b overlay",
+      "/var/lib/docker/rootfs/overlayfs/217093cf7e8a8e52059ae671bd633fa9faccabcebbe1fe4d552249e35582601d overlay",
+      "/var/lib/docker/rootfs/overlayfs/c302d8693a754e25a659f7beee73f16ad297fb6c138009a1d0b886531d65b854 overlay",
+      "/var/lib/docker/rootfs/overlayfs/8bd64c5aa143acc5bf5f921a4e5acfc6242a5ce730c387db1143854eec0acd04 overlay",
+      "/var/lib/docker/rootfs/overlayfs/c6401cafff676f45ee7b1787dfaede57c8ee42d684c3a2c9a905da30271d0c87 overlay",
+      "/var/lib/docker/rootfs/overlayfs/a55ecf04d0cbd02dc8bb65f9119676d40f906f803619d334aaff3494b60aa55b overlay",
+      "/var/lib/docker/rootfs/overlayfs/64db664647da8d1327e6bf2e3aff7bd422fdf3d6ffe2f6cf4d1ec333b6d3f964 overlay",
+      "/var/lib/docker/rootfs/overlayfs/c91127663ceff8431e55c81599ecf1859c228cc5a638891db8a211c53e140ec2 overlay",
+      "/var/lib/docker/rootfs/overlayfs/cad2cef74a84a427dcb4e7fd494adb6d280e5daeb9d49b55d1c5fa712b004dfb overlay",
+      "/var/lib/docker/rootfs/overlayfs/2a70d72851ac59006cf25b2a6c44c561228676bb0445462b693ef105fbfabe83 overlay",
+      "/var/lib/docker/rootfs/overlayfs/83dd7c64add270e06873407a306a4571075f754d51cb603a849b5e5cbd4a77d6 overlay",
+      "/run/docker/netns/cb9096ed191e nsfs",
+      "/run/docker/netns/008ab19051f3 nsfs",
+      "/run/docker/netns/77ee22d2fec8 nsfs",
+      "/run/docker/netns/ce44df4526cb nsfs",
+      "/run/docker/netns/3cb3c9d31d1a nsfs",
+      "/run/docker/netns/20f574bbc39b nsfs",
+      "/run/docker/netns/273208cd6161 nsfs",
+      "/run/docker/netns/b60021b68035 nsfs",
+      "/run/docker/netns/76788956ff94 nsfs",
+      "/run/docker/netns/1fdd43920743 nsfs",
+      "/run/docker/netns/c533b920e34b nsfs",
+      "/run/docker/netns/ff67ffa713ff nsfs",
+      "/run/docker/netns/6ba0b0d5b245 nsfs",
+      "/run/docker/netns/8091196c1c86 nsfs",
+      "/run/docker/netns/d07bc2fb24e9 nsfs",
+      "/run/docker/netns/0db35ec75263 nsfs",
+      "/run/docker/netns/af2898a3aa6a nsfs",
+      "/run/docker/netns/280d8d756584 nsfs",
+      "/run/docker/netns/7857c09a3bed nsfs",
+      "/run/docker/netns/10d633a893f4 nsfs",
+      "/run/docker/netns/b99bbe76d302 nsfs",
+      "/run/docker/netns/63093a65701a nsfs",
+      "/run/docker/netns/dc2c85648548 nsfs",
+      "/run/docker/netns/a7e1fa1bf47c nsfs",
+      "/run/docker/netns/bb1519461ecc nsfs",
+      "/run/docker/netns/35292c0e8c87 nsfs",
+      "/run/docker/netns/836f91fa74f9 nsfs",
+      "/run/docker/netns/fa30fb02f39c nsfs",
+      "/run/docker/netns/d9dfe00811d4 nsfs",
+      "/run/docker/netns/a98eb696c129 nsfs",
+      "/run/docker/netns/430b10e9608c nsfs",
+      "/run/docker/netns/db77eb70a655 nsfs",
+      "/run/docker/netns/95f6bd3e2d5e nsfs",
+      "/run/docker/netns/ee736c2af75b nsfs",
+      "/run/docker/netns/9ae096a2eeea nsfs",
+      "/run/docker/netns/584ac4ba5203 nsfs",
+      "/run/docker/netns/cd4a010287c7 nsfs",
+      "/run/docker/netns/f52456666712 nsfs",
+      "/run/docker/netns/54aa3c22a046 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/1960ead61f3325f966eed42a974ea9df3fdff6d47d3a5dbfac75e56ecef78fcc overlay",
+      "/run/docker/netns/783d26bdf4e1 nsfs",
+      "/run/docker/netns/e6222a020e90 nsfs",
+      "/run/docker/netns/20a10bd4ecf8 nsfs",
+      "/run/docker/netns/f38af70f346c nsfs",
+      "/run/docker/netns/83c3c0557730 nsfs",
+      "/run/docker/netns/2198dec6a34f nsfs",
+      "/run/docker/netns/38727c95d659 nsfs",
+      "/run/docker/netns/f07cc4ef5051 nsfs",
+      "/run/docker/netns/8076db0c86d7 nsfs",
+      "/run/docker/netns/cbfe5bd51bbc nsfs",
+      "/run/docker/netns/bca855b5e4ee nsfs",
+      "/run/docker/netns/599586f66fdf nsfs",
+      "/run/docker/netns/8edf1fb894bd nsfs",
+      "/run/docker/netns/594656f5da0e nsfs",
+      "/run/docker/netns/9ac14048ae17 nsfs",
+      "/run/docker/netns/fd20fb6b1826 nsfs",
+      "/run/docker/netns/013d7c37b77f nsfs",
+      "/run/docker/netns/58250d2d84d7 nsfs",
+      "/run/docker/netns/3deea968b974 nsfs",
+      "/run/docker/netns/ee65136c90c0 nsfs",
+      "/run/docker/netns/73e3b882c4d6 nsfs",
+      "/run/docker/netns/19b13624d5c0 nsfs",
+      "/run/docker/netns/a14490e7a309 nsfs",
+      "/run/docker/netns/f0460b883bbf nsfs",
+      "/run/docker/netns/b141de63faa3 nsfs",
+      "/run/docker/netns/17fcce84ac11 nsfs",
+      "/run/docker/netns/a696f0a693f3 nsfs",
+      "/run/docker/netns/527af85f4472 nsfs",
+      "/run/docker/netns/bab5de3634a5 nsfs",
+      "/run/docker/netns/f42863dbb65b nsfs",
+      "/run/docker/netns/50c7dfeb6506 nsfs",
+      "/run/docker/netns/e2832911eeda nsfs",
+      "/run/docker/netns/80806ff8c7d4 nsfs",
+      "/run/docker/netns/29140a2fbdc4 nsfs",
+      "/run/docker/netns/115d74cf56cf nsfs",
+      "/run/docker/netns/99351a6ac05a nsfs",
+      "/run/docker/netns/7d7b7acd45e4 nsfs",
+      "/run/docker/netns/6bffb675114b nsfs",
+      "/run/docker/netns/6a14761c942f nsfs",
+      "/run/docker/netns/9d6dd8b8f49a nsfs",
+      "/run/docker/netns/36dc57eb06c2 nsfs",
+      "/run/docker/netns/7ce310369fce nsfs",
+      "/run/docker/netns/60b9c5970feb nsfs",
+      "/run/docker/netns/e1a84184a1dc nsfs",
+      "/run/docker/netns/a4af242837f3 nsfs",
+      "/run/docker/netns/946e1281a921 nsfs",
+      "/run/docker/netns/00bbc9cfe042 nsfs",
+      "/run/docker/netns/80f7faa35ed3 nsfs",
+      "/run/docker/netns/acd8ba243f33 nsfs",
+      "/run/docker/netns/541076ce2d8b nsfs",
+      "/run/docker/netns/5291defa3d0f nsfs",
+      "/run/docker/netns/9f9f60174467 nsfs",
+      "/run/docker/netns/adae25a65ba0 nsfs",
+      "/run/docker/netns/25ecc0d57c71 nsfs",
+      "/run/docker/netns/976b38a123c2 nsfs",
+      "/run/docker/netns/c5b0cb453a5c nsfs",
+      "/run/docker/netns/e992fd15a623 nsfs",
+      "/run/docker/netns/bd71d1b9b550 nsfs",
+      "/run/docker/netns/cddd728cb79b nsfs",
+      "/run/docker/netns/825ee7e72713 nsfs",
+      "/run/docker/netns/1668e734a037 nsfs",
+      "/run/docker/netns/2976f870a9a6 nsfs",
+      "/run/docker/netns/5c4fd70af0a8 nsfs",
+      "/run/docker/netns/4c8b711d1546 nsfs",
+      "/run/docker/netns/03581828b387 nsfs",
+      "/run/docker/netns/a02f948b2b4c nsfs",
+      "/run/docker/netns/b562391f4c8f nsfs",
+      "/run/docker/netns/10d1038bd735 nsfs",
+      "/run/docker/netns/a63ed8258104 nsfs",
+      "/run/docker/netns/45671d29dc0d nsfs",
+      "/run/docker/netns/eb123ecbac45 nsfs",
+      "/run/docker/netns/f80e2c1733c9 nsfs",
+      "/run/docker/netns/a710df9eb845 nsfs",
+      "/run/docker/netns/0075ded04fe2 nsfs",
+      "/run/docker/netns/8a02e2e9a914 nsfs",
+      "/run/docker/netns/59968d3f0e7f nsfs",
+      "/run/docker/netns/fdd006fa51a8 nsfs",
+      "/run/docker/netns/c4bc125b8bc5 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/6ff5e4f2c9131b38c7662b13aee7a05e18253203fa3f47ef1cd728c10097fef7 overlay",
+      "/var/lib/docker/rootfs/overlayfs/37b3fe3bb1073f8ccf95a864760281fd004e1d2f8880e39d5a15f9184dfdb635 overlay",
+      "/run/docker/netns/8577316b8e0f nsfs",
+      "/var/lib/docker/rootfs/overlayfs/20710b94a015f38324a64eae853d9b53343c30a371e44205c4c6b6c166a50b60 overlay",
+      "/run/docker/netns/bf3fa6312076 nsfs",
+      "/run/docker/netns/31588f4cc625 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/b4ae64752693e5f6bf44981688a61f5eb782840ecdf933d0e88f21769eb909dd overlay",
+      "/run/docker/netns/706d5a335b0c nsfs",
+      "/run/docker/netns/8040862be097 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/9e4c817bea53763a522da47498224f6c5c8eae9f717bd49a71df450e0430bdda overlay",
+      "/run/docker/netns/d50fe9049634 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/3aeeef2d8248e573ce1a6b8ae7ec956cd8f5ead10a15eb8cadc0bdd333b9cc9e overlay",
+      "/var/lib/docker/rootfs/overlayfs/dd1bb79a01cedbb606de76142338e5bf3a1c8adf8add028bc3f9e8b8ff84fdf3 overlay",
+      "/var/lib/docker/rootfs/overlayfs/5ce3374927b25784f2cf205273e26c1070e1b8eedf9a2eb7889e00fd9b613a10 overlay",
+      "/var/lib/docker/rootfs/overlayfs/e6aa1bdc2e977751b37bcb0dda78c3fdb257871ea62aea503d0ea4633159653f overlay",
+      "/run/docker/netns/d9bea1c58bd8 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/5bea6788f722805f0deedea80eb5e2e5fb1e7b98dc18459080c2d99d9123b6a2 overlay",
+      "/run/docker/netns/4e00acd3c5f4 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/afd3ddace778684ce8fd5d779afe2fff6c1892c40dcbd6d9a9203a965405b087 overlay",
+      "/run/docker/netns/65f3c2f1f0ba nsfs",
+      "/var/lib/docker/rootfs/overlayfs/06ce2122308860c02bfb859b0473ab4f8d3b927cc8cd571dd0804b5e507be5be overlay",
+      "/run/docker/netns/d889445beffa nsfs",
+      "/var/lib/docker/rootfs/overlayfs/9b52169e249bbf02bd706eb70f5fbe38364de9a26c24043c6c034184461dd7de overlay",
+      "/run/docker/netns/536480d01130 nsfs",
+      "/var/lib/docker/rootfs/overlayfs/164407b94a30e964f6f9e244e7e223bc3c52bf4c909fb166d11acbc88f8c18c8 overlay",
+      "/run/docker/netns/191cdc015e81 nsfs",
+      "/run/user/1001 tmpfs"
+    ],
+    "custom_units": [
+      "dbus-org.freedesktop.timesync1.service",
+      "proxmox-regenerate-snakeoil.service",
+      "sshd.service"
+    ],
+    "cron_files": [
+      ".placeholder",
+      "e2scrub_all"
+    ]
+  }
+}
