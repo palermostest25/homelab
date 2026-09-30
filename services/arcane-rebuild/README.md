@@ -1,6 +1,6 @@
 # Arcane rebuild bundle
 
-**Draft — publication and fresh-host verification pending.** Captured read-only on
+**Configuration recovery bundle — fresh-host verification pending.** Captured read-only on
 2026-09-30: 102 compose definitions, 101 Compose projects, 140 containers, 101
 networks and 49 volumes. No host was rebuilt or rebooted to produce this bundle.
 
@@ -71,7 +71,7 @@ sudo bash tools/rebuild-arcane.sh --apply --data-restored --env-file /root/arcan
 `--check` requires Docker Compose already installed. `--apply` can install Docker
 from its [official Debian apt repository](https://docs.docker.com/engine/install/debian/)
 on fresh Debian 12, validates all selected definitions, enables Docker at boot and
-runs `compose up -d --wait` per stack. Existing engines are not upgraded. Conflicting
+starts all selected projects, then checks `compose up -d --wait` per stack. Existing engines are not upgraded. Conflicting
 packages cause an explicit stop. No package removal, volume deletion or pruning is
 performed. All exported services retain `always` or `unless-stopped` restart policy.
 
@@ -147,10 +147,16 @@ never reboots any host. Cold-boot durability remains unproven until that verdict
 ## Dependencies
 
 Bring up storage and restore data first, then Docker and Arcane, then the remaining
-selected projects in stable alphabetical order. Within a project, Compose honors
+selected projects in stable alphabetical order. Every selected project is started
+before the readiness pass, so a later project can satisfy an earlier dependency. Within a project, Compose honors
 its original `depends_on` relationships. Cross-project references in private env
 values are not statically resolved: review them and use repeated `--stack` selection
-for staged restore if needed. Network DNS, external databases, auth providers,
+for staged restore if needed. Explicit `--stack` arguments preserve their supplied
+order. No exported definition declares an external Compose network or volume;
+`robin` shares its own Gluetun service network. Host networking, device mappings
+and private input references still require the original host prerequisites.
+Compose startup dependencies inside each project can still fail before a later
+project starts; use staged selection to start its database/provider first. Network DNS, external databases, auth providers,
 registry access and private keys must exist before dependent apps can pass checks.
 
 For a fresh target, provision Python 3 and sufficient capacity first. Compare live

@@ -13,6 +13,9 @@ class SafetyTests(unittest.TestCase):
         self.assertEqual([s['name'] for s in r.choose(m,[])],['app'])
         self.assertEqual([s['name'] for s in r.choose(m,['stopped'])],['stopped'])
         with self.assertRaises(ValueError):r.choose(m,['typo'])
+    def test_explicit_dependency_order_is_preserved(self):
+        m={'stacks':[{'name':'app'},{'name':'db'}]}
+        self.assertEqual([s['name'] for s in r.choose(m,['db','app','db'])],['db','app'])
     def test_conflicting_definition_is_not_overwritten(self):
         with tempfile.TemporaryDirectory() as d:
             target=Path(d);(target/'compose.yaml').write_text('existing unrelated data')

@@ -376,4 +376,4 @@ A read-only enumeration for the rebuild bundle found 102 Compose definitions
 README for source paths, restore prerequisites and limitations. This is an export,
 not a deployment or reboot verification. The stopped ARM definition references
 `/mnt/nas/ARM`; treat that as a restore prerequisite rather than assuming all stack
-data is local. Public publication and fresh-host verification remain pending.
+data is local. The configuration bundle is published here; fresh-host verification remains pending.

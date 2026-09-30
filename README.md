@@ -114,8 +114,8 @@ It is idempotent and safe to run at the top of any heartbeat — see
 `fatal: empty ident name` failure you hit when committing through the Paperclip
 GitHub launcher.
 
-## Arcane rebuild draft
+## Arcane rebuild
 
 The [Arcane rebuild bundle](services/arcane-rebuild/README.md) captures 102 Compose
-definitions with private inputs removed. Read its restore prerequisites and draft
+definitions with private inputs removed. Read its restore prerequisites and
 limitations before using `tools/rebuild-arcane.sh`; no fresh-host restore is yet proven.

@@ -22,7 +22,8 @@ def choose(manifest, names):
     known = {s['name'] for s in manifest['stacks']}
     if set(names) - known:
         raise ValueError('Unknown stack: ' + ', '.join(sorted(set(names) - known)))
-    return [s for s in manifest['stacks'] if s['name'] in names] if names else [s for s in manifest['stacks'] if s['enabled'] and not s['exposure_gate']]
+    by_name = {s['name']: s for s in manifest['stacks']}
+    return [by_name[name] for name in dict.fromkeys(names)] if names else [s for s in manifest['stacks'] if s['enabled'] and not s['exposure_gate']]
 
 def compose(stack, env_file, source=False):
     path = BUNDLE / 'stacks' / stack['name'] / 'compose.yaml' if source else Path(stack['target']) / 'compose.yaml'
@@ -111,6 +112,9 @@ def main():
         target=Path(stack['target']);target.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(BUNDLE/'stacks'/stack['name']/'compose.yaml',target/'compose.yaml')
     marker.write_text('Managed by homelab tools/rebuild-arcane.sh\n')
+    # Create every selected project before waiting: apps can depend on later projects.
+    for stack in stacks:
+        run(compose(stack,args.env_file)+['up','-d'])
     for stack in stacks:
         run(compose(stack,args.env_file)+['up','-d','--wait','--wait-timeout','180'])
         print('Started and passed Compose readiness: '+stack['name'])
