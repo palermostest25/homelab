@@ -21,7 +21,7 @@ for path in (bundle/'stacks').glob('*/compose.yaml'):
     data=yaml.safe_load(path.read_text())
     for name,spec in data['services'].items():
         for key,value in spec.get('environment',{}).items():
-            if not isinstance(value,str) or not re.fullmatch(r'\$\{[A-Za-z_][A-Za-z0-9_]*:\?Set [A-Za-z_][A-Za-z0-9_]*\}',value):
+            if not isinstance(value,str) or not re.fullmatch(r'\$\{[A-Za-z_][A-Za-z0-9_]*:?\?Set [A-Za-z_][A-Za-z0-9_]*\}',value):
                 failures.append(f'{path.parent.name}/{name}/{key}: literal environment input')
         if spec.get('restart') not in ['always','unless-stopped']:
             failures.append(f'{path.parent.name}/{name}: missing restart policy')

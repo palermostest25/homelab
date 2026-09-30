@@ -50,7 +50,9 @@ Populate the private file locally using [INPUTS.md](INPUTS.md). Values may also 
 provided through process environment variables, which take Compose precedence.
 The entrypoint never sources a shell env file and never prints rendered Compose.
 Use normal Docker Compose dotenv quoting; preserve dollar signs, multiline values
-and original encryption keys. Empty example entries are not usable credentials.
+and original encryption keys. Empty example entries are not usable credentials. Ten originally empty values are
+explicitly permitted by `allow_empty_inputs` in the manifest; all other generated
+inputs require nonempty values.
 Do not commit the populated file. Per-stack examples contain the corresponding subset.
 
 The private input bundle was proposed to the operator vault as

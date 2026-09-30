@@ -41,7 +41,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "2fauth",
@@ -59,7 +60,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "actual-budget",
@@ -95,7 +97,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "aliasvault",
@@ -139,7 +142,11 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": [
+        "ALIASVAULT_ALIASVAULT_SUPPORT_EMAIL",
+        "ALIASVAULT_ALIASVAULT_PRIVATE_EMAIL_DOMAINS"
+      ]
     },
     {
       "name": "arm",
@@ -187,7 +194,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "asspp",
@@ -208,7 +216,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "backapp",
@@ -240,7 +249,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "beatportdl-ui",
@@ -253,7 +263,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "beszel",
@@ -295,7 +306,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "blackbox",
@@ -360,7 +372,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "bookstack",
@@ -402,7 +415,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "bytestash",
@@ -434,7 +448,15 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": [
+        "BYTESTASH_BYTESTASH_BASE_PATH",
+        "BYTESTASH_BYTESTASH_OIDC_DISPLAY_NAME",
+        "BYTESTASH_BYTESTASH_OIDC_ISSUER_URL",
+        "BYTESTASH_BYTESTASH_OIDC_CLIENT_ID",
+        "BYTESTASH_BYTESTASH_OIDC_CLIENT_SECRET",
+        "BYTESTASH_BYTESTASH_OIDC_SCOPES"
+      ]
     },
     {
       "name": "cadvisor",
@@ -476,7 +498,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "calculators",
@@ -487,7 +510,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "cloudflared",
@@ -500,7 +524,8 @@
       "exposure_gate": true,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "code-server",
@@ -520,7 +545,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "coder",
@@ -557,7 +583,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "compote",
@@ -587,7 +614,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "configclarity",
@@ -598,7 +626,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "converttoit",
@@ -609,7 +638,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "convertx",
@@ -633,7 +663,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "crafty",
@@ -677,7 +708,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "cronmaster",
@@ -748,7 +780,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "cve4pve-admin",
@@ -774,7 +807,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "cyberchef",
@@ -785,7 +819,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "dock-dploy",
@@ -798,7 +833,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "docker-updater",
@@ -826,7 +862,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "dockpeek",
@@ -848,7 +885,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "dockwatch",
@@ -876,7 +914,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "docuseal",
@@ -887,7 +926,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "dozzle",
@@ -905,7 +945,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "dumbpad",
@@ -923,7 +964,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "filesync",
@@ -949,7 +991,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "filewizard",
@@ -984,7 +1027,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "forgejo",
@@ -1011,7 +1055,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "gotify-ntfy",
@@ -1034,7 +1079,10 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": [
+        "GOTIFY_NTFY_GOTIFY_TO_NTFY_PROXY_SPLIT_LARGE_MESSAGES"
+      ]
     },
     {
       "name": "grafana",
@@ -1055,7 +1103,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "guacamole",
@@ -1095,7 +1144,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "happy",
@@ -1106,7 +1156,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "hastebin",
@@ -1128,7 +1179,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "homarr",
@@ -1154,7 +1206,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "homebox",
@@ -1175,7 +1228,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "homelab-manager",
@@ -1188,7 +1242,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "imagemagick",
@@ -1235,7 +1290,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "invoiceninja",
@@ -1314,7 +1370,8 @@
           ]
         }
       ],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "it-tools",
@@ -1325,7 +1382,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "karakeep",
@@ -1346,7 +1404,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "languard",
@@ -1395,7 +1454,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "librespeed",
@@ -1420,7 +1480,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "litellm",
@@ -1446,7 +1507,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "maildrop",
@@ -1459,7 +1521,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "mailed",
@@ -1470,7 +1533,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "mailflow",
@@ -1502,7 +1566,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "mailhog",
@@ -1513,7 +1578,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "memos",
@@ -1531,7 +1597,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "mini-qr",
@@ -1542,7 +1609,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "muilticam-studio",
@@ -1574,7 +1642,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "n8n",
@@ -1596,7 +1665,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "netboot",
@@ -1624,7 +1694,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "netronome",
@@ -1642,7 +1713,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "nginx-proxy-manager",
@@ -1666,7 +1738,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "nut_webgui",
@@ -1681,7 +1754,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "obsidian-livesync",
@@ -1704,7 +1778,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "odoo",
@@ -1719,7 +1794,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "omni-tools",
@@ -1730,7 +1806,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "openwebui",
@@ -1750,7 +1827,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "outline",
@@ -1870,7 +1948,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "paperless-ngx",
@@ -1965,7 +2044,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "pihole",
@@ -1987,7 +2067,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "playit",
@@ -2000,7 +2081,8 @@
       "exposure_gate": true,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "pocket-id",
@@ -2020,7 +2102,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "portracker",
@@ -2047,7 +2130,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "ports",
@@ -2072,7 +2156,10 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": [
+        "PORTS_PORTS_RESERVED_PORTS"
+      ]
     },
     {
       "name": "postgres",
@@ -2102,7 +2189,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "printstash",
@@ -2183,7 +2271,8 @@
       "profiles": [
         "postgres",
         "s3"
-      ]
+      ],
+      "allow_empty_inputs": []
     },
     {
       "name": "prometheus",
@@ -2210,7 +2299,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "prunemate",
@@ -2243,7 +2333,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "pve-notebuddy",
@@ -2254,7 +2345,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "qui",
@@ -2272,7 +2364,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "receiptwrangler",
@@ -2332,7 +2425,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "remotepower",
@@ -2353,7 +2447,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "robin",
@@ -2394,7 +2489,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "rustdesk",
@@ -2421,7 +2517,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "schoolboxmarkviewer",
@@ -2432,7 +2529,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "searxng",
@@ -2458,7 +2556,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "shlink",
@@ -2482,7 +2581,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "stirlingpdf",
@@ -2527,7 +2627,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "stremio",
@@ -2556,7 +2657,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "telecloud",
@@ -2578,7 +2680,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "termix",
@@ -2598,7 +2701,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "trilium",
@@ -2630,7 +2734,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "truecommand",
@@ -2648,7 +2753,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "twingate",
@@ -2665,7 +2771,8 @@
       "exposure_gate": true,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "uptime-kuma",
@@ -2691,7 +2798,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "vaultwarden",
@@ -2712,7 +2820,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "vikunja",
@@ -2739,7 +2848,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "wallabag",
@@ -2766,7 +2876,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "wallos",
@@ -2792,7 +2903,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "wireguard",
@@ -2815,7 +2927,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "withoutbg",
@@ -2826,7 +2939,8 @@
       "exposure_gate": false,
       "binds": [],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "wordpress",
@@ -2859,7 +2973,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     },
     {
       "name": "zerobyte",
@@ -2887,7 +3002,8 @@
         }
       ],
       "env_files": [],
-      "profiles": []
+      "profiles": [],
+      "allow_empty_inputs": []
     }
   ],
   "errors": [],
