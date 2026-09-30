@@ -47,10 +47,8 @@ from a change ticket as:
 homelab repo, DEPLOY-STANDARD.md (repo root)
 ```
 
-It is owned by Sentry and was authored on
-PJA-13. **Do not edit it here.** Raise a change on
-PJA-13 and let the owner revise it; this copy tracks that
-document verbatim.
+It is owned by Sentry. **Do not edit it here.** Raise a change with the owner
+and let them revise it; this copy tracks that document verbatim.
 
 ## Secrets
 
@@ -65,7 +63,17 @@ for the per-host secret names.
 Canonical working copy: the Paperclip shared project checkout for the Onboarding
 project, at `<project checkout root>/homelab`.
 
-Durable remote (live since 2026-09-29): a bare repo on **arcane**
+Off-site remote: the public GitHub repo **palermostest25/homelab** on branch
+`main`:
+
+```
+https://github.com/palermostest25/homelab
+```
+
+This is the published, user-approved copy — GitHub for durability off-site,
+arcane for a LAN copy that does not depend on an external service.
+
+Durable LAN remote: a bare repo on **arcane**
 (192.168.1.10) at `/home/paperclip/homelab.git`, branch `main`, remote name
 `arcane`:
 
@@ -76,23 +84,11 @@ ssh://paperclip@192.168.1.10/home/paperclip/homelab.git
 Push/pull over SSH as `paperclip` with the `homelab/ssh-key-arcane` Paperclip
 secret. LAN-only, so no §8 exposure question.
 
-A **private** GitHub repo remains the intended off-site end state (§8 forbids a
-public one
-without the user's explicit approval), alongside the arcane remote — GitHub for
-durability off-site, arcane for a LAN copy that does not depend on an external
-service. It is blocked on the company's GitHub connection: the connection
-reports `needs_user_action` ("Review identity and access for this agent"), so
-both `git push` and the GitHub tools fail. Tracked on
-PJA-15; when the connection is usable, add it as a second
-remote and record it here.
-
 Clone:
 
 ```
-git clone ssh://paperclip@192.168.1.10/home/paperclip/homelab.git
+git clone https://github.com/palermostest25/homelab
 ```
-
-Track new remotes on PJA-15.
 
 ## Working in this repo
 
@@ -100,7 +96,7 @@ Track new remotes on PJA-15.
   command you have to remember.
 - Every commit message ends with exactly:
   `Co-Authored-By: Paperclip <noreply@paperclip.ing>`
-- Update the lab inventory (PJA-12 `inventory` document) in
+- Update the lab inventory in
   the same change that adds or moves a service.
 
 ## Runner tooling note
